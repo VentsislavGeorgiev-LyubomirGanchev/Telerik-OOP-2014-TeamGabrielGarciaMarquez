@@ -31,7 +31,7 @@ namespace RolePlayingGame.Core.Forms
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
 			this.SuspendLayout();
 			// 
-			// GameStartup
+			// Game
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -42,10 +42,10 @@ namespace RolePlayingGame.Core.Forms
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.Name = "GameStartup";
-			this.Text = "GameStartup";
-			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
+			this.Name = "Game";
+			this.Text = "RolePlayingGame";
 			this.Shown += new System.EventHandler(this.Game_Shown);
+			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
 			this.ResumeLayout(false);
 

@@ -52,7 +52,7 @@ namespace RolePlayingGame.Core
 
 		public static void Start()
 		{
-			_start.Play();
+			//_start.Play();
 		}
 	}
 }
