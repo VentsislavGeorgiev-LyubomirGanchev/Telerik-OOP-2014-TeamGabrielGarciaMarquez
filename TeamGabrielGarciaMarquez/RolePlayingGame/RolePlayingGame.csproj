@@ -11,7 +11,7 @@
     <RootNamespace>RolePlayingGame</RootNamespace>
     <AssemblyName>RolePlayingGame</AssemblyName>
     <ApplicationIcon>app.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
