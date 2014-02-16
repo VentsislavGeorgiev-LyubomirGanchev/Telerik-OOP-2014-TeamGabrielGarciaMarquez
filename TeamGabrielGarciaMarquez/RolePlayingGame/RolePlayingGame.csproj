@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Area.cs" />
+    <Compile Include="Core\Forms\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Utils\BitmapCache.cs" />
     <Compile Include="Core\Forms\Game.cs">
       <SubType>Form</SubType>
@@ -88,6 +94,9 @@
     <EmbeddedResource Include="Core\Forms\Help.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Content\112526.jpg" />
+    <None Include="Content\download.jpg" />
+    <None Include="Content\download %281%29.jpg" />
     <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
