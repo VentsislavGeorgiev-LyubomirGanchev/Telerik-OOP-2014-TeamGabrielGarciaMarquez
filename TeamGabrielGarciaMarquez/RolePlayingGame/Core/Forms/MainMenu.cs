@@ -27,6 +27,7 @@ namespace RolePlayingGame.Core.Forms
         {
             Game game = new Game();
             game.Show();
+            this.Hide();
         }
 
         private void Txt_Title_TextChanged(object sender, EventArgs e)
