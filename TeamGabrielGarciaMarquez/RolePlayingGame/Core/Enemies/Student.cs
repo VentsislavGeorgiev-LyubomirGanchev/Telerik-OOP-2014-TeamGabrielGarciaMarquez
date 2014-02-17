@@ -2,6 +2,11 @@
 {
     public class Student : Enemies
     {
+        #region Constants
+        private const float HEALTH_COEFFICIENT = 1.5F;
+        private const byte HEALTH_MULTIPLICATOR = 10;
+        #endregion Constants
+
         #region Fields
         #endregion Fields
 
@@ -9,7 +14,7 @@
         public Student(string name, float row, float col, int level)
             : base(name, row, col, level)
         {
-            this.Health = SetHelth();
+            this.Health = SetHealth();
         }
         #endregion Constructos
 
@@ -17,11 +22,13 @@
         #endregion Properties
 
         #region Methods
-        //TODO: need implementation
-        public override float SetHelth()
+        /// <summary>
+        /// Initialize the the health of the Student. The health will increase her value depending of the student level! 
+        /// </summary>
+        /// <returns>Health in float</returns>
+        public override float SetHealth()
         {
-            return 0;
-            //throw new System.NotImplementedException();
+            return (this.Level * HEALTH_MULTIPLICATOR) * HEALTH_COEFFICIENT;
         }
 
         public override void GetStrength()

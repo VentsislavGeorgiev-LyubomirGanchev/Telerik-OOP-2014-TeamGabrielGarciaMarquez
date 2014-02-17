@@ -2,6 +2,10 @@
 {
     public class Boss : Enemies
     {
+        #region Constants
+        private const byte HEALTH_MULTIPLICATOR = 100;
+        #endregion Constants
+
         #region Fields
         #endregion Fields
 
@@ -9,7 +13,7 @@
         public Boss(string name, float row, float col, int level)
             : base(name, row, col, level)
         {
-            this.Health = SetHelth();
+            this.Health = SetHealth();
         }
         #endregion Constructos
 
@@ -18,11 +22,13 @@
         #endregion Properties
 
         #region Methods
-        //TODO: need implementation
-        public override float SetHelth()
+        /// <summary>
+        /// Initialize the the health of the Boss. The health will increase her value depending of the boss level! 
+        /// </summary>
+        /// <returns>Health in float</returns>
+        public override float SetHealth()
         {
-            return 0;
-            //throw new System.NotImplementedException();
+            return this.Level * HEALTH_MULTIPLICATOR;
         }
 
         public override void GetStrength()

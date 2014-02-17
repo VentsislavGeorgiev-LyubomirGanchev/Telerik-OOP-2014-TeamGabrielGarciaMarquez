@@ -22,7 +22,7 @@
         #endregion Properties
 
         #region Methods
-        public abstract float SetHelth();
+        public abstract float SetHealth();
 
         public abstract void GetStrength();
         #endregion Methods
