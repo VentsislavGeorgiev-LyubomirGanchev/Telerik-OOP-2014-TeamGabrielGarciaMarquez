@@ -10,7 +10,7 @@
             : base(row, col)
         {
             this.Name = name;
-            this.Level = level;            
+            this.Level = level;
         }
         #endregion Constructos
 
@@ -22,6 +22,19 @@
         #endregion Properties
 
         #region Methods
+        /// <summary>
+        /// Check if the instance of enemy is alive or not.
+        /// </summary>
+        /// <returns>Bool state</returns>
+        public bool IsAlive()
+        {
+            if (this.Health > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
+
         public abstract float SetHealth();
 
         public abstract void GetStrength();
