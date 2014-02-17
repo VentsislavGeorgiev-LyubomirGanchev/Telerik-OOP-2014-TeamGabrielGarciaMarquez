@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RolePlayingGame.Core.Enemies.Boss">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Enemies\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Enemies.Enemies">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAQIAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Enemies\Enemies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Enemies.Student">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Enemies\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Human">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAEAAIAAAAAEAAAAAAAQAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Human.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RolePlayingGame.Core.Interfaces.IMovable">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Interfaces\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
