@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RolePlayingGame.Core.Item
 {
-    class StaticItem
+    class StaticItem : Item
     {
     }
 }

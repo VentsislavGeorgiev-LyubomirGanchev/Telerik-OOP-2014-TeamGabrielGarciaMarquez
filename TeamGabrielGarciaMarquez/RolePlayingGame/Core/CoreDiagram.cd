@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="RolePlayingGame.Core.Human.Enemies.Boss">
-    <Position X="9.5" Y="5" Width="1.5" />
+    <Position X="9.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Core\Human\Enemies\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Enemies.Enemies">
-    <Position X="7" Y="2.25" Width="1.5" />
+    <Position X="7.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAABAQAAAAAAAABAAAAAgAAAAA=</HashCode>
       <FileName>Core\Human\Enemies\Enemies.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Enemies.Student">
-    <Position X="4.75" Y="5.25" Width="1.5" />
+    <Position X="5.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAEAAAAACAAAAgAAAAA=</HashCode>
       <FileName>Core\Human\Enemies\Student.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Human">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="4.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAEAAIAAAAAEAAAAAAAQAAEAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\Human\Human.cs</FileName>
@@ -42,39 +42,11 @@
       <FileName>Core\GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.GameState" Collapsed="true">
-    <Position X="19" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>wiQGCQABAFBAgwACAAgAYgAAQICACAQBAAAAAIAQQAE=</HashCode>
-      <FileName>Core\GameState.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RolePlayingGame.Core.MapTile" Collapsed="true">
-    <Position X="18.75" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAACAAAAAgAAAAAAACAAQAAAAAAAQAQA=</HashCode>
-      <FileName>Core\MapTile.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RolePlayingGame.Core.Sounds" Collapsed="true">
-    <Position X="19.75" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAFAAAECAIgAACAAAAACAAAAAAAAAAAAAAgAQABAA=</HashCode>
-      <FileName>Core\Sounds.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="RolePlayingGame.Core.Sprite">
     <Position X="12.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gISAAAAAAJAAggACAAMEAAEAAAQAAAAAAAAEAAAEQAA=</HashCode>
       <FileName>Core\Sprite.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RolePlayingGame.Core.Tile">
-    <Position X="21.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAEAAAgAAAQABAAgAQAAIAAAgAAASAA=</HashCode>
-      <FileName>Core\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.World">
@@ -91,15 +63,51 @@
       <FileName>Core\World.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="RolePlayingGame.Core.textPopup" Collapsed="true">
-    <Position X="19.5" Y="1.5" Width="1.5" />
+  <Class Name="RolePlayingGame.UI.Sprite" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAYAA=</HashCode>
-      <FileName>Core\World.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Sprite.cs</FileName>
     </TypeIdentifier>
-  </Struct>
+  </Class>
+  <Class Name="RolePlayingGame.UI.Tile" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Item.Item" Collapsed="true">
+    <Position X="2" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Item\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Item.StaticItem" Collapsed="true">
+    <Position X="1" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Item\StaticItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Item.DynamicItem" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Item\DynamicItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Human.Player" Collapsed="true">
+    <Position X="1.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Human\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="RolePlayingGame.Core.Interfaces.IMovable">
-    <Position X="9.75" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\Interfaces\IMovable.cs</FileName>
