@@ -1,8 +1,10 @@
-﻿namespace RolePlayingGame.Core
+﻿namespace RolePlayingGame.Core.Human
 {
     using RolePlayingGame.Core.Interfaces;
+    using UI = RolePlayingGame.UI;
     using System;
-    public abstract class Human: IMovable
+    //TODO fix namespace
+    public abstract class Human: UI.Tile
     {
         #region Fields
         private float _row;

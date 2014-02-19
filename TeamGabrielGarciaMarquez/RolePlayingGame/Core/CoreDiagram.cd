@@ -1,33 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="RolePlayingGame.Core.Enemies.Boss">
+  <Class Name="RolePlayingGame.Core.Human.Enemies.Boss">
     <Position X="9.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Core\Enemies\Boss.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Core\Human\Enemies\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.Enemies.Enemies">
+  <Class Name="RolePlayingGame.Core.Human.Enemies.Enemies">
     <Position X="7" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAQIAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Core\Enemies\Enemies.cs</FileName>
+      <HashCode>AQAAAAAAAAAAAAAAAAAABAQAAAAAAAABAAAAAgAAAAA=</HashCode>
+      <FileName>Core\Human\Enemies\Enemies.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.Enemies.Student">
+  <Class Name="RolePlayingGame.Core.Human.Enemies.Student">
     <Position X="4.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Core\Enemies\Student.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAEAAAAACAAAAgAAAAA=</HashCode>
+      <FileName>Core\Human\Enemies\Student.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.Human">
+  <Class Name="RolePlayingGame.Core.Human.Human">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAEAAIAAAAAEAAAAAAAQAAEAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>Core\Human.cs</FileName>
+      <FileName>Core\Human\Human.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="RolePlayingGame.Core.Area">
     <Position X="14.75" Y="3.75" Width="1.5" />
@@ -71,7 +70,7 @@
       <FileName>Core\Sprite.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.Tile" Collapsed="true">
+  <Class Name="RolePlayingGame.Core.Tile">
     <Position X="21.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAEAAAgAAAQABAAgAQAAIAAAgAAASAA=</HashCode>

@@ -1,4 +1,4 @@
-﻿namespace RolePlayingGame.Core.Enemies
+﻿namespace RolePlayingGame.Core.Human.Enemies
 {
     public abstract class Enemies : Human
     {
