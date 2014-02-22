@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Area">
-    <Position X="14.75" Y="3.75" Width="1.5" />
+    <Position X="14.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACQBAAAAABEAAgAAAAAAAAQAAgAAAAACIAAAIAQAAAA=</HashCode>
       <FileName>Core\Area.cs</FileName>
@@ -50,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.World">
-    <Position X="16.75" Y="2" Width="1.5" />
+    <Position X="16.25" Y="2" Width="1.5" />
     <NestedTypes>
       <Enum Name="RolePlayingGame.Core.World.HeroDirection" Collapsed="true">
         <TypeIdentifier>
@@ -66,9 +66,10 @@
   <Class Name="RolePlayingGame.UI.Sprite" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AASAAAAAABAAggAAAAIEAAEAAAQAAAAAAAAEAAAEQAE=</HashCode>
       <FileName>UI\Sprite.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="RolePlayingGame.UI.Tile" Collapsed="true">
     <Position X="4.5" Y="1.5" Width="1.5" />
