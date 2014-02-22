@@ -26,7 +26,7 @@
 
         private PointF _location;
 
-        private List<Rectangle> _rectangle;
+        private readonly List<Rectangle> _rectangle;
 
         private PointF _velocity;
         #endregion
