@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core.Item
 {
-    class ItemCategoryEnum
+    public enum ItemCategoryEnum
     {
+        Health,
+        Mana,
+        Knowledge,
+        Defense,
+        WorldItems
     }
 }

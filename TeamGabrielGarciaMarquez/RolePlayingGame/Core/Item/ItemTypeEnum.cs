@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core.Item
 {
-    class ItemTypeEnum
+    public enum ItemTypeEnum
     {
+        Burger,
+        Chips,
+        FryPotatoes,
+        Water,
+        Beer,
+        Juice,
+        IntroCSharp,
+        DotNet,
+        MSDN,
+        Circuit,
+        Keyboard,
+        Monitor
     }
 }

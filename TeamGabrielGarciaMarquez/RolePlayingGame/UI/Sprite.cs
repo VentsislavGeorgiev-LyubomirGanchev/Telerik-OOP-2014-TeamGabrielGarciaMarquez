@@ -12,6 +12,7 @@
         #region Constants
         private readonly Color defaultColorKey = Color.FromArgb(75, 75, 75);
         #endregion
+
         #region Fields
 
         private PointF _acceleration;
@@ -49,9 +50,6 @@
                 _rectangle.Add(new Rectangle(rectangle.X + i * rectangle.Width / numberAnimationFrames,
                     rectangle.Y, rectangle.Width / numberAnimationFrames, rectangle.Height));
             }
-        }
-        public Sprite()
-        {
         }
         #endregion
 

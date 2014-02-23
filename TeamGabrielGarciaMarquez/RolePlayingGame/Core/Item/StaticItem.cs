@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core.Item
 {
-    class StaticItem : Item
+    public class StaticItem : Item
     {
+        public StaticItem(string name, ItemCategoryEnum category, ItemTypeEnum type)
+            : base(name, category, type)
+        {
+
+        }
     }
 }

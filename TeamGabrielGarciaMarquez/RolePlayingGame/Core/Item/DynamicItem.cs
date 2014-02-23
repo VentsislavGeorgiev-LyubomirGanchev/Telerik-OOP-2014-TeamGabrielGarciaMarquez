@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core.Item
 {
-    class DynamicItem : Item
+    public class DynamicItem : Item
     {
+        public DynamicItem(string name, ItemCategoryEnum category, ItemTypeEnum type)
+            : base(name, category, type)
+        {
+
+        }
     }
 }
