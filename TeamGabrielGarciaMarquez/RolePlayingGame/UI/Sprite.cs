@@ -50,6 +50,9 @@
                     rectangle.Y, rectangle.Width / numberAnimationFrames, rectangle.Height));
             }
         }
+        public Sprite()
+        {
+        }
         #endregion
 
         #region Properties

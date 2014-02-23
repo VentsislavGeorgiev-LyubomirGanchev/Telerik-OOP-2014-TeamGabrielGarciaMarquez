@@ -33,6 +33,29 @@ namespace RolePlayingGame.Core.Forms
 			_timer.Start();
 		}
 
+        public static void SaveGame(GameState gameToSave)
+        {
+            System.Xml.Serialization.XmlSerializer writer =
+                new System.Xml.Serialization.XmlSerializer(typeof(GameState));
+
+            System.IO.StreamWriter file = new System.IO.StreamWriter(
+                @"C:\Users\hristo\Documents\GitHub\Telerik\TeamGabrielGarciaMarquez\RolePlayingGame\Content\Saved Games\save1.xml");
+            writer.Serialize(file, gameToSave);
+            file.Close();
+        }
+
+        public static GameState LoadGame()
+        {
+            System.Xml.Serialization.XmlSerializer reader =
+                new System.Xml.Serialization.XmlSerializer(typeof(GameState));
+
+            System.IO.StreamReader file = new System.IO.StreamReader(
+                @"C:\Users\hristo\Documents\GitHub\Telerik\TeamGabrielGarciaMarquez\RolePlayingGame\Content\Saved Games\save1.xml");
+            GameState loadedGame = (GameState)reader.Deserialize(file);
+            file.Close();
+            return loadedGame;
+        }
+
 		private void Game_Paint(object sender, PaintEventArgs e)
 		{
 			//Work out how long since we were last here in seconds

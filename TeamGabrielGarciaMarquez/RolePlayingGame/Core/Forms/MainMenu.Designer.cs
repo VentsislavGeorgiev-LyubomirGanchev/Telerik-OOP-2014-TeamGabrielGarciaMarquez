@@ -29,26 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
-            this.Txt_Title = new System.Windows.Forms.TextBox();
             this.BTN_NewGame = new System.Windows.Forms.Button();
             this.BTN_LoadGame = new System.Windows.Forms.Button();
             this.BTN_SaveGame = new System.Windows.Forms.Button();
             this.BTN_Credits = new System.Windows.Forms.Button();
             this.BTN_HighScores = new System.Windows.Forms.Button();
             this.BTN_Settings = new System.Windows.Forms.Button();
+            this.TXT_Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // Txt_Title
-            // 
-            this.Txt_Title.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Txt_Title.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Txt_Title.Location = new System.Drawing.Point(105, 12);
-            this.Txt_Title.Name = "Txt_Title";
-            this.Txt_Title.Size = new System.Drawing.Size(230, 39);
-            this.Txt_Title.TabIndex = 0;
-            this.Txt_Title.Text = "The Game of Ages";
-            this.Txt_Title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Txt_Title.TextChanged += new System.EventHandler(this.Txt_Title_TextChanged);
             // 
             // BTN_NewGame
             // 
@@ -80,6 +68,7 @@
             this.BTN_SaveGame.TabIndex = 3;
             this.BTN_SaveGame.Text = "Save Game";
             this.BTN_SaveGame.UseVisualStyleBackColor = true;
+            this.BTN_SaveGame.Click += new System.EventHandler(this.BTN_SaveGame_Click);
             // 
             // BTN_Credits
             // 
@@ -110,6 +99,20 @@
             this.BTN_Settings.TabIndex = 6;
             this.BTN_Settings.Text = "Settings";
             this.BTN_Settings.UseVisualStyleBackColor = true;
+            this.BTN_Settings.Click += new System.EventHandler(this.BTN_Settings_Click);
+            // 
+            // TXT_Title
+            // 
+            this.TXT_Title.BackColor = System.Drawing.Color.Transparent;
+            this.TXT_Title.Font = new System.Drawing.Font("Times New Roman", 17.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TXT_Title.Location = new System.Drawing.Point(89, 23);
+            this.TXT_Title.Name = "TXT_Title";
+            this.TXT_Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TXT_Title.Size = new System.Drawing.Size(236, 65);
+            this.TXT_Title.TabIndex = 7;
+            this.TXT_Title.Text = "The Game of Ages";
+            this.TXT_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TXT_Title.Click += new System.EventHandler(this.label1_Click);
             // 
             // MainMenu
             // 
@@ -118,30 +121,29 @@
             this.BackgroundImage = global::RolePlayingGame.Properties.Resources._112526;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(728, 413);
+            this.Controls.Add(this.TXT_Title);
             this.Controls.Add(this.BTN_Settings);
             this.Controls.Add(this.BTN_HighScores);
             this.Controls.Add(this.BTN_Credits);
             this.Controls.Add(this.BTN_SaveGame);
             this.Controls.Add(this.BTN_LoadGame);
             this.Controls.Add(this.BTN_NewGame);
-            this.Controls.Add(this.Txt_Title);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenu";
             this.Text = "MainMenu";
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox Txt_Title;
         private System.Windows.Forms.Button BTN_NewGame;
         private System.Windows.Forms.Button BTN_LoadGame;
         private System.Windows.Forms.Button BTN_SaveGame;
         private System.Windows.Forms.Button BTN_Credits;
         private System.Windows.Forms.Button BTN_HighScores;
         private System.Windows.Forms.Button BTN_Settings;
+        private System.Windows.Forms.Label TXT_Title;
     }
 }

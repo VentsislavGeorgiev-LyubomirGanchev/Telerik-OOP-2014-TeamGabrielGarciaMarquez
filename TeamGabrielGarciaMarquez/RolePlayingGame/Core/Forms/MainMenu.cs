@@ -12,10 +12,13 @@ namespace RolePlayingGame.Core.Forms
 {
     public partial class MainMenu : Form
     {
+
         public MainMenu()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
+            //Game game = new Game();
+            //game.Hide();
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -33,6 +36,23 @@ namespace RolePlayingGame.Core.Forms
         private void Txt_Title_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BTN_Settings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTN_SaveGame_Click(object sender, EventArgs e)
+        {
+            //game.SaveGame(
         }
     }
 }
