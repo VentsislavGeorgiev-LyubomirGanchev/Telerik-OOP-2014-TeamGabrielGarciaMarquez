@@ -2,17 +2,42 @@
 {
     public enum ObjectType
     {
+        //Health
         Burger,
         Chips,
         FryPotatoes,
+        //Mana
         Water,
         Beer,
         Juice,
+        //Knowledge
         IntroCSharp,
         DotNet,
         MSDN,
+        //Defense
         Circuit,
         Keyboard,
         Monitor
+        //Doors
+        UpDirectionOpen,
+        SideOpen,
+        //Obstacle
+        StoneWall,
+        BrickWall,
+        WoodenWall,
+        Tree,
+        Busch,
+        Table,
+        TableLaptop,
+        Chair,
+        Column,
+        River,
+        //Paths
+        Grass,
+        Stairs,
+        WoodenFloor,
+        StoneFloor,
+        Bridge,
+        Sea
     }
 }
