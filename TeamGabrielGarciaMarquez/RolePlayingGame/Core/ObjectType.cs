@@ -1,6 +1,6 @@
-﻿namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core
 {
-    public enum ItemTypeEnum
+    public enum ObjectType
     {
         Burger,
         Chips,

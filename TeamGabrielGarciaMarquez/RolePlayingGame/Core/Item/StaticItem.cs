@@ -2,8 +2,8 @@
 {
     public class StaticItem : Item
     {
-        public StaticItem(string name, ItemCategoryEnum category, ItemTypeEnum type)
-            : base(name, category, type)
+        public StaticItem(string name, ItemCategoryType category, ObjectType type, bool isPassable)
+            : base(name, category, type, isPassable)
         {
 
         }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RolePlayingGame.Core.Interfaces
+﻿namespace RolePlayingGame.Core.Interfaces
 {
-    class ICollectable
+    using RolePlayingGame.Core.Item;
+    interface ICollectable
     {
+        ItemCategoryType Category { get;}
+
+        int ItemRate { get; }
     }
 }

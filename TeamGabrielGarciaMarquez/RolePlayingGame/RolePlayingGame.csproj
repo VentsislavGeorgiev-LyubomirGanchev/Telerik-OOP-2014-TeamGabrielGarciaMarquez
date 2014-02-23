@@ -67,6 +67,7 @@
     <Compile Include="Core\Human\Enemies\Enemies.cs" />
     <Compile Include="Core\Human\Player.cs" />
     <Compile Include="Core\Interfaces\ICollectable.cs" />
+    <Compile Include="Core\Interfaces\IItem.cs" />
     <Compile Include="Core\Interfaces\IMovable.cs" />
     <Compile Include="Core\Human\Enemies\Student.cs" />
     <Compile Include="Core\Forms\MainMenu.cs">
@@ -80,8 +81,8 @@
     <Compile Include="Core\Interfaces\IRenderable.cs" />
     <Compile Include="Core\Item\DynamicItem.cs" />
     <Compile Include="Core\Item\Item.cs" />
-    <Compile Include="Core\Item\ItemCategoryEnum.cs" />
-    <Compile Include="Core\Item\ItemTypeEnum.cs" />
+    <Compile Include="Core\Item\ItemCategoryType.cs" />
+    <Compile Include="Core\ObjectType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
     <Compile Include="Core\TileFactory.cs" />
     <Compile Include="Core\Utils\BitmapCache.cs" />

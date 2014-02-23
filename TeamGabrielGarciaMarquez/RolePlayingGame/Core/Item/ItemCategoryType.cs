@@ -1,6 +1,6 @@
 ﻿namespace RolePlayingGame.Core.Item
 {
-    public enum ItemCategoryEnum
+    public enum ItemCategoryType
     {
         Health,
         Mana,

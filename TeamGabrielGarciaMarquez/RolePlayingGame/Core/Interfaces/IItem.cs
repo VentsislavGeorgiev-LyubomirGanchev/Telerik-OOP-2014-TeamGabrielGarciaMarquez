@@ -1,7 +1,7 @@
 ﻿namespace RolePlayingGame.Core.Interfaces
 {
-    interface IMovable
+    interface IItem
     {
-        void Move();
+        bool IsPassable { get; }
     }
 }
