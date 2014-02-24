@@ -1,13 +1,18 @@
-﻿namespace RolePlayingGame.Core.Human
+﻿using System;
+using System.Collections.Generic;
+
+namespace RolePlayingGame.Core.Human
 {
     //TODO fix namespace
     internal abstract class Human : Sprite, IRenderable
     {
         #region Const
+
         private const int LUCKY_SCOPE = 10;
         private const int LUCKY_NUMBER = 3;
         private const string MISS_MESSAGE = "miss";
-        #endregion
+
+        #endregion Const
 
         #region Fields
 
@@ -19,9 +24,9 @@
 
         public Human(int x, int y, Entity entity, bool flip)
             : base(x, y, entity, flip)
-            {
+        {
             this.Position = new Point(x, y);
-                }
+        }
 
         #endregion Constructors
 
@@ -56,7 +61,7 @@
                     //_heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
                 string message = playerDamage != 0 ? playerDamage.ToString() : MISS_MESSAGE;
-                popups.Add(new TextPopup((int)player.Row + 40, (int)player.Col + 20, message));
+                popups.Add(new TextPopup((int)player.Position.X + 40, (int)player.Position.Y + 20, message));
             }
 
             //A monsters armour is 1/5 of their max health
@@ -76,11 +81,11 @@
                     return;
                 }
                 string message = enemyDamage != 0 ? enemyDamage.ToString() : MISS_MESSAGE;
-                popups.Add(new TextPopup((int)enemy.Row + 40, (int)enemy.Col + 20, message));
+                popups.Add(new TextPopup((int)enemy.Position.X + 40, (int)enemy.Position.Y + 20, message));
             }
             else
             {
-                popups.Add(new TextPopup((int)enemy.Row + 40, (int)enemy.Col + 20, MISS_MESSAGE));
+                popups.Add(new TextPopup((int)enemy.Position.X + 40, (int)enemy.Position.Y + 20, MISS_MESSAGE));
             }
         }
 

@@ -6,13 +6,13 @@ namespace RolePlayingGame.Core.Forms
 {
     public partial class MainMenu : Form
     {
-
+        private readonly Game _game;
         public MainMenu()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.InitializeComponent();
-            //Game game = new Game();
-            //game.Hide();
+            _game = new Game();
+            _game.Hide();
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -22,8 +22,7 @@ namespace RolePlayingGame.Core.Forms
         private void Button1Click(object sender, EventArgs e)
         {
             this.Hide();
-            Game game = new Game();
-            game.ShowDialog();
+            _game.ShowDialog();
             this.Show();
         }
 
@@ -46,7 +45,7 @@ namespace RolePlayingGame.Core.Forms
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                bformatter.Serialize(stream, game._gameState.World.map );
+                //bformatter.Serialize(stream, _game.GameState.World.map);
             }
         }
 
@@ -58,7 +57,7 @@ namespace RolePlayingGame.Core.Forms
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                game._gameState.World.map = (string)bformatter.Deserialize(stream);
+                //_game.GameState.World.map = (string)bformatter.Deserialize(stream);
             }
 
         }
