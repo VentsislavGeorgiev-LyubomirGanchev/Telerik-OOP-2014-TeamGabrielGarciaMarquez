@@ -6,8 +6,8 @@ using System.Drawing.Imaging;
 namespace RolePlayingGame.Core
 {
     [Serializable]
-    internal class Sprite : GameEntity, IRenderable
-	{
+    internal class Sprite : GameEntity
+    {
         #region Constants
 
         private readonly Color _defaultColorKey = Color.FromArgb(75, 75, 75);
@@ -16,7 +16,7 @@ namespace RolePlayingGame.Core
 
         #region Fields
 
-		private ImageAttributes _attributes;
+        private ImageAttributes _attributes;
 
         private readonly List<Rectangle> _frameRectangles;
 
@@ -28,11 +28,11 @@ namespace RolePlayingGame.Core
 
         public Sprite(float x, float y, Entity entity, bool flip = false)
             : base(entity)
-		{
+        {
             if (entity.Tile.IsTransparent)
-			{
+            {
                 this.SetColorKey(this._defaultColorKey);
-			}
+            }
 
             this.Flip = flip;
             this._frameRectangles = new List<Rectangle>();
@@ -47,11 +47,11 @@ namespace RolePlayingGame.Core
             this.Size = new SizeF(entityRectangle.Width / entityFramesCount, entityRectangle.Height);
 
             for (int i = 0; i < entityFramesCount; i++)
-		{
+            {
                 this.Frames.Add(entityBitmap);
                 this._frameRectangles.Add(new Rectangle(entityRectangle.X + i * entityRectangle.Width / entityFramesCount,
                     entityRectangle.Y, entityRectangle.Width / entityFramesCount, entityRectangle.Height));
-		}
+            }
         }
 
         #endregion Constructors
@@ -69,9 +69,9 @@ namespace RolePlayingGame.Core
         public PointF Location { get; set; }
 
         public int FramesCount
-		{
+        {
             get
-			{
+            {
                 return this.Frames.Count;
             }
         }
@@ -85,71 +85,71 @@ namespace RolePlayingGame.Core
         #region Methods
 
         private void SetColorKey(Color value)
-		{
+        {
             this._colorKey = value;
             //Set the color key for this sprite;
             this._attributes = new ImageAttributes();
             this._attributes.SetColorKey(this._colorKey, this._colorKey);
-		}
+        }
 
         /// <summary>
         /// Update the instance of sprite
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="elapsedTime"></param>
-		public override void Update(double gameTime, double elapsedTime)
-		{
-			//Move the sprite
+        public override void Update(double gameTime, double elapsedTime)
+        {
+            //Move the sprite
             this.Location.X += this.Velocity.X * (float)elapsedTime;
             this.Location.Y += this.Velocity.Y * (float)elapsedTime;
 
             //TODO check why acceleration wasnt get any undefault values !!!
-			//Add in any acceleration
+            //Add in any acceleration
             this.Velocity.X += Math.Sign(this.Velocity.X) * this.Acceleration.X * (float)elapsedTime;
             this.Velocity.Y += Math.Sign(this.Velocity.Y) * this.Acceleration.Y * (float)elapsedTime;
-		}
+        }
 
         /// <summary>
         /// Draw graphics on the screen
         /// </summary>
         /// <param name="graphics"></param>
-		public override void Draw(Graphics graphics)
-		{
-			//Draw the correct frame at the current point
+        public override void Draw(Graphics graphics)
+        {
+            //Draw the correct frame at the current point
             if (this._frameRectangles[this.CurrentFrame] == Rectangle.Empty)
-			{
+            {
                 graphics.DrawImage(this.Frames[this.CurrentFrame], this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
-			}
-			else
-			{
-				Rectangle outputRect = Rectangle.Empty;
+            }
+            else
+            {
+                Rectangle outputRect = Rectangle.Empty;
                 if (this.Flip)
-				{
+                {
                     outputRect = new Rectangle(
-                        (int)this.Location.X + (int)this.Size.Width, 
-                        (int)this.Location.Y, -(int)this.Size.Width, 
+                        (int)this.Location.X + (int)this.Size.Width,
+                        (int)this.Location.Y, -(int)this.Size.Width,
                         (int)this.Size.Height);
-				}
-				else
-				{
+                }
+                else
+                {
                     outputRect = new Rectangle(
-                        (int)this.Location.X, 
-                        (int)this.Location.Y, 
-                        (int)this.Size.Width, 
+                        (int)this.Location.X,
+                        (int)this.Location.Y,
+                        (int)this.Size.Width,
                         (int)this.Size.Height);
-				}
+                }
 
                 graphics.DrawImage(
-                    this.Frames[this.CurrentFrame], outputRect, 
-                    this._frameRectangles[this.CurrentFrame].X, 
+                    this.Frames[this.CurrentFrame], outputRect,
+                    this._frameRectangles[this.CurrentFrame].X,
                     this._frameRectangles[this.CurrentFrame].Y,
-                    this._frameRectangles[this.CurrentFrame].Width, 
-                    this._frameRectangles[this.CurrentFrame].Height, 
-                    GraphicsUnit.Pixel, 
+                    this._frameRectangles[this.CurrentFrame].Width,
+                    this._frameRectangles[this.CurrentFrame].Height,
+                    GraphicsUnit.Pixel,
                     this._attributes);
-			}
-		}
+            }
+        }
 
         #endregion Methods
-	}
+    }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace RolePlayingGame.Core.Human
 {
     //TODO fix namespace
-    internal abstract class Human : Sprite, IRenderable
+    internal abstract class Human : Sprite
     {
         #region Const
 
