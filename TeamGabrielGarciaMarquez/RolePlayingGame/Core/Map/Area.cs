@@ -1,6 +1,5 @@
 using RolePlayingGame.UI;
 using System;
-using System.Drawing;
 using System.IO;
 
 namespace RolePlayingGame.Core.Map
@@ -15,13 +14,17 @@ namespace RolePlayingGame.Core.Map
         public const int MapSizeX = 8;
         public const int MapSizeY = 8;
 
-        public MapTile[,] Map = new MapTile[MapSizeX, MapSizeY];
+        public MapTile[,] TilesMap = new MapTile[MapSizeX, MapSizeY];
 
-        public string Name;
-        public string NorthArea;
-        public string EastArea;
-        public string SouthArea;
-        public string WestArea;
+        public string Name { get; private set; }
+
+        public string NorthArea { get; private set; }
+
+        public string EastArea { get; private set; }
+
+        public string SouthArea { get; private set; }
+
+        public string WestArea { get; private set; }
 
         public Area(StreamReader stream)
         {
@@ -38,29 +41,29 @@ namespace RolePlayingGame.Core.Map
 
             //Read in 8 lines of 8 characters each. Look up the tile and make the
             //matching sprite
-            for (int j = 0; j < MapSizeY; j++)
+            for (int row = 0; row < MapSizeY; row++)
             {
                 //Get a line of map characters
                 line = stream.ReadLine();
 
-                for (int i = 0; i < MapSizeX; i++)
+                for (int col = 0; col < MapSizeX; col++)
                 {
-                    MapTile mapTile = new MapTile();
-                    this.Map[i, j] = mapTile;
-                    mapTile.SetBackgroundSprite(i, j, new Entity(line[i].ToString()));
+                    var entityKey = line[col].ToString();
+                    MapTile mapTile = new MapTile(col, row, new Entity(entityKey));
+                    this.TilesMap[col, row] = mapTile;
                 }
             }
 
             //Read game objects until the blank line
             while (!stream.EndOfStream && (line = stream.ReadLine().Trim()) != "")
             {
-                //Each line is an x,y coordinate and a tile shortcut
-                //Look up the tile and construct the sprite
+                //Each line is an x, y coordinate and a entityKey
+                //Look up the entity and set the sprite
                 string[] elements = line.Split(',');
                 int x = Convert.ToInt32(elements[0]);
                 int y = Convert.ToInt32(elements[1]);
                 var entityKey = elements[2].ToString();
-                MapTile mapTile = this.Map[x, y];
+                MapTile mapTile = this.TilesMap[x, y];
                 mapTile.SetForegroundSprite(x, y, new Entity(entityKey));
             }
         }
@@ -68,7 +71,7 @@ namespace RolePlayingGame.Core.Map
         public void Update(double gameTime, double elapsedTime)
         {
             //Update all the map tiles and any objects
-            foreach (MapTile mapTile in this.Map)
+            foreach (MapTile mapTile in this.TilesMap)
             {
                 mapTile.Update(gameTime, elapsedTime);
             }
@@ -77,7 +80,7 @@ namespace RolePlayingGame.Core.Map
         public void Draw(IRenderer renderer)
         {
             //And draw the map and any objects
-            foreach (MapTile mapTile in this.Map)
+            foreach (MapTile mapTile in this.TilesMap)
             {
                 mapTile.Draw(renderer);
             }

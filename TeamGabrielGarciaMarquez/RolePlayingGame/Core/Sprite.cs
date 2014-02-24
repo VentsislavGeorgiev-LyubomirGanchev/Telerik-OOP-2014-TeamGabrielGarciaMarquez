@@ -17,6 +17,15 @@ namespace RolePlayingGame.Core
 
         #endregion Constants
 
+        #region Static
+
+        public static int CalculateNextFrame(double gameTime, int framesCount)
+        {
+            return (int)((gameTime * GameEngine.FrameRate) % (double)framesCount);
+        }
+
+        #endregion Static
+
         #region Fields
 
         private ImageAttributes _attributes;

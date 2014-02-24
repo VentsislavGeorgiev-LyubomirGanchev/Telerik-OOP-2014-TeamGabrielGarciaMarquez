@@ -9,6 +9,8 @@ namespace RolePlayingGame.Core
     [Serializable]
     internal class GameEngine
     {
+        public const int FrameRate = 8;
+
         public SizeF GameArea;
         public World World;
         public int Attack;
@@ -80,7 +82,7 @@ namespace RolePlayingGame.Core
 
         public void Draw(IRenderer renderer)
         {
-            World.Draw(renderer);
+            this.World.Draw(renderer);
 
             //Draw the HUD
             //_experienceSprite.Draw(graphics);
@@ -93,22 +95,22 @@ namespace RolePlayingGame.Core
             //if (HasGreenKey) _greenKeySprite.Draw(graphics);
             //if (HasRedKey) _redKeySprite.Draw(graphics);
             int y = 65;
-            renderer.DrawString(Experience.ToString(), _Font, _Brush, 650, y);
-            renderer.DrawString(Health.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(Attack.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(Armour.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(Treasure.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(Potions.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, 650, y);
+            renderer.DrawString(this.Health.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(this.Attack.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(this.Armour.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(this.Treasure.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(this.Potions.ToString(), _Font, _Brush, 650, y += 74);
 
             //If the game is over then display the end game message
-            if (Health == 0)
+            if (this.Health == 0)
             {
                 renderer.DrawString("You died!", _Font, _Brush, 200, 250);
                 renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
             }
 
             //If the game is won then show congratulations
-            if (GameIsWon)
+            if (this.GameIsWon)
             {
                 renderer.DrawString("You Won!", _Font, _Brush, 200, 250);
                 renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
@@ -117,7 +119,7 @@ namespace RolePlayingGame.Core
 
         public void Update(double gameTime, double elapsedTime)
         {
-            World.Update(gameTime, elapsedTime);
+            this.World.Update(gameTime, elapsedTime);
         }
 
         public void Initialize()
@@ -125,33 +127,33 @@ namespace RolePlayingGame.Core
             Sounds.Start();
 
             //Create all the main gameobjects
-            World = new World(this);
+            this.World = new World(this);
 
             //Reset the game state
-            Attack = 1;
-            Potions = 10;
-            Armour = 1;
-            Experience = 0;
-            Level = 1;
-            _nextUpgrade = 20;
-            Health = 100;
-            Treasure = 0;
-            GameIsWon = false;
+            this.Attack = 1;
+            this.Potions = 10;
+            this.Armour = 1;
+            this.Experience = 0;
+            this.Level = 1;
+            this._nextUpgrade = 20;
+            this.Health = 100;
+            this.Treasure = 0;
+            this.GameIsWon = false;
         }
 
         public void KeyDown(Keys keys)
         {
             //If the game is not over then allow the user to play
-            if (Health > 0 && !GameIsWon)
+            if (this.Health > 0 && !this.GameIsWon)
             {
-                World.KeyDown(keys);
+                this.World.KeyDown(keys);
             }
             else
             {
                 //If game is over then allow S to restart
                 if (keys == Keys.S)
                 {
-                    Initialize();
+                    this.Initialize();
                 }
             }
         }

@@ -64,6 +64,7 @@ namespace RolePlayingGame.Core.Map
             //We only actually update the current area the rest all 'sleep'
             _currentArea.Update(gameTime, elapsedTime);
 
+            //Hero update
             _heroEntity.Update(gameTime, elapsedTime);
 
             //If the hero is moving we need to check if we are there yet
@@ -81,7 +82,7 @@ namespace RolePlayingGame.Core.Map
             //The hero gets animated when moving or fighting
             if (_heroSpriteAnimating || _heroSpriteFighting)
             {
-                _heroEntity.CurrentFrame = (int)((gameTime * 8.0) % _heroEntity.FramesCount);
+                _heroEntity.CurrentFrame = Sprite.CalculateNextFrame(gameTime, _heroEntity.FramesCount);
             }
             else
             {
@@ -166,7 +167,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.X < Area.MapSizeX - 1)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.Map[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
+                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
                             {
                                 this._heroEntity.Velocity = new PointF(100, 0);
                                 this._heroEntity.Flip = true;
@@ -191,7 +192,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.X > 0)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.Map[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
+                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
                             {
                                 this._heroEntity.Velocity = new PointF(-100, 0);
                                 this._heroEntity.Flip = false;
@@ -215,7 +216,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.Y > 0)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.Map[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
+                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
                             {
                                 this._heroEntity.Velocity = new PointF(0, -100);
                                 this._heroSpriteAnimating = true;
@@ -239,7 +240,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.Y < Area.MapSizeY - 1)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.Map[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
+                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
                             {
                                 this._heroEntity.Velocity = new PointF(0, 100);
                                 this._heroSpriteAnimating = true;
@@ -275,7 +276,7 @@ namespace RolePlayingGame.Core.Map
                             {
                                 for (int j = 0; j < Area.MapSizeY; j++)
                                 {
-                                    MapTile mapTile = _currentArea.Map[i, j];
+                                    MapTile mapTile = _currentArea.TilesMap[i, j];
                                     //if (mapTile.ForegroundTile != null && mapTile.ForegroundTile.Category == "character")
                                     //{
                                     //    damageMonster(_gameState.Attack * 2, mapTile, i, j);
@@ -359,24 +360,24 @@ namespace RolePlayingGame.Core.Map
             bool returnValue = false; //monster not dead
 
             //Set the monster health if its not already set
-            if (mapTile.ObjectHealth == 0)
-            {
-                //mapTile.ObjectHealth = mapTile.ForegroundTile.Health;
-            }
+            //if (mapTile.ObjectHealth == 0)
+            //{
+            //    //mapTile.ObjectHealth = mapTile.ForegroundTile.Health;
+            //}
 
-            mapTile.ObjectHealth -= damage;
+            //mapTile.ObjectHealth -= damage;
 
-            if (mapTile.ObjectHealth <= 0)
-            {
-                mapTile.ObjectHealth = 0;
-                //Experience is the monsters max health
-                //_gameState.Experience += mapTile.ForegroundTile.Health;
+            //if (mapTile.ObjectHealth <= 0)
+            //{
+            //    mapTile.ObjectHealth = 0;
+            //    //Experience is the monsters max health
+            //    //_gameState.Experience += mapTile.ForegroundTile.Health;
 
-                //Remove the monster and replace with bones
-                //mapTile.UpdateForegroundTile(_tiles["bon"]);
-                //mapTile.SetForegroundSprite(x, y);
-                returnValue = true; //monster is dead
-            }
+            //    //Remove the monster and replace with bones
+            //    //mapTile.UpdateForegroundTile(_tiles["bon"]);
+            //    //mapTile.SetForegroundSprite(x, y);
+            //    returnValue = true; //monster is dead
+            //}
 
             _popups.Add(new TextPopup((int)mapTile.Location.X + 40, (int)mapTile.Location.Y + 20, (damage != 0) ? damage.ToString() : "miss"));
 
@@ -389,19 +390,19 @@ namespace RolePlayingGame.Core.Map
             if (mapTile.IsStateChangable && mapTile.IsPassable)
             {
                 //For each key if it matches then open the door by switching the sprite & sprite to its matching open version
-                if (mapTile.Color == "brown" && _gameState.HasBrownKey)
+                if (_gameState.HasBrownKey)
                 {
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["E"]);
                 }
 
-                if (mapTile.Color == "red" && _gameState.HasRedKey)
+                if (_gameState.HasRedKey)
                 {
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["I"]);
                 }
 
-                if (mapTile.Color == "green" && _gameState.HasGreenKey)
+                if (_gameState.HasGreenKey)
                 {
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["G"]);

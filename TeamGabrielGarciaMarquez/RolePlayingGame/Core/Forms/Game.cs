@@ -9,10 +9,10 @@ namespace RolePlayingGame.Core.Forms
     {
         private readonly Stopwatch _gameTimeTracker = new Stopwatch();
         private double _gameLastTimeUpdate;
+        private GameEngine _gameEngine;
+        private GDIRenderer _gameRenderer;
 
         public MainMenu MMenu { get; set; }
-
-        public GameEngine GameState { get; set; }
 
         public Game()
         {
@@ -21,14 +21,14 @@ namespace RolePlayingGame.Core.Forms
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             //Startup the game state
-            this.GameState = new GameEngine(this.ClientSize);
-
+            this._gameEngine = new GameEngine(this.ClientSize);
+            this._gameRenderer = new GDIRenderer();
             this.Initialize();
         }
 
         private void Initialize()
         {
-            this.GameState.Initialize();
+            this._gameEngine.Initialize();
 
             //Initialise and start the timer
             _gameLastTimeUpdate = 0.0;
@@ -44,11 +44,11 @@ namespace RolePlayingGame.Core.Forms
             _gameLastTimeUpdate = gameTime;
 
             //Perform any animation and updates
-            this.GameState.Update(gameTime, elapsedTime);
+            this._gameEngine.Update(gameTime, elapsedTime);
 
             //Draw everything
-            var renderer = new GDIRenderer(e.Graphics);
-            this.GameState.Draw(renderer);
+            this._gameRenderer.SetGraphics(e.Graphics);
+            this._gameEngine.Draw(this._gameRenderer);
 
             //Force the next Paint()
             this.Invalidate();
@@ -56,7 +56,7 @@ namespace RolePlayingGame.Core.Forms
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
-            GameState.KeyDown(e.KeyCode);
+            _gameEngine.KeyDown(e.KeyCode);
         }
 
         private void Game_Shown(object sender, EventArgs e)

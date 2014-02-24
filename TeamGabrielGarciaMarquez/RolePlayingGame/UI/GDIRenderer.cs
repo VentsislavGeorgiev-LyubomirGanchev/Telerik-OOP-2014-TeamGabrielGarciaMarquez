@@ -6,9 +6,18 @@ namespace RolePlayingGame.UI
 {
     internal class GDIRenderer : IRenderer
     {
-        private readonly Graphics _graphics;
+        private Graphics _graphics;
+
+        public GDIRenderer()
+        {
+        }
 
         public GDIRenderer(Graphics graphics)
+        {
+            this._graphics = graphics;
+        }
+
+        public void SetGraphics(Graphics graphics)
         {
             this._graphics = graphics;
         }

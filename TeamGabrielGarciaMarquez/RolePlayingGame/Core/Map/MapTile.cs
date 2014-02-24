@@ -11,7 +11,7 @@ namespace RolePlayingGame.Core.Map
     /// </summary>
     internal class MapTile
     {
-        private Sprite _backgroundSprite;
+        private readonly Sprite _backgroundSprite;
         private Sprite _foregroundSprite;
 
         public PointF Location
@@ -26,7 +26,8 @@ namespace RolePlayingGame.Core.Map
         {
             get
             {
-                return this._backgroundSprite.IsPassable;
+                return this._backgroundSprite.IsPassable &&
+                    (this._foregroundSprite == null || this._foregroundSprite.IsPassable);
             }
         }
 
@@ -34,32 +35,27 @@ namespace RolePlayingGame.Core.Map
         {
             get
             {
-                //TODO FIX
-                return this._backgroundSprite.Category == EntityCategoryType.WorldItems;
+                return this._backgroundSprite.Category == EntityCategoryType.Door;
             }
         }
 
-        public string Color
+        public EntityCategoryType? Category
         {
             get
             {
-                return "green";//this._backgroundSprite.Color;
+                if (this._foregroundSprite != null)
+                {
+                    return this._foregroundSprite.Category;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
-        public EntityCategoryType Category
+        public MapTile(int x, int y, Entity entity)
         {
-            get
-            {
-                return this._backgroundSprite.Category;
-            }
-        }
-
-        public int ObjectHealth; //A copy of the health of the tile so we remember how damage monsters are
-
-        public void SetBackgroundSprite(int x, int y, Entity entity)
-        {
-            //Update the sprite
             _backgroundSprite = new Sprite(x, y, entity);
         }
 
@@ -137,7 +133,7 @@ namespace RolePlayingGame.Core.Map
             {
                 if (this._foregroundSprite.FramesCount > 1)
                 {
-                    this._foregroundSprite.CurrentFrame = (int)((gameTime * 8.0) % (double)this._foregroundSprite.FramesCount);
+                    this._foregroundSprite.CurrentFrame = Sprite.CalculateNextFrame(gameTime, this._foregroundSprite.FramesCount);
                 }
                 this._foregroundSprite.Update(gameTime, elapsedTime);
             }
