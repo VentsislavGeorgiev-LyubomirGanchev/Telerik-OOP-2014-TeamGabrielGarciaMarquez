@@ -17,7 +17,7 @@
         //Defense
         Circuit,
         Keyboard,
-        Monitor
+        Monitor,
         //Doors
         UpDirectionOpen,
         SideOpen,

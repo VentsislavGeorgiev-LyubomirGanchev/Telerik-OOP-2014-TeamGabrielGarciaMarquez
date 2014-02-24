@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 
 namespace RolePlayingGame.Core
 {
+    [Serializable]
 	public class Sprite : GameObject
 	{
 		public PointF Velocity;

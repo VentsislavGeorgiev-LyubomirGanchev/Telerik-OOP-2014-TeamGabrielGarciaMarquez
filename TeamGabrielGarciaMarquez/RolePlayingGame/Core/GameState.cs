@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
 {
+    [Serializable]
 	public class GameState
 	{
 		public SizeF GameArea;
