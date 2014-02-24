@@ -1,9 +1,9 @@
 ﻿namespace RolePlayingGame.Core.Item
 {
-    public class StaticItem : Item
+    internal class StaticItem : Item
     {
-        public StaticItem(string name, ItemCategoryType category, ObjectType type, bool isPassable)
-            : base(name, category, type, isPassable)
+        public StaticItem(float x, float y, Entity entity, bool flip = false)
+            : base(x, y, entity, flip)
         {
 
         }

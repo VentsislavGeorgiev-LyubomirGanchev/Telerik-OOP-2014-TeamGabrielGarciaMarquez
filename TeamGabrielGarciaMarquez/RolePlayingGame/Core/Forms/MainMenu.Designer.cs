@@ -47,7 +47,7 @@
             this.BTN_NewGame.TabIndex = 1;
             this.BTN_NewGame.Text = "New Game";
             this.BTN_NewGame.UseVisualStyleBackColor = true;
-            this.BTN_NewGame.Click += new System.EventHandler(this.button1_Click);
+            this.BTN_NewGame.Click += new System.EventHandler(this.Button1Click);
             // 
             // BTN_LoadGame
             // 
@@ -68,7 +68,7 @@
             this.BTN_SaveGame.TabIndex = 3;
             this.BTN_SaveGame.Text = "Save Game";
             this.BTN_SaveGame.UseVisualStyleBackColor = true;
-            this.BTN_SaveGame.Click += new System.EventHandler(this.BTN_SaveGame_Click);
+            this.BTN_SaveGame.Click += new System.EventHandler(this.BtnSaveGameClick);
             // 
             // BTN_Credits
             // 
@@ -99,7 +99,7 @@
             this.BTN_Settings.TabIndex = 6;
             this.BTN_Settings.Text = "Settings";
             this.BTN_Settings.UseVisualStyleBackColor = true;
-            this.BTN_Settings.Click += new System.EventHandler(this.BTN_Settings_Click);
+            this.BTN_Settings.Click += new System.EventHandler(this.BtnSettingsClick);
             // 
             // TXT_Title
             // 
@@ -112,7 +112,7 @@
             this.TXT_Title.TabIndex = 7;
             this.TXT_Title.Text = "The Game of Ages";
             this.TXT_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TXT_Title.Click += new System.EventHandler(this.label1_Click);
+            this.TXT_Title.Click += new System.EventHandler(this.Label1Click);
             // 
             // MainMenu
             // 

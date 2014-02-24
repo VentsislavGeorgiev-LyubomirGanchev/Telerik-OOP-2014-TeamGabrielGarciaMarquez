@@ -62,7 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Area.cs" />
+    <Compile Include="Core\Entity.cs" />
+    <Compile Include="Core\EntityRawData.cs" />
+    <Compile Include="Core\IRenderable.cs" />
+    <Compile Include="Core\Map\Area.cs" />
     <Compile Include="Core\Human\Enemies\Boss.cs" />
     <Compile Include="Core\Human\Enemies\Enemies.cs" />
     <Compile Include="Core\Human\Player.cs" />
@@ -78,13 +81,15 @@
     </Compile>
     <Compile Include="Core\Human\Human.cs" />
     <Compile Include="Core\Interfaces\IObstacle.cs" />
-    <Compile Include="Core\Interfaces\IRenderable.cs" />
     <Compile Include="Core\Item\DynamicItem.cs" />
     <Compile Include="Core\Item\Item.cs" />
-    <Compile Include="Core\Item\ItemCategoryType.cs" />
-    <Compile Include="Core\ObjectType.cs" />
+    <Compile Include="Core\Map\TextPopup.cs" />
+    <Compile Include="Core\EntityCategoryType.cs" />
+    <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
-    <Compile Include="Core\TileFactory.cs" />
+    <Compile Include="Core\Map\Tiles\TileFactory.cs" />
+    <Compile Include="Core\Point.cs" />
+    <Compile Include="Core\PointF.cs" />
     <Compile Include="Core\Utils\BitmapCache.cs" />
     <Compile Include="Core\Forms\Game.cs">
       <SubType>Form</SubType>
@@ -92,7 +97,7 @@
     <Compile Include="Core\Forms\Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\GameEntity.cs" />
     <Compile Include="Core\GameState.cs" />
     <Compile Include="Core\Forms\Help.cs">
       <SubType>Form</SubType>
@@ -100,7 +105,8 @@
     <Compile Include="Core\Forms\Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\MapTile.cs" />
+    <Compile Include="Core\Map\MapTile.cs" />
+    <Compile Include="Core\Utils\EntitiesCache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Forms\Settings.cs">
@@ -109,8 +115,6 @@
     <Compile Include="Core\Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Sprite.cs" />
-    <Compile Include="UI\Tile.cs" />
     <EmbeddedResource Include="Core\Forms\Game.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Game.cs</DependentUpon>
@@ -137,7 +141,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Content\Documentation\TelerikRPG.docx" />
-    <None Include="Content\TileLookups.csv">
+    <None Include="Content\Entities.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Core\CoreDiagram.cd" />
@@ -152,14 +156,15 @@
     </Compile>
     <Compile Include="Core\Sounds.cs" />
     <Compile Include="Core\Sprite.cs" />
-    <Compile Include="Core\Tile.cs" />
-    <Compile Include="Core\World.cs" />
+    <Compile Include="Core\Map\Tiles\Tile.cs" />
+    <Compile Include="Core\Map\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
     <None Include="Content\112526.jpg" />
     <None Include="Content\download.jpg" />
     <None Include="Content\download %281%29.jpg" />
+    <Content Include="Content\MainBackground.jpg" />
     <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

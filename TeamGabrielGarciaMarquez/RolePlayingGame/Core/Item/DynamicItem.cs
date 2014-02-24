@@ -1,14 +1,21 @@
-﻿namespace RolePlayingGame.Core.Item
+﻿using RolePlayingGame.Core.Interfaces;
+using System;
+
+namespace RolePlayingGame.Core.Item
 {
-    using RolePlayingGame.Core.Interfaces;
-    public class DynamicItem : Item, ICollectable
+    internal class DynamicItem : Item, ICollectable
     {
-        public DynamicItem(string name, ItemCategoryType category, ObjectType type, int itemRate, bool isPassable)
-            : base(name, category, type, isPassable)
-        {
-            this.ItemRate = itemRate;
-        }
+        #region Fields
 
         public int ItemRate { get; private set; }
+        #endregion
+
+        #region Methods
+        public DynamicItem(float x, float y, Entity entity, bool flip = false)
+            : base(x, y, entity, flip)
+        {
+            this.ItemRate = Convert.ToInt32(this.Entity.Special);
+        }
+        #endregion
     }
 }

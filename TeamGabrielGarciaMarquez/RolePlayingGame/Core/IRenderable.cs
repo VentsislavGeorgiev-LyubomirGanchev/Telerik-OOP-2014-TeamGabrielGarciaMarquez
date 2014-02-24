@@ -1,9 +1,8 @@
-﻿namespace RolePlayingGame.Core.Interfaces
-{
-    using System;
-    using System.Drawing;
+﻿using System.Drawing;
 
-    interface IRenderable
+namespace RolePlayingGame.Core
+{
+    internal interface IRenderable
     {
         /// <summary>
         /// Updates render object

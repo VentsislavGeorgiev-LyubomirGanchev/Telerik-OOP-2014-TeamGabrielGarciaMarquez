@@ -1,7 +1,11 @@
 ﻿namespace RolePlayingGame.Core
 {
-    public enum ObjectType
+    public enum EntityType
     {
+        Player,
+        Boss,
+        Student,
+
         //Health
         Burger,
         Chips,
@@ -13,11 +17,11 @@
         //Knowledge
         IntroCSharp,
         DotNet,
-        MSDN,
+        Msdn,
         //Defense
         Circuit,
         Keyboard,
-        Monitor
+        Monitor,
         //Doors
         UpDirectionOpen,
         SideOpen,
