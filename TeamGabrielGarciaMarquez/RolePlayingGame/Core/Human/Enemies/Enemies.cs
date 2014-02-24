@@ -35,7 +35,7 @@
             else return false;
         }
 
-        public abstract float SetHealth();
+        public abstract int SetHealth();
 
         public abstract void GetStrength();
         #endregion Methods

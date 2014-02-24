@@ -26,7 +26,7 @@
         /// Initialize the the health of the Boss. The health will increase her value depending of the boss level! 
         /// </summary>
         /// <returns>Health in float</returns>
-        public override float SetHealth()
+        public override int SetHealth()
         {
             return this.Level * HEALTH_MULTIPLICATOR;
         }

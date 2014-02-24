@@ -84,6 +84,7 @@
     <Compile Include="Core\Item\ItemCategoryType.cs" />
     <Compile Include="Core\ObjectType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
+    <Compile Include="Core\TextPopup.cs" />
     <Compile Include="Core\TileFactory.cs" />
     <Compile Include="Core\Utils\BitmapCache.cs" />
     <Compile Include="Core\Forms\Game.cs">

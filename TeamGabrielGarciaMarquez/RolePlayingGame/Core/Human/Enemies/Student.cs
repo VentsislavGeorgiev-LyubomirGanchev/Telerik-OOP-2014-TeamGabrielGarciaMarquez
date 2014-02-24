@@ -3,8 +3,8 @@
     public class Student : Enemies
     {
         #region Constants
-        private const float HEALTH_COEFFICIENT = 1.5F;
-        private const byte HEALTH_MULTIPLICATOR = 10;
+        private const int HEALTH_COEFFICIENT = 2;
+        private const int HEALTH_MULTIPLICATOR = 10;
         #endregion Constants
 
         #region Fields
@@ -26,7 +26,7 @@
         /// Initialize the the health of the Student. The health will increase her value depending of the student level! 
         /// </summary>
         /// <returns>Health in float</returns>
-        public override float SetHealth()
+        public override int SetHealth()
         {
             return (this.Level * HEALTH_MULTIPLICATOR) * HEALTH_COEFFICIENT;
         }
