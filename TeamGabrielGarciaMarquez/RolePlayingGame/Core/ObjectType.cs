@@ -17,7 +17,7 @@
         //Defense
         Circuit,
         Keyboard,
-        Monitor
+        Monitor,
         //Doors
         UpDirectionOpen,
         SideOpen,
@@ -26,7 +26,7 @@
         BrickWall,
         WoodenWall,
         Tree,
-        Busch,
+        Bush,
         Table,
         TableLaptop,
         Chair,
@@ -37,7 +37,6 @@
         Stairs,
         WoodenFloor,
         StoneFloor,
-        Bridge,
-        Sea
+        Bridge
     }
 }
