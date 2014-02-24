@@ -1,7 +1,9 @@
 ﻿using RolePlayingGame.Core.Map.Tiles;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace RolePlayingGame.Core
 {
@@ -21,6 +23,8 @@ namespace RolePlayingGame.Core
                     using (StreamReader stream = new StreamReader(@"Content\Entities.csv"))
                     {
                         string line;
+                        // Skip header
+                        stream.ReadLine();
                         while ((line = stream.ReadLine()) != null)
                         {
                             string[] elements = line.Split(',');
@@ -53,6 +57,8 @@ namespace RolePlayingGame.Core
 
         public string Special { get; private set; }
 
+        public Color? ColorKey { get; private set; }
+
         public EntityRawData Raw { get; private set; }
 
         #endregion Fields
@@ -74,6 +80,17 @@ namespace RolePlayingGame.Core
             this.IsTransparent = bool.Parse(entityRawData.IsTransparent);
             this.Tile = new Tile(entityRawData);
             this.Special = entityRawData.Special;
+            if (!string.IsNullOrWhiteSpace(entityRawData.ColorKey))
+            {
+                var colors = entityRawData.ColorKey.Split(';')
+                    .Select(item => Convert.ToInt32(item))
+                    .ToArray();
+                int red = colors[0];
+                int green = colors[1];
+                int blue = colors[2];
+                this.ColorKey = Color.FromArgb(red, green, blue);
+            }
+
             this.Raw = entityRawData;
         }
     }

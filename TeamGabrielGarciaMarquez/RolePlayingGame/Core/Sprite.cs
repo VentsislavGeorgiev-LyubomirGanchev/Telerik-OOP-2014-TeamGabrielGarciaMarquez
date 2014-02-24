@@ -34,7 +34,7 @@ namespace RolePlayingGame.Core
         {
             if (entity.Tile.IsTransparent)
             {
-                this.SetColorKey(this._defaultColorKey);
+                this.SetColorKey(entity.ColorKey ?? this._defaultColorKey);
             }
 
             this.Flip = flip;

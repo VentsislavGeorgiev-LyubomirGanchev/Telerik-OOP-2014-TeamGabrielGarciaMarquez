@@ -106,6 +106,7 @@
             // 
             this.TXT_Title.BackColor = System.Drawing.Color.Transparent;
             this.TXT_Title.Font = new System.Drawing.Font("Times New Roman", 17.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TXT_Title.ForeColor = System.Drawing.Color.White;
             this.TXT_Title.Location = new System.Drawing.Point(89, 23);
             this.TXT_Title.Name = "TXT_Title";
             this.TXT_Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -119,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::RolePlayingGame.Properties.Resources._112526;
+            this.BackgroundImage = global::RolePlayingGame.Properties.Resources.MenuBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(728, 413);
             this.Controls.Add(this.TXT_Title);

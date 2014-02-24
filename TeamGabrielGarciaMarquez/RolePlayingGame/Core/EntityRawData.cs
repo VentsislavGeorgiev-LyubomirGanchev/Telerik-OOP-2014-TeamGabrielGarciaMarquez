@@ -26,6 +26,8 @@
 
         public string Special { get; private set; }
 
+        public string ColorKey { get; private set; }
+
         #endregion Fields
 
         public EntityRawData(string[] tileData)
@@ -41,7 +43,8 @@
             this.IsTransparent = tileData[dataIndex++];
             this.Frames = tileData[dataIndex++];
             this.IsPassable = tileData[dataIndex++];
-            this.Special = tileData[dataIndex];
+            this.Special = tileData[dataIndex++];
+            this.ColorKey = tileData[dataIndex].Trim();
         }
     }
 }

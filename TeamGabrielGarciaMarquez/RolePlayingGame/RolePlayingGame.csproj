@@ -163,11 +163,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-    <None Include="Content\112526.jpg" />
-    <None Include="Content\download.jpg" />
-    <None Include="Content\download %281%29.jpg" />
-    <Content Include="Content\MainBackground.jpg" />
-    <Content Include="Content\AnimationsTelerikGame.bmp" />
+    <EmbeddedResource Include="Content\Backgrounds\MenuBackground.jpg" />
+    <EmbeddedResource Include="Content\Backgrounds\MainBackground.jpg" />
+    <Content Include="Content\AnimationsTelerikGame.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -192,7 +192,9 @@
     <Content Include="Content\Sounds\start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\StudentNinjasTelerikGame.bmp" />
+    <Content Include="Content\StudentNinjasTelerikGame.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\beer.jpg" />
     <Content Include="Content\Textures\beer1.jpg" />
     <Content Include="Content\Textures\beer2.jpg" />
@@ -329,7 +331,9 @@
     <Content Include="Content\Tiles.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\TilesTelerikGame.bmp" />
+    <Content Include="Content\TilesTelerikGame.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
