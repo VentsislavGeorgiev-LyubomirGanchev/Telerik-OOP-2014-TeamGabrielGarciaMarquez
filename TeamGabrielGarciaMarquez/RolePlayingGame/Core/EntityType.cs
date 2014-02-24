@@ -30,7 +30,7 @@
         BrickWall,
         WoodenWall,
         Tree,
-        Busch,
+        Bush,
         Table,
         TableLaptop,
         Chair,
@@ -41,7 +41,6 @@
         Stairs,
         WoodenFloor,
         StoneFloor,
-        Bridge,
-        Sea
+        Bridge
     }
 }

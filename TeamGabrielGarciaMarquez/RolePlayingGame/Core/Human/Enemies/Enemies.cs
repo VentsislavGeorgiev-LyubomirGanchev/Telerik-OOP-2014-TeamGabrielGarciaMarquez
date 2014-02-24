@@ -27,7 +27,7 @@ namespace RolePlayingGame.Core.Human.Enemies
             return (this.Health > 0) ? true : false;
         }
 
-        public abstract float SetHealth();
+        public abstract int SetHealth();
 
         public abstract void GetStrength();
 

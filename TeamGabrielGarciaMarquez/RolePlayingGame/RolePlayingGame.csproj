@@ -87,6 +87,7 @@
     <Compile Include="Core\EntityCategoryType.cs" />
     <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
+    <Compile Include="Core\TextPopup.cs" />
     <Compile Include="Core\Map\Tiles\TileFactory.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\PointF.cs" />
@@ -165,6 +166,7 @@
     <None Include="Content\download.jpg" />
     <None Include="Content\download %281%29.jpg" />
     <Content Include="Content\MainBackground.jpg" />
+    <Content Include="Content\AnimationsTelerikGame.bmp" />
     <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -189,6 +191,7 @@
     <Content Include="Content\Sounds\start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\StudentNinjasTelerikGame.bmp" />
     <Content Include="Content\Textures\beer.jpg" />
     <Content Include="Content\Textures\beer1.jpg" />
     <Content Include="Content\Textures\beer2.jpg" />
@@ -325,6 +328,7 @@
     <Content Include="Content\Tiles.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\TilesTelerikGame.bmp" />
     <Content Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
