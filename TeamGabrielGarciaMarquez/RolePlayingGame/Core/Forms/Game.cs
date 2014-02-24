@@ -9,8 +9,8 @@ namespace RolePlayingGame.Core.Forms
 		private Stopwatch _timer = new Stopwatch();
 		private double _lastTime;
 		private long _frameCounter;
-		private GameState _gameState;
-
+		public GameState _gameState;
+        public MainMenu menu;
 		public Game()
 		{
 			//Setup the form
@@ -22,7 +22,7 @@ namespace RolePlayingGame.Core.Forms
 
 			initialize();
 		}
-
+        public MainMenu M_Menu { get; set; }
 		private void initialize()
 		{
 			_gameState.Initialize();
@@ -32,29 +32,6 @@ namespace RolePlayingGame.Core.Forms
 			_timer.Reset();
 			_timer.Start();
 		}
-
-        public static void SaveGame(GameState gameToSave)
-        {
-            System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameState));
-
-            System.IO.StreamWriter file = new System.IO.StreamWriter(
-                @"C:\Users\hristo\Documents\GitHub\Telerik\TeamGabrielGarciaMarquez\RolePlayingGame\Content\Saved Games\save1.xml");
-            writer.Serialize(file, gameToSave);
-            file.Close();
-        }
-
-        public static GameState LoadGame()
-        {
-            System.Xml.Serialization.XmlSerializer reader =
-                new System.Xml.Serialization.XmlSerializer(typeof(GameState));
-
-            System.IO.StreamReader file = new System.IO.StreamReader(
-                @"C:\Users\hristo\Documents\GitHub\Telerik\TeamGabrielGarciaMarquez\RolePlayingGame\Content\Saved Games\save1.xml");
-            GameState loadedGame = (GameState)reader.Deserialize(file);
-            file.Close();
-            return loadedGame;
-        }
 
 		private void Game_Paint(object sender, PaintEventArgs e)
 		{

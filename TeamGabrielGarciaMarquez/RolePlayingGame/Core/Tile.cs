@@ -4,6 +4,7 @@ using System.Drawing;
 
 namespace RolePlayingGame.Core
 {
+    [Serializable]
 	public class Tile
 	{
 		private static BitmapCache _bitmaps = new BitmapCache();

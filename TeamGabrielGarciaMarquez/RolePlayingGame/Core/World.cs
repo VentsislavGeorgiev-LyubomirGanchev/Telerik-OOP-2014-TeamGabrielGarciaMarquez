@@ -20,7 +20,7 @@ namespace RolePlayingGame.Core
 			Text = text;
 		}
 	}
-
+    [Serializable]
 	public class World : GameObject
 	{
 		private const string _startArea = "start";
@@ -43,11 +43,12 @@ namespace RolePlayingGame.Core
 		private static Brush _blackBrush = new SolidBrush(Color.Red);
 		private static Random _random = new Random();
 
+        public string map;
 		public World(GameState gameState, Dictionary<string, Tile> tiles, string mapFile)
 		{
 			_gameState = gameState;
 			_tiles = tiles;
-
+            map = mapFile;
 			//Read in the map file
 			readMapfile(mapFile);
 
