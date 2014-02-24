@@ -1,4 +1,5 @@
 using RolePlayingGame.Core.Map;
+using RolePlayingGame.UI;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 namespace RolePlayingGame.Core
 {
     [Serializable]
-    internal class GameState
+    internal class GameEngine
     {
         public SizeF GameArea;
         public World World;
@@ -37,7 +38,7 @@ namespace RolePlayingGame.Core
         private static readonly Brush _Brush = new SolidBrush(Color.White);
         private static readonly Random _Random = new Random();
 
-        public GameState(SizeF gameArea)
+        public GameEngine(SizeF gameArea)
         {
             GameArea = gameArea;
 
@@ -77,9 +78,9 @@ namespace RolePlayingGame.Core
             }
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IRenderer renderer)
         {
-            World.Draw(graphics);
+            World.Draw(renderer);
 
             //Draw the HUD
             //_experienceSprite.Draw(graphics);
@@ -92,25 +93,25 @@ namespace RolePlayingGame.Core
             //if (HasGreenKey) _greenKeySprite.Draw(graphics);
             //if (HasRedKey) _redKeySprite.Draw(graphics);
             int y = 65;
-            graphics.DrawString(Experience.ToString(), _Font, _Brush, 650, y);
-            graphics.DrawString(Health.ToString(), _Font, _Brush, 650, y += 74);
-            graphics.DrawString(Attack.ToString(), _Font, _Brush, 650, y += 74);
-            graphics.DrawString(Armour.ToString(), _Font, _Brush, 650, y += 74);
-            graphics.DrawString(Treasure.ToString(), _Font, _Brush, 650, y += 74);
-            graphics.DrawString(Potions.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(Experience.ToString(), _Font, _Brush, 650, y);
+            renderer.DrawString(Health.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(Attack.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(Armour.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(Treasure.ToString(), _Font, _Brush, 650, y += 74);
+            renderer.DrawString(Potions.ToString(), _Font, _Brush, 650, y += 74);
 
             //If the game is over then display the end game message
             if (Health == 0)
             {
-                graphics.DrawString("You died!", _Font, _Brush, 200, 250);
-                graphics.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
+                renderer.DrawString("You died!", _Font, _Brush, 200, 250);
+                renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
             }
 
             //If the game is won then show congratulations
             if (GameIsWon)
             {
-                graphics.DrawString("You Won!", _Font, _Brush, 200, 250);
-                graphics.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
+                renderer.DrawString("You Won!", _Font, _Brush, 200, 250);
+                renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
             }
         }
 

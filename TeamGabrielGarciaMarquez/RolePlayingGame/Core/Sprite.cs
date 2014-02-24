@@ -1,3 +1,4 @@
+using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -112,13 +113,13 @@ namespace RolePlayingGame.Core
         /// <summary>
         /// Draw graphics on the screen
         /// </summary>
-        /// <param name="graphics"></param>
-        public override void Draw(Graphics graphics)
+        /// <param name="renderer"></param>
+        public override void Draw(IRenderer renderer)
         {
             //Draw the correct frame at the current point
             if (this._frameRectangles[this.CurrentFrame] == Rectangle.Empty)
             {
-                graphics.DrawImage(this.Frames[this.CurrentFrame], this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
+                renderer.DrawImage(this.Frames[this.CurrentFrame], this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
             }
             else
             {
@@ -139,7 +140,7 @@ namespace RolePlayingGame.Core
                         (int)this.Size.Height);
                 }
 
-                graphics.DrawImage(
+                renderer.DrawImage(
                     this.Frames[this.CurrentFrame], outputRect,
                     this._frameRectangles[this.CurrentFrame].X,
                     this._frameRectangles[this.CurrentFrame].Y,

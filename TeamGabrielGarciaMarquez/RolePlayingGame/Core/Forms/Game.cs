@@ -1,3 +1,4 @@
+using RolePlayingGame.UI;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace RolePlayingGame.Core.Forms
 
         public MainMenu MMenu { get; set; }
 
-        public GameState GameState { get; set; }
+        public GameEngine GameState { get; set; }
 
         public Game()
         {
@@ -20,7 +21,7 @@ namespace RolePlayingGame.Core.Forms
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             //Startup the game state
-            this.GameState = new GameState(this.ClientSize);
+            this.GameState = new GameEngine(this.ClientSize);
 
             this.Initialize();
         }
@@ -46,7 +47,8 @@ namespace RolePlayingGame.Core.Forms
             this.GameState.Update(gameTime, elapsedTime);
 
             //Draw everything
-            this.GameState.Draw(e.Graphics);
+            var renderer = new GDIRenderer(e.Graphics);
+            this.GameState.Draw(renderer);
 
             //Force the next Paint()
             this.Invalidate();

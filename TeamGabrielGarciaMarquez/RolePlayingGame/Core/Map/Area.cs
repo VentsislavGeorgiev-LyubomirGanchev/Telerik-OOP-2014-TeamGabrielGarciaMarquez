@@ -1,3 +1,4 @@
+using RolePlayingGame.UI;
 using System;
 using System.Drawing;
 using System.IO;
@@ -73,12 +74,12 @@ namespace RolePlayingGame.Core.Map
             }
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IRenderer renderer)
         {
             //And draw the map and any objects
             foreach (MapTile mapTile in this.Map)
             {
-                mapTile.Draw(graphics);
+                mapTile.Draw(renderer);
             }
         }
     }

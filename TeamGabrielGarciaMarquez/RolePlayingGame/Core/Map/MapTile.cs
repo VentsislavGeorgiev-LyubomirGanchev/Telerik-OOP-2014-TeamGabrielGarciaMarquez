@@ -1,4 +1,5 @@
 using RolePlayingGame.Core.Map.Tiles;
+using RolePlayingGame.UI;
 using System.Drawing;
 
 namespace RolePlayingGame.Core.Map
@@ -147,12 +148,12 @@ namespace RolePlayingGame.Core.Map
             }
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IRenderer renderer)
         {
-            this._backgroundSprite.Draw(graphics);
+            this._backgroundSprite.Draw(renderer);
             if (this._foregroundSprite != null)
             {
-                this._foregroundSprite.Draw(graphics);
+                this._foregroundSprite.Draw(renderer);
             }
         }
     }

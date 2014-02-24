@@ -98,7 +98,7 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\GameEntity.cs" />
-    <Compile Include="Core\GameState.cs" />
+    <Compile Include="Core\GameEngine.cs" />
     <Compile Include="Core\Forms\Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +115,8 @@
     <Compile Include="Core\Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\GDIRenderer.cs" />
+    <Compile Include="UI\IRenderer.cs" />
     <EmbeddedResource Include="Core\Forms\Game.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Game.cs</DependentUpon>

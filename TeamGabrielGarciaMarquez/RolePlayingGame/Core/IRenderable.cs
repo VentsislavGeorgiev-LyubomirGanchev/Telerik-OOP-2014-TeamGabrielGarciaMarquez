@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using RolePlayingGame.UI;
+using System.Drawing;
 
 namespace RolePlayingGame.Core
 {
@@ -14,7 +15,7 @@ namespace RolePlayingGame.Core
         /// <summary>
         /// Draws render object
         /// </summary>
-        /// <param name="graphics"></param>
-        void Draw(Graphics graphics);
+        /// <param name="renderer"></param>
+        void Draw(IRenderer renderer);
     }
 }

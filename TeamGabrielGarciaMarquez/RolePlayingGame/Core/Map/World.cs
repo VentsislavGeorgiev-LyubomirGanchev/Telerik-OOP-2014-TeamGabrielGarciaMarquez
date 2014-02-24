@@ -1,5 +1,6 @@
 using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Map.Tiles;
+using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,7 +24,7 @@ namespace RolePlayingGame.Core.Map
         private double _startFightTime = -1.0;
         private PointF _heroNextLocation;
         private HeroDirection _direction;
-        private readonly GameState _gameState;
+        private readonly GameEngine _gameState;
         private readonly List<TextPopup> _popups = new List<TextPopup>();
 
         private static readonly Font _Font = new Font("Arial", 18);
@@ -31,7 +32,7 @@ namespace RolePlayingGame.Core.Map
         private static readonly Brush _BlackBrush = new SolidBrush(Color.Red);
         private static readonly Random _Random = new Random();
 
-        public World(GameState gameState)
+        public World(GameEngine gameState)
         {
             this._gameState = gameState;
 
@@ -105,10 +106,10 @@ namespace RolePlayingGame.Core.Map
             }
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw(IRenderer renderer)
         {
-            _currentArea.Draw(graphics);
-            _heroEntity.Draw(graphics);
+            _currentArea.Draw(renderer);
+            _heroEntity.Draw(renderer);
 
             //If we are fighting then draw the damage
             if (_heroSpriteFighting)
@@ -116,13 +117,13 @@ namespace RolePlayingGame.Core.Map
                 foreach (TextPopup popup in _popups)
                 {
                     //Draw 4 text offsets to get an outline
-                    graphics.DrawString(popup.Text, _Font, _WhiteBrush, popup.X + 2, popup.Y);
-                    graphics.DrawString(popup.Text, _Font, _WhiteBrush, popup.X - 1, popup.Y);
-                    graphics.DrawString(popup.Text, _Font, _WhiteBrush, popup.X, popup.Y + 2);
-                    graphics.DrawString(popup.Text, _Font, _WhiteBrush, popup.X, popup.Y - 2);
+                    renderer.DrawString(popup.Text, _Font, _WhiteBrush, popup.X + 2, popup.Y);
+                    renderer.DrawString(popup.Text, _Font, _WhiteBrush, popup.X - 1, popup.Y);
+                    renderer.DrawString(popup.Text, _Font, _WhiteBrush, popup.X, popup.Y + 2);
+                    renderer.DrawString(popup.Text, _Font, _WhiteBrush, popup.X, popup.Y - 2);
 
                     //Draw the actual text
-                    graphics.DrawString(popup.Text, _Font, _BlackBrush, popup.X, popup.Y);
+                    renderer.DrawString(popup.Text, _Font, _BlackBrush, popup.X, popup.Y);
                 }
             }
         }

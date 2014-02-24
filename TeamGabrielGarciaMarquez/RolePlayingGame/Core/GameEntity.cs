@@ -1,4 +1,4 @@
-using System.Drawing;
+using RolePlayingGame.UI;
 
 namespace RolePlayingGame.Core
 {
@@ -35,7 +35,7 @@ namespace RolePlayingGame.Core
 
         public abstract void Update(double gameTime, double elapsedTime);
 
-        public abstract void Draw(Graphics graphics);
+        public abstract void Draw(IRenderer graphics);
 
         #endregion Methods
     }
