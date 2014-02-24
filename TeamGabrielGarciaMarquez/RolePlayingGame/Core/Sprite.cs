@@ -1,3 +1,5 @@
+using RolePlayingGame.Core.Map;
+using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
@@ -40,7 +42,8 @@ namespace RolePlayingGame.Core
             this.Frames = new List<Bitmap>();
             this.Velocity = PointF.Empty;
             this.Acceleration = PointF.Empty;
-            this.Location = new PointF(x, y);
+            this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
+                                        y * Tile.TileSizeY + Area.AreaOffsetY);
 
             var entityRectangle = entity.Tile.Rectangle;
             var entityFramesCount = entity.Tile.FramesCount;

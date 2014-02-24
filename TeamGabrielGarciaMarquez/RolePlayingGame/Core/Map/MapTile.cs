@@ -1,6 +1,5 @@
 using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
-using System.Drawing;
 
 namespace RolePlayingGame.Core.Map
 {
@@ -61,9 +60,7 @@ namespace RolePlayingGame.Core.Map
         public void SetBackgroundSprite(int x, int y, Entity entity)
         {
             //Update the sprite
-            _backgroundSprite = new Sprite(Area.AreaOffsetX + x * Tile.TileSizeX,
-                                      Area.AreaOffsetY + y * Tile.TileSizeY,
-                                      entity);
+            _backgroundSprite = new Sprite(x, y, entity);
         }
 
         public void UpdateBackgroundTile(Tile newBackgroundTile)
@@ -74,9 +71,7 @@ namespace RolePlayingGame.Core.Map
         public void SetForegroundSprite(int x, int y, Entity entity)
         {
             //Update the sprite
-            this._foregroundSprite = new Sprite(Area.AreaOffsetX + x * Tile.TileSizeX,
-                                      Area.AreaOffsetY + y * Tile.TileSizeY,
-                                      entity);
+            this._foregroundSprite = new Sprite(x, y, entity);
         }
 
         public void UpdateForegroundTile(Tile newForegroundTile)
