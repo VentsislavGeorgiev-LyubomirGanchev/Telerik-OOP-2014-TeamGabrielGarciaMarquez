@@ -49,7 +49,7 @@ namespace RolePlayingGame.Core.Forms
             }
         }
 
-        private void BTN_LoadGame_Click(object sender, EventArgs e)
+        private void BtnLoadGameClick(object sender, EventArgs e)
         {
             string dir = @"c:\temp";
             string serializationFile = Path.Combine(dir, "salesmen.bin");

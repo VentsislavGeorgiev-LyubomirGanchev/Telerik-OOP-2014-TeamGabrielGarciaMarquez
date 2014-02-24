@@ -9,7 +9,7 @@ namespace RolePlayingGame.Core.Forms
         private readonly Stopwatch _gameTimeTracker = new Stopwatch();
         private double _gameLastTimeUpdate;
 
-        public MainMenu M_Menu { get; set; }
+        public MainMenu MMenu { get; set; }
 
         public GameState GameState { get; set; }
 
@@ -27,7 +27,7 @@ namespace RolePlayingGame.Core.Forms
 
         private void Initialize()
         {
-            GameState.Initialize();
+            this.GameState.Initialize();
 
             //Initialise and start the timer
             _gameLastTimeUpdate = 0.0;
@@ -43,10 +43,10 @@ namespace RolePlayingGame.Core.Forms
             _gameLastTimeUpdate = gameTime;
 
             //Perform any animation and updates
-            GameState.Update(gameTime, elapsedTime);
+            this.GameState.Update(gameTime, elapsedTime);
 
             //Draw everything
-            GameState.Draw(e.Graphics);
+            this.GameState.Draw(e.Graphics);
 
             //Force the next Paint()
             this.Invalidate();

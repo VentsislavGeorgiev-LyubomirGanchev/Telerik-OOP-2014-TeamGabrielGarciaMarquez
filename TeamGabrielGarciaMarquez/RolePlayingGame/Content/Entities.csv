@@ -1,5 +1,5 @@
 Name,Type,Key,Category,File,Position X,Position Y,IsForeground,Frames,IsPassable,Special
 Grass,Grass,.,WorldItems,Content\tiles.bmp,1,2,FALSE,1,TRUE,
 StoneWall,StoneWall,>,WorldItems,Content\tiles.bmp,7,1,FALSE,1,FALSE,
-Player,Player,Player,Human,Content\animations.bmp,1,1,TRUE,3,TRUE,0
-Boss,Boss,Boss,Human,Content\animations.bmp,1,3,TRUE,3,TRUE,100
+Player,Player,p,Human,Content\animations.bmp,1,1,TRUE,3,TRUE,0
+Boss,Boss,b,Human,Content\animations.bmp,7,1,TRUE,3,TRUE,100

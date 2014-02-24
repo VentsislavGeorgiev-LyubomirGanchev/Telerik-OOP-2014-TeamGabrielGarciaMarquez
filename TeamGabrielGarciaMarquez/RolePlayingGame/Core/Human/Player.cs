@@ -1,5 +1,4 @@
-﻿using RolePlayingGame.Core.Interfaces;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace RolePlayingGame.Core.Human

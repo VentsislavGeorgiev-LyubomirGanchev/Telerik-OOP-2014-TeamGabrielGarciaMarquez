@@ -352,7 +352,7 @@ namespace RolePlayingGame.Core.Map
             return nextMapTile.IsPassable;
         }
 
-        private bool damageMonster(int damage, MapTile mapTile, int x, int y)
+        private bool DamageMonster(int damage, MapTile mapTile, int x, int y)
         {
             //Do some damage, and remove the monster if its dead
             bool returnValue = false; //monster not dead

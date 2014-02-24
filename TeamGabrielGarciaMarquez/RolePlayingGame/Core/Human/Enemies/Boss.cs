@@ -4,7 +4,7 @@
     {
         #region Constants
 
-        private const byte HEALTH_MULTIPLICATOR = 100;
+        private const byte HealthMultiplicator = 100;
 
         #endregion Constants
 
@@ -34,7 +34,7 @@
         /// <returns>Health in float</returns>
         public override int SetHealth()
         {
-            return this.Level * HEALTH_MULTIPLICATOR;
+            return this.Level * HealthMultiplicator;
         }
 
         public override void GetStrength()

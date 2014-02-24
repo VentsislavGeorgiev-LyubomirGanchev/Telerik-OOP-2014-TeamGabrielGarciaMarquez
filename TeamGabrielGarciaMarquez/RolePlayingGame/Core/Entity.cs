@@ -11,7 +11,7 @@ namespace RolePlayingGame.Core
 
         private static Dictionary<string, EntityRawData> _TileDescriptions;
 
-        private static Dictionary<string, EntityRawData> TileDescriptions
+        public static Dictionary<string, EntityRawData> TileDescriptions
         {
             get
             {
@@ -58,7 +58,7 @@ namespace RolePlayingGame.Core
         #endregion Fields
 
         public Entity(EntityType type)
-            : this(type.ToString())
+            : this(type.ToString()[0].ToString().ToLower())
         {
         }
 

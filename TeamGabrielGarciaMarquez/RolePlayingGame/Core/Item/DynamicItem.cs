@@ -1,5 +1,4 @@
-﻿using RolePlayingGame.Core.Interfaces;
-using System;
+﻿using System;
 
 namespace RolePlayingGame.Core.Item
 {

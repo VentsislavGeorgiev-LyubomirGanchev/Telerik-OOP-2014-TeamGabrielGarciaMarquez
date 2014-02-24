@@ -58,7 +58,7 @@ namespace RolePlayingGame.Core.Map
                 string[] elements = line.Split(',');
                 int x = Convert.ToInt32(elements[0]);
                 int y = Convert.ToInt32(elements[1]);
-                var entityKey = line[2].ToString();
+                var entityKey = elements[2].ToString();
                 MapTile mapTile = this.Map[x, y];
                 mapTile.SetForegroundSprite(x, y, new Entity(entityKey));
             }

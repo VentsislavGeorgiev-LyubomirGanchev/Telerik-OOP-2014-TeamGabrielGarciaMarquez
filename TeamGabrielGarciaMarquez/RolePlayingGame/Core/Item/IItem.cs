@@ -1,4 +1,4 @@
-﻿namespace RolePlayingGame.Core.Interfaces
+﻿namespace RolePlayingGame.Core.Item
 {
     interface IItem
     {

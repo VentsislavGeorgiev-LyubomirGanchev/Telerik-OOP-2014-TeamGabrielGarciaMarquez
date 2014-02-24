@@ -7,47 +7,47 @@ namespace RolePlayingGame.Core
 	/// </summary>
 	public static class Sounds
 	{
-		private static SoundPlayer _eat = new SoundPlayer(@"Content\Sounds\eat.wav");
-		private static SoundPlayer _pickup = new SoundPlayer(@"Content\Sounds\pickup.wav");
-		private static SoundPlayer _fight = new SoundPlayer(@"Content\Sounds\fight.wav");
-		private static SoundPlayer _kiss = new SoundPlayer(@"Content\Sounds\kiss.wav");
-		private static SoundPlayer _magic = new SoundPlayer(@"Content\Sounds\magic.wav");
-		private static SoundPlayer _start = new SoundPlayer(@"Content\Sounds\start.wav");
+        private static readonly SoundPlayer _Eat = new SoundPlayer(@"Content\Sounds\eat.wav");
+        private static readonly SoundPlayer _Pickup = new SoundPlayer(@"Content\Sounds\pickup.wav");
+        private static readonly SoundPlayer _Fight = new SoundPlayer(@"Content\Sounds\fight.wav");
+        private static readonly SoundPlayer _Kiss = new SoundPlayer(@"Content\Sounds\kiss.wav");
+        private static readonly SoundPlayer _Magic = new SoundPlayer(@"Content\Sounds\magic.wav");
+        private static readonly SoundPlayer _Start = new SoundPlayer(@"Content\Sounds\start.wav");
 
 		static Sounds()
 		{
 			//preload the sounds on construction.
-			_eat.Load();
-			_pickup.Load();
-			_fight.Load();
-			_kiss.Load();
-			_magic.Load();
-			_start.Load();
+			_Eat.Load();
+			_Pickup.Load();
+			_Fight.Load();
+			_Kiss.Load();
+			_Magic.Load();
+			_Start.Load();
 		}
 
 		public static void Eat()
 		{
-			_eat.Play();
+			_Eat.Play();
 		}
 
 		public static void Pickup()
 		{
-			_pickup.Play();
+			_Pickup.Play();
 		}
 
 		public static void Fight()
 		{
-			_fight.Play();
+			_Fight.Play();
 		}
 
 		public static void Kiss()
 		{
-			_kiss.Play();
+			_Kiss.Play();
 		}
 
 		public static void Magic()
 		{
-			_magic.Play();
+			_Magic.Play();
 		}
 
 		public static void Start()

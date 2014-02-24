@@ -1,4 +1,4 @@
-﻿namespace RolePlayingGame
+﻿namespace RolePlayingGame.Core.Forms
 {
     partial class Settings
     {
@@ -48,7 +48,7 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Sound";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1Click);
             // 
             // LBL_Resolution
             // 
@@ -79,7 +79,7 @@
             this.CB_Autosave.Size = new System.Drawing.Size(15, 14);
             this.CB_Autosave.TabIndex = 0;
             this.CB_Autosave.UseVisualStyleBackColor = true;
-            this.CB_Autosave.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.CB_Autosave.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
             // 
             // TRK_BAR_Sound
             // 
@@ -103,7 +103,7 @@
             this.BTN_Cancel.TabIndex = 9;
             this.BTN_Cancel.Text = "Cancel";
             this.BTN_Cancel.UseVisualStyleBackColor = true;
-            this.BTN_Cancel.Click += new System.EventHandler(this.BTN_Cancel_Click);
+            this.BTN_Cancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // BTN_Ok
             // 
@@ -113,7 +113,7 @@
             this.BTN_Ok.TabIndex = 10;
             this.BTN_Ok.Text = "OK";
             this.BTN_Ok.UseVisualStyleBackColor = true;
-            this.BTN_Ok.Click += new System.EventHandler(this.BTN_Ok_Click);
+            this.BTN_Ok.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // Settings
             // 

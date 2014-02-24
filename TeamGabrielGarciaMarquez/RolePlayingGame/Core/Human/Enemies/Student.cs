@@ -3,8 +3,8 @@
     internal class Student : Enemies
     {
         #region Constants
-        private const int HEALTH_COEFFICIENT = 2;
-        private const int HEALTH_MULTIPLICATOR = 10;
+        private const int HealthCoefficient = 2;
+        private const int HealthMultiplicator = 10;
         #endregion Constants
 
         #region Fields
@@ -33,7 +33,7 @@
         /// <returns>Health in float</returns>
         public override int SetHealth()
         {
-            return (this.Level * HEALTH_MULTIPLICATOR) * HEALTH_COEFFICIENT;
+            return (this.Level * HealthMultiplicator) * HealthCoefficient;
         }
 
         public override void GetStrength()

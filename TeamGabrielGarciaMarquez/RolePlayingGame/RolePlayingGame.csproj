@@ -69,9 +69,9 @@
     <Compile Include="Core\Human\Enemies\Boss.cs" />
     <Compile Include="Core\Human\Enemies\Enemies.cs" />
     <Compile Include="Core\Human\Player.cs" />
-    <Compile Include="Core\Interfaces\ICollectable.cs" />
-    <Compile Include="Core\Interfaces\IItem.cs" />
-    <Compile Include="Core\Interfaces\IMovable.cs" />
+    <Compile Include="Core\Item\ICollectable.cs" />
+    <Compile Include="Core\Item\IItem.cs" />
+    <Compile Include="Core\Human\IMovable.cs" />
     <Compile Include="Core\Human\Enemies\Student.cs" />
     <Compile Include="Core\Forms\MainMenu.cs">
       <SubType>Form</SubType>
@@ -80,7 +80,7 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Human\Human.cs" />
-    <Compile Include="Core\Interfaces\IObstacle.cs" />
+    <Compile Include="Core\Item\IObstacle.cs" />
     <Compile Include="Core\Item\DynamicItem.cs" />
     <Compile Include="Core\Item\Item.cs" />
     <Compile Include="Core\Map\TextPopup.cs" />
@@ -88,7 +88,6 @@
     <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
     <Compile Include="Core\TextPopup.cs" />
-    <Compile Include="Core\Map\Tiles\TileFactory.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\PointF.cs" />
     <Compile Include="Core\Utils\BitmapCache.cs" />

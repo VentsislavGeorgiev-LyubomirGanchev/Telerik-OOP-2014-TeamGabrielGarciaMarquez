@@ -1,6 +1,4 @@
-﻿using RolePlayingGame.Core.Interfaces;
-
-namespace RolePlayingGame.Core.Item
+﻿namespace RolePlayingGame.Core.Item
 {
     internal abstract class Item : Sprite, IItem
     {

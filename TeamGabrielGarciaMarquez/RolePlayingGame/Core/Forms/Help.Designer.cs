@@ -265,7 +265,7 @@ namespace RolePlayingGame.Core.Forms
 			this.close.TabIndex = 20;
 			this.close.Text = "Close";
 			this.close.UseVisualStyleBackColor = true;
-			this.close.Click += new System.EventHandler(this.close_Click);
+			this.close.Click += new System.EventHandler(this.CloseClick);
 			// 
 			// helpform
 			// 

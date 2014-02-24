@@ -58,7 +58,7 @@
             this.BTN_LoadGame.TabIndex = 2;
             this.BTN_LoadGame.Text = "Load Game";
             this.BTN_LoadGame.UseVisualStyleBackColor = true;
-            this.BTN_LoadGame.Click += new System.EventHandler(this.BTN_LoadGame_Click);
+            this.BTN_LoadGame.Click += new System.EventHandler(this.BtnLoadGameClick);
             // 
             // BTN_SaveGame
             // 

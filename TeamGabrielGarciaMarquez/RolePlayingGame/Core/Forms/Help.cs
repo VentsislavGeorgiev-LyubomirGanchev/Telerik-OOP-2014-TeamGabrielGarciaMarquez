@@ -5,12 +5,12 @@ namespace RolePlayingGame.Core.Forms
 {
 	public partial class HelpForm : Form
 	{
-		public HelpForm()
-		{
-			InitializeComponent();
-		}
+        public HelpForm()
+        {
+            this.InitializeComponent();
+        }
 
-		private void close_Click(object sender, EventArgs e)
+		private void CloseClick(object sender, EventArgs e)
 		{
 			this.Close();
 		}

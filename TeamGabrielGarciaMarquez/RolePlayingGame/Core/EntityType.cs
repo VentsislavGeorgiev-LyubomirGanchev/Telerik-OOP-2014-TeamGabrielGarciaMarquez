@@ -5,6 +5,7 @@
         Player,
         Boss,
         Student,
+        Bones,
 
         //Health
         Burger,
