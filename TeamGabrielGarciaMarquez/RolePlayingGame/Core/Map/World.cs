@@ -40,7 +40,7 @@ namespace RolePlayingGame.Core.Map
             this.ReadMapfile(MapFilePath);
 
             //Find the start point
-            this._currentArea = _world[StartArea];
+            this._currentArea = this._world[StartArea];
 
             //Create and position the hero character
             this._heroEntity = new Player(_PlayerStartPosition.X, _PlayerStartPosition.Y);
@@ -54,7 +54,7 @@ namespace RolePlayingGame.Core.Map
                 {
                     //Each area constructor will consume just one area
                     Area area = new Area(stream);
-                    _world.Add(area.Name, area);
+                    this._world.Add(area.Name, area);
                 }
             }
         }
@@ -62,16 +62,16 @@ namespace RolePlayingGame.Core.Map
         public void Update(double gameTime, double elapsedTime)
         {
             //We only actually update the current area the rest all 'sleep'
-            _currentArea.Update(gameTime, elapsedTime);
+            this._currentArea.Update(gameTime, elapsedTime);
 
             //Hero update
-            _heroEntity.Update(gameTime, elapsedTime);
+            this._heroEntity.Update(gameTime, elapsedTime);
 
             //If the hero is moving we need to check if we are there yet
-            if (_heroSpriteAnimating && CheckDestination())
+            if (this._heroSpriteAnimating && this.CheckDestination())
             {
                 //We have arrived. Stop moving and animating
-                this._heroEntity.Location = _heroNextLocation;
+                this._heroEntity.Location = this._heroNextLocation;
                 this._heroEntity.Velocity = PointF.Empty;
                 this._heroSpriteAnimating = false;
 
@@ -80,28 +80,28 @@ namespace RolePlayingGame.Core.Map
             }
 
             //The hero gets animated when moving or fighting
-            if (_heroSpriteAnimating || _heroSpriteFighting)
+            if (this._heroSpriteAnimating || this._heroSpriteFighting)
             {
-                _heroEntity.CurrentFrame = Sprite.CalculateNextFrame(gameTime, _heroEntity.FramesCount);
+                this._heroEntity.CurrentFrame = Sprite.CalculateNextFrame(gameTime, this._heroEntity.FramesCount);
             }
             else
             {
                 //Otherwise use frame 0
-                _heroEntity.CurrentFrame = 0;
+                this._heroEntity.CurrentFrame = 0;
             }
 
             //If we are fighting then keep animating for a period of time
-            if (_heroSpriteFighting)
+            if (this._heroSpriteFighting)
             {
-                if (_startFightTime < 0)
+                if (this._startFightTime < 0)
                 {
-                    _startFightTime = gameTime;
+                    this._startFightTime = gameTime;
                 }
                 else
                 {
-                    if (gameTime - _startFightTime > 1.0)
+                    if (gameTime - this._startFightTime > 1.0)
                     {
-                        _heroSpriteFighting = false;
+                        this._heroSpriteFighting = false;
                     }
                 }
             }
@@ -109,13 +109,13 @@ namespace RolePlayingGame.Core.Map
 
         public void Draw(IRenderer renderer)
         {
-            _currentArea.Draw(renderer);
-            _heroEntity.Draw(renderer);
+            this._currentArea.Draw(renderer);
+            this._heroEntity.Draw(renderer);
 
             //If we are fighting then draw the damage
-            if (_heroSpriteFighting)
+            if (this._heroSpriteFighting)
             {
-                foreach (TextPopup popup in _popups)
+                foreach (TextPopup popup in this._popups)
                 {
                     //Draw 4 text offsets to get an outline
                     renderer.DrawString(popup.Text, _Font, _WhiteBrush, popup.X + 2, popup.Y);
@@ -137,19 +137,19 @@ namespace RolePlayingGame.Core.Map
         private bool CheckDestination()
         {
             //Depending on the direction we are moving we check different bounds of the destination
-            switch (_direction)
+            switch (this._direction)
             {
                 case HeroDirection.Right:
-                    return (_heroEntity.Location.X >= _heroNextLocation.X);
+                    return (this._heroEntity.Location.X >= this._heroNextLocation.X);
 
                 case HeroDirection.Left:
-                    return (_heroEntity.Location.X <= _heroNextLocation.X);
+                    return (this._heroEntity.Location.X <= this._heroNextLocation.X);
 
                 case HeroDirection.Up:
-                    return (_heroEntity.Location.Y <= _heroNextLocation.Y);
+                    return (this._heroEntity.Location.Y <= this._heroNextLocation.Y);
 
                 case HeroDirection.Down:
-                    return (_heroEntity.Location.Y >= _heroNextLocation.Y);
+                    return (this._heroEntity.Location.Y >= this._heroNextLocation.Y);
             }
 
             throw new ArgumentException("Direction is not set correctly");
@@ -158,7 +158,7 @@ namespace RolePlayingGame.Core.Map
         public void KeyDown(Keys key)
         {
             //Ignore keypresses while we are animating or fighting
-            if (!_heroSpriteAnimating && !_heroSpriteFighting)
+            if (!this._heroSpriteAnimating && !this._heroSpriteFighting)
             {
                 switch (key)
                 {
@@ -167,7 +167,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.X < Area.MapSizeX - 1)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
+                            if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
                             {
                                 this._heroEntity.Velocity = new PointF(100, 0);
                                 this._heroEntity.Flip = true;
@@ -177,13 +177,13 @@ namespace RolePlayingGame.Core.Map
                                 this.SetDestination();
                             }
                         }
-                        else if (_currentArea.EastArea != "-")
+                        else if (this._currentArea.EastArea != "-")
                         {
                             //Edge of map - move to next area
-                            this._currentArea = _world[_currentArea.EastArea];
+                            this._currentArea = this._world[this._currentArea.EastArea];
                             this._heroEntity.Position.X = 0;
                             this.SetDestination();
-                            this._heroEntity.Location = _heroNextLocation;
+                            this._heroEntity.Location = this._heroNextLocation;
                         }
                         break;
 
@@ -192,7 +192,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.X > 0)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
+                            if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
                             {
                                 this._heroEntity.Velocity = new PointF(-100, 0);
                                 this._heroEntity.Flip = false;
@@ -202,9 +202,9 @@ namespace RolePlayingGame.Core.Map
                                 this.SetDestination();
                             }
                         }
-                        else if (_currentArea.WestArea != "-")
+                        else if (this._currentArea.WestArea != "-")
                         {
-                            this._currentArea = _world[_currentArea.WestArea];
+                            this._currentArea = this._world[_currentArea.WestArea];
                             this._heroEntity.Position.X = Area.MapSizeX - 1;
                             this.SetDestination();
                             this._heroEntity.Location = _heroNextLocation;
@@ -216,7 +216,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.Y > 0)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
+                            if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
                             {
                                 this._heroEntity.Velocity = new PointF(0, -100);
                                 this._heroSpriteAnimating = true;
@@ -240,7 +240,7 @@ namespace RolePlayingGame.Core.Map
                         if (this._heroEntity.Position.Y < Area.MapSizeY - 1)
                         {
                             //Can we move to the next tile or not (blocking tile or monster)
-                            if (CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
+                            if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
                             {
                                 this._heroEntity.Velocity = new PointF(0, 100);
                                 this._heroSpriteAnimating = true;

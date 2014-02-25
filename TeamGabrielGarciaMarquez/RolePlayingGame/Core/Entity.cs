@@ -64,7 +64,7 @@ namespace RolePlayingGame.Core
         #endregion Fields
 
         public Entity(EntityType type)
-            : this(type.ToString()[0].ToString().ToLower())
+            : this(type.ToString())
         {
         }
 

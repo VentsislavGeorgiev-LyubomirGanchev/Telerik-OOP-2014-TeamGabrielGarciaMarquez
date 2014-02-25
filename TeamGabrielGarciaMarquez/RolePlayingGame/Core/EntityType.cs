@@ -3,8 +3,15 @@
     public enum EntityType
     {
         Player,
-        Boss,
-        Student,
+        Boss1,
+        Boss2,
+        Boss3,
+        Boss4,
+        Boss5,
+        Student1,
+        Student2,
+        Student3,
+        Student4,
         Bones,
 
         //Health

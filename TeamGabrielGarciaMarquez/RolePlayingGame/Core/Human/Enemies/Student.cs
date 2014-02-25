@@ -13,8 +13,8 @@
 
         #region Constructors
 
-        public Student(int x, int y)
-            : base(x, y, new Entity(EntityType.Student))
+        public Student(int x, int y, EntityType type)
+            : base(x, y, new Entity(type))
         {
             this.Health = SetHealth();
         }
