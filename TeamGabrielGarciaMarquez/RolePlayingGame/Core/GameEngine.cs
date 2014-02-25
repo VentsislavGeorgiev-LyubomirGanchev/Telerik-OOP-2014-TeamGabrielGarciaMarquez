@@ -29,15 +29,15 @@ namespace RolePlayingGame.Core
         private int _nextUpgrade;
 
         //TODO Add Tile Experience to The HUD
-        private Sprite _experienceSprite;
-        private Sprite _healthSprite;
-        private Sprite _manaSprite;
-        private Sprite _knowledgeSprite;
-        private Sprite _defenseSprite;
+        private readonly Sprite _experienceSprite;
+
+        private readonly Sprite _healthSprite;
+        private readonly Sprite _manaSprite;
+        private readonly Sprite _knowledgeSprite;
+        private readonly Sprite _defenseSprite;
 
         private static readonly Font _Font = new Font("Arial", 24);
         private static readonly Brush _Brush = new SolidBrush(Color.Black);
-        private static readonly Random _Random = new Random();
 
         public GameEngine(SizeF gameArea)
         {

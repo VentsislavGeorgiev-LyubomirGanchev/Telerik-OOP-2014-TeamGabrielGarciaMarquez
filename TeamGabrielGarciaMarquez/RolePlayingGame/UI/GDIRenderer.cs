@@ -4,6 +4,9 @@ using System.Runtime;
 
 namespace RolePlayingGame.UI
 {
+    /// <summary>
+    /// GDI Graphics class wrapper
+    /// </summary>
     internal class GDIRenderer : IRenderer
     {
         private Graphics _graphics;
