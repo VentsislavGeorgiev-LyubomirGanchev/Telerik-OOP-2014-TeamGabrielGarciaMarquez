@@ -21,6 +21,8 @@ namespace RolePlayingGame.Core.Human.Enemies
 
         public int StartingHealth { get; set; }
 
+        public int Strength { get; set; }
+
         #endregion
 
         #region Methods
@@ -36,7 +38,7 @@ namespace RolePlayingGame.Core.Human.Enemies
 
         public abstract int SetHealth();
 
-        public abstract void GetStrength();
+        public abstract int SetStrength();
 
         /// <summary>
         /// Decrease health of the current enemy. When the enemy died, returns experiance.

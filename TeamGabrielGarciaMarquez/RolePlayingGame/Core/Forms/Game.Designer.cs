@@ -42,7 +42,7 @@ namespace RolePlayingGame.Core.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Game";
-            this.Text = "RolePlayingGame";
+            this.Text = "Ninja.Net";
             this.Shown += new System.EventHandler(this.Game_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);

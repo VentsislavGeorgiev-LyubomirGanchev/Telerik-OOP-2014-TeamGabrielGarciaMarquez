@@ -43,10 +43,10 @@ namespace RolePlayingGame.Core.Human
 
             var popups = new List<TextPopup>();
 
-            //An enemy attack ability is 1/2 their max health. Compare that to your defense
+            //An enemy strength ability is 1/2 for boss and 1/3 for student of their max health. Compare that to your defense
             //If you outclass them then there is still a chance of a lucky hit
-            if (random.Next((enemy.Health / 2) + 1) >= player.Defense
-                || (enemy.Health / 2 < player.Defense && random.Next(LuckyScope) == LuckyNumber))
+            if (random.Next(enemy.Strength + 1) >= player.Defense
+                || (enemy.Strength < player.Defense && random.Next(LuckyScope) == LuckyNumber))
             {
                 //Enemies do damage up to their max health - if they hit you.
                 int playerDamage = random.Next(enemy.Health) + 1;

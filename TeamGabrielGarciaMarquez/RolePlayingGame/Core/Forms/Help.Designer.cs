@@ -300,7 +300,7 @@ namespace RolePlayingGame.Core.Forms
             this.MinimizeBox = false;
             this.Name = "HelpForm";
             this.ShowIcon = false;
-            this.Text = "GameStartup Help";
+            this.Text = "Ninja.Net Help";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

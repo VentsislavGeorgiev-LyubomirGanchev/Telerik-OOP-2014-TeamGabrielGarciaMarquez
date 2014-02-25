@@ -4,8 +4,8 @@
     {
         #region Constants
 
-        private const byte HealthMultiplicator = 100;
-
+        private const int HealthMultiplicator = 100;
+        private const int StrengthDivisor = 2;
         #endregion Constants
 
         #region Fields
@@ -19,6 +19,7 @@
         {
             this.Health = SetHealth();
             this.StartingHealth = this.Health;
+            this.Strength = this.SetStrength();
         }
 
         #endregion Constructors
@@ -38,9 +39,9 @@
             return this.Level * HealthMultiplicator;
         }
 
-        public override void GetStrength()
+        public override int SetStrength()
         {
-            //throw new System.NotImplementedException();
+            return this.Health / StrengthDivisor;
         }
 
         #endregion Methods
