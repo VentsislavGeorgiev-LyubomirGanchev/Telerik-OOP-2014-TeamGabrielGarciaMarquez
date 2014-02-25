@@ -1,6 +1,6 @@
 ﻿namespace RolePlayingGame.Core.Human.Enemies
 {
-    internal class Student : Enemies
+    internal class Student : Enemy
     {
         #region Constants
         private const int HealthCoefficient = 2;
@@ -17,6 +17,7 @@
             : base(x, y, new Entity(type))
         {
             this.Health = SetHealth();
+            this.StartingHealth = this.Health;
         }
 
         #endregion Constructors

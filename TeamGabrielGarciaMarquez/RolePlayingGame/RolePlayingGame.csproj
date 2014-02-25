@@ -68,7 +68,7 @@
     <Compile Include="Core\IRenderable.cs" />
     <Compile Include="Core\Map\Area.cs" />
     <Compile Include="Core\Human\Enemies\Boss.cs" />
-    <Compile Include="Core\Human\Enemies\Enemies.cs" />
+    <Compile Include="Core\Human\Enemies\Enemy.cs" />
     <Compile Include="Core\Human\Player.cs" />
     <Compile Include="Core\Item\ICollectable.cs" />
     <Compile Include="Core\Item\IItem.cs" />

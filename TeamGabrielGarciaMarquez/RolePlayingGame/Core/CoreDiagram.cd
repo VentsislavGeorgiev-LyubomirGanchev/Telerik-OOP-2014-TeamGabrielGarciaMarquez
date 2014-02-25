@@ -3,14 +3,14 @@
   <Class Name="RolePlayingGame.Core.Entity" Collapsed="true">
     <Position X="25.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAGQQAAAgAgAQAAAAAAAAAAQAAAAAACQA=</HashCode>
+      <HashCode>AIAAACAAAAAAGQQAAAgAgAQAAAAAAAAAAQAAAAAACQA=</HashCode>
       <FileName>Core\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.EntityRawData" Collapsed="true">
     <Position X="20.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAEAQAAAgAAAQAAAAAAAAAgQFAAAAACAE=</HashCode>
+      <HashCode>AIAAACAAAAAAEAQAAAgAAAQAAAAAAAAAgQFAAAAACAE=</HashCode>
       <FileName>Core\EntityRawData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -53,14 +53,14 @@
   <Class Name="RolePlayingGame.Core.Sprite" Collapsed="true">
     <Position X="13.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gASAAAAAAAAAgggCAAIBAAEAAACAAAAAAAAMAAAEAAE=</HashCode>
+      <HashCode>gASAAAAAAAAAgggCAAJBAAEAAACAAAAAgAAMAAAEAAE=</HashCode>
       <FileName>Core\Sprite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Forms.Game" Collapsed="true">
     <Position X="22.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAQAAAACQAAACAAAAAAAAACBADAAAIAA=</HashCode>
+      <HashCode>AAAQAAAAACAAAQEAAACQAAACAAAAAAAAACBADAAAAAA=</HashCode>
       <FileName>Core\Forms\Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -116,7 +116,7 @@
   <Class Name="RolePlayingGame.Core.Human.Player" Collapsed="true">
     <Position X="9" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAAAAAAABAAAAIgAAQAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAIgAAQBA=</HashCode>
       <FileName>Core\Human\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -140,7 +140,7 @@
   <Class Name="RolePlayingGame.Core.Item.StaticItem" Collapsed="true">
     <Position X="15.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Core\Item\StaticItem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -148,7 +148,7 @@
   <Class Name="RolePlayingGame.Core.Map.Area" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="20.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACQBAAAAABAAAgAAAAAAAAQAAgAAAAACIAAAIAQAAAA=</HashCode>
+      <HashCode>ACQBAAAAAAAAAgAAAQAAAAQAAgAAAAACIAAAIAQAAAA=</HashCode>
       <FileName>Core\Map\Area.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -156,14 +156,14 @@
   <Class Name="RolePlayingGame.Core.Map.MapTile" Collapsed="true">
     <Position X="22.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAQAAAAEgAAAAJBAABAAQAAAAQAAEAAgAAQCgA=</HashCode>
+      <HashCode>AAQAAAAQAAAAEgAAAAJAAABAAQAAAAQQAUAAAAAACgA=</HashCode>
       <FileName>Core\Map\MapTile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Map.World" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="25.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAwEBAAAABAAggABASRAEQAAAAAAAQAAEAAIAEEAQGI=</HashCode>
+      <HashCode>CAwEBAAAABAAggABASBAEQAAAAAAAQAAEAAIAEEAQGI=</HashCode>
       <FileName>Core\Map\World.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -234,21 +234,21 @@
   <Interface Name="RolePlayingGame.Core.Item.IObstacle" Collapsed="true">
     <Position X="25.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Core\Item\IObstacle.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="RolePlayingGame.Core.EntityCategoryType" Collapsed="true">
     <Position X="20.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAGCgAAAAAAAQAAAAAAAAAAQAAAAAAAAAAIgQAAAA=</HashCode>
+      <HashCode>AAAACCgAAAAAAAQAAAAAAAAAAQAAAAAAAAAAIgQAAAA=</HashCode>
       <FileName>Core\EntityCategoryType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="RolePlayingGame.Core.EntityType" Collapsed="true">
     <Position X="22.25" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABwABAABSACCADAIQADEQAAKAAEiAAwAACgAAQiIgAA=</HashCode>
+      <HashCode>QBwABAAFCACCADAIAADGQAAKABEiAAwAALoAAQiIwIg=</HashCode>
       <FileName>Core\EntityType.cs</FileName>
     </TypeIdentifier>
   </Enum>

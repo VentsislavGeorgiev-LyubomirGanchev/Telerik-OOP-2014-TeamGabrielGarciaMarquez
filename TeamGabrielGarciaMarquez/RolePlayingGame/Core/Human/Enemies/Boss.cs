@@ -1,6 +1,6 @@
 ﻿namespace RolePlayingGame.Core.Human.Enemies
 {
-    internal class Boss : Enemies
+    internal class Boss : Enemy
     {
         #region Constants
 
@@ -18,6 +18,7 @@
             : base(x, y, new Entity(type))
         {
             this.Health = SetHealth();
+            this.StartingHealth = this.Health;
         }
 
         #endregion Constructors

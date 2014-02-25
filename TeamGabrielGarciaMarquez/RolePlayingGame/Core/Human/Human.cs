@@ -39,16 +39,16 @@ namespace RolePlayingGame.Core.Human
         public static void Fight(Random random, Human firstFighter, Human secondFighter)
         {
             var player = firstFighter as Player;
-            var enemy = secondFighter as Enemies.Enemies;
+            var enemy = secondFighter as Enemies.Enemy;
 
             var popups = new List<TextPopup>();
 
-            //A monsters attack ability is 1/2 their max health. Compare that to your armour
+            //An enemy attack ability is 1/2 their max health. Compare that to your defense
             //If you outclass them then there is still a chance of a lucky hit
             if (random.Next((enemy.Health / 2) + 1) >= player.Defense
                 || (enemy.Health / 2 < player.Defense && random.Next(LuckyScope) == LuckyNumber))
             {
-                //Monsters do damage up to their max health - if they hit you.
+                //Enemies do damage up to their max health - if they hit you.
                 int playerDamage = random.Next(enemy.Health) + 1;
                 player.Health -= playerDamage;
 
@@ -61,20 +61,15 @@ namespace RolePlayingGame.Core.Human
                 popups.Add(new TextPopup(player.Position.X + 40, player.Position.Y + 20, message));
             }
 
-            //A monsters armour is 1/5 of their max health
+            //A enemy armour is 1/5 of their max health
             if (random.Next(player.Knowledge + 1) >= (enemy.Health / 5))
             {
-                //Hero damage is up to twice the attack rating
+                //Player damage is up to twice the attack rating
                 int enemyDamage = random.Next(player.Knowledge * 2) + 1;
-                enemy.Health -= enemyDamage;
-                if (enemy.Health <= 0)
+                if (enemyDamage > 0)
                 {
-                    //Experience is the monsters max health
-                    player.Experience += enemy.Health;
-                    enemy.Health = 0;
-                    //Remove enemy
-                    enemy.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
-                    return;
+                    int experiance = enemy.GetDamage(enemyDamage);
+                    player.Experience += experiance;
                 }
                 string message = enemyDamage != 0 ? enemyDamage.ToString() : MissMessage;
                 popups.Add(new TextPopup(enemy.Position.X + 40, enemy.Position.Y + 20, message));
