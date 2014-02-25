@@ -14,7 +14,7 @@
 
         #region Constructors
 
-        public Boss(int x, int y, EntityType type)
+        public Boss(float x, float y, EntityType type)
             : base(x, y, new Entity(type))
         {
             this.Health = SetHealth();

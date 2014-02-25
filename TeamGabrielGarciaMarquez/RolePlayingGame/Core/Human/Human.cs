@@ -23,10 +23,10 @@ namespace RolePlayingGame.Core.Human
 
         #region Constructors
 
-        public Human(int x, int y, Entity entity, bool flip)
+        public Human(float x, float y, Entity entity, bool flip)
             : base(x, y, entity, flip)
         {
-            this.Position = new Point(x, y);
+            this.Position = new Point((int)x, (int)y);
         }
 
         #endregion Constructors

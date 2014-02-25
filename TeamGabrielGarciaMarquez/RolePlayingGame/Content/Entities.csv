@@ -21,5 +21,6 @@ Msdn,Msdn,Msdn,Knowledge,Content\TilesTelerikGame.bmp,5,2,TRUE,1,TRUE,,255;255;2
 Circuit,Circuit,Circuit,Defense,Content\TilesTelerikGame.bmp,2,2,TRUE,1,TRUE,,255;255;255
 Keyboard,Keyboard,Keyboard,Defense,Content\TilesTelerikGame.bmp,1,2,TRUE,1,TRUE,,255;255;255
 Monitor,Monitor,Monitor,Defense,Content\TilesTelerikGame.bmp,9,1,TRUE,1,TRUE,,255;255;255
+Experience,Experience,Experience,WorldItems,Content\TilesTelerikGame.bmp,6,5,TRUE,1,TRUE,,255;255;255
 Grass,Grass,.,WorldItems,Content\TilesTelerikGame.bmp,4,4,FALSE,1,TRUE,,
 StoneWall,StoneWall,>,WorldItems,Content\TilesTelerikGame.bmp,2,3,FALSE,1,FALSE,,

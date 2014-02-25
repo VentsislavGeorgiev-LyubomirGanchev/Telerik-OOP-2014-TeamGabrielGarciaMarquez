@@ -12,7 +12,7 @@ namespace RolePlayingGame.Core.Human
         #region Constructors
         //Just base constructor
         //Should be singleton design pattern
-        public Player(int x, int y)
+        public Player(float x, float y)
             : base(x, y, new Entity(EntityType.Player), true)
         {
         }

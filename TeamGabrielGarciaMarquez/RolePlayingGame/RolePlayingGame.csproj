@@ -10,7 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RolePlayingGame</RootNamespace>
     <AssemblyName>RolePlayingGame</AssemblyName>
-    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -163,9 +164,7 @@
     <Compile Include="Core\Map\World.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.ico" />
     <EmbeddedResource Include="Content\Backgrounds\MenuBackground.jpg" />
-    <EmbeddedResource Include="Content\Backgrounds\MainBackground.jpg" />
     <Content Include="Content\AnimationsTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -335,7 +334,7 @@
     <Content Include="Content\TilesTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="small.ico" />
+    <Content Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

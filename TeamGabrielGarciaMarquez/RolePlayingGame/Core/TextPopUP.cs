@@ -2,7 +2,7 @@
 {
     public struct TextPopup
     {
-        public TextPopup(int x, int y, string text)
+        public TextPopup(float x, float y, string text)
             : this()
         {
             this.X = x;
@@ -10,9 +10,9 @@
             this.Text = text;
         }
 
-        public int Y { get; set; }
+        public float Y { get; set; }
 
-        public int X { get; set; }
+        public float X { get; set; }
 
         public string Text { get; set; }
     }

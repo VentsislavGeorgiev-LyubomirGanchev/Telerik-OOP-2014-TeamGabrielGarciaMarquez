@@ -12,7 +12,7 @@ namespace RolePlayingGame.Core.Item
 
         #region Methods
 
-        public DynamicItem(int x, int y, Entity entity, bool flip = false)
+        public DynamicItem(float x, float y, Entity entity, bool flip = false)
             : base(x, y, entity, flip)
         {
             //TODO Add item rates

@@ -9,6 +9,11 @@ namespace RolePlayingGame.Core
     {
         public static Sprite Create(int x, int y, Entity entity)
         {
+            return Create((float)x, (float)y, entity);
+        }
+
+        public static Sprite Create(float x, float y, Entity entity)
+        {
             Sprite sprite = null;
             switch (entity.Category)
             {

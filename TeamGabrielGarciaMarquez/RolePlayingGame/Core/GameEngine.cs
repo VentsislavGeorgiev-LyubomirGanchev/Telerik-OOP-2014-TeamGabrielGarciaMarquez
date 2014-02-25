@@ -12,16 +12,13 @@ namespace RolePlayingGame.Core
         public const int FrameRate = 8;
         public const int EntitiesMoveSpeed = 200;
 
-        public const int HudSpacing = 74;
-        public static readonly Point HudPosition = new Point(850, 65);
-
         public SizeF GameArea;
         public World World;
-        public int Attack;
-        public int Armour;
+        public int Mana;
+        public int Knowledge;
         public int Level;
         public int Health;
-        public int Treasure;
+        public int Defense;
         public int Potions;
         public bool HasBrownKey;
         public bool HasGreenKey;
@@ -30,18 +27,16 @@ namespace RolePlayingGame.Core
 
         private int _experience;
         private int _nextUpgrade;
+
+        //TODO Add Tile Experience to The HUD
         private Sprite _experienceSprite;
-        private Sprite _attackSprite;
-        private Sprite _armourSprite;
         private Sprite _healthSprite;
-        private Sprite _treasureSprite;
-        private Sprite _potionSprite;
-        private Sprite _brownKeySprite;
-        private Sprite _greenKeySprite;
-        private Sprite _redKeySprite;
+        private Sprite _manaSprite;
+        private Sprite _knowledgeSprite;
+        private Sprite _defenseSprite;
 
         private static readonly Font _Font = new Font("Arial", 24);
-        private static readonly Brush _Brush = new SolidBrush(Color.White);
+        private static readonly Brush _Brush = new SolidBrush(Color.Black);
         private static readonly Random _Random = new Random();
 
         public GameEngine(SizeF gameArea)
@@ -49,16 +44,13 @@ namespace RolePlayingGame.Core
             GameArea = gameArea;
 
             //Create the sprites for the UI
-            int y = 50;
-            //_experienceSprite = new Sprite(580, y, new Entity("her"));
-            //_healthSprite = new Sprite(580, y += 74, new Entity("fd1"));
-            //_attackSprite = new Sprite(580, y += 74, new Entity("att"));
-            //_armourSprite = new Sprite(580, y += 74, new Entity("arm"));
-            //_treasureSprite = new Sprite(580, y += 74, new Entity("tr2"));
-            //_potionSprite = new Sprite(580, y += 74, new Entity("pot"));
-            //_brownKeySprite = new Sprite(580, y += 74, new Entity("kbr"));
-            //_greenKeySprite = new Sprite(654, y, new Entity("kgr"));
-            //_redKeySprite = new Sprite(728, y, new Entity("kre"));
+            float hudSpacing = 1.5f;
+            PointF hudPosition = new PointF(10.5f, 1);
+            _experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Experience));
+            _healthSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Burger));
+            _manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Water));
+            _knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.DotNet));
+            _defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
         }
 
         //Experience property automatically upgrades your skill as the 'set' passes
@@ -75,8 +67,8 @@ namespace RolePlayingGame.Core
                 //If we hit the upgrade threshold then increase our abilities
                 if (_experience > _nextUpgrade)
                 {
-                    Attack++;
-                    Armour++;
+                    Mana++;
+                    Knowledge++;
                     //Each upgrade is a little harder to get
                     _nextUpgrade = _nextUpgrade + 20 * Level;
                     Level++;
@@ -89,25 +81,21 @@ namespace RolePlayingGame.Core
             this.World.Draw(renderer);
 
             //Draw the HUD
-            //_experienceSprite.Draw(graphics);
-            //_healthSprite.Draw(graphics);
-            //_attackSprite.Draw(graphics);
-            //_armourSprite.Draw(graphics);
-            //_treasureSprite.Draw(graphics);
-            //_potionSprite.Draw(graphics);
+            _experienceSprite.Draw(renderer);
+            _healthSprite.Draw(renderer);
+            _manaSprite.Draw(renderer);
+            _knowledgeSprite.Draw(renderer);
+            _defenseSprite.Draw(renderer);
 
             //TODO Add Keys
-            //if (HasBrownKey) _brownKeySprite.Draw(graphics);
-            //if (HasGreenKey) _greenKeySprite.Draw(graphics);
-            //if (HasRedKey) _redKeySprite.Draw(graphics);
 
-            var hudPosition = new Point(HudPosition.X, HudPosition.Y);
+            int hudSpacing = 97;
+            Point hudPosition = new Point(750, 78);
             renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
-            renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
-            renderer.DrawString(this.Attack.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
-            renderer.DrawString(this.Armour.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
-            renderer.DrawString(this.Treasure.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
-            renderer.DrawString(this.Potions.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
+            renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
+            renderer.DrawString(this.Mana.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
+            renderer.DrawString(this.Knowledge.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
+            renderer.DrawString(this.Defense.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
 
             //If the game is over then display the end game message
             if (this.Health == 0)
@@ -137,14 +125,14 @@ namespace RolePlayingGame.Core
             this.World = new World(this);
 
             //Reset the game state
-            this.Attack = 1;
+            this.Mana = 1;
             this.Potions = 10;
-            this.Armour = 1;
+            this.Knowledge = 1;
             this.Experience = 0;
             this.Level = 1;
             this._nextUpgrade = 20;
             this.Health = 100;
-            this.Treasure = 0;
+            this.Defense = 0;
             this.GameIsWon = false;
         }
 

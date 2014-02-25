@@ -129,6 +129,7 @@
             this.Controls.Add(this.LBL_Sound);
             this.Controls.Add(this.CB_Autosave);
             this.Name = "Settings";
+            this.ShowIcon = false;
             this.Text = "Settings";
             ((System.ComponentModel.ISupportInitialize)(this.TRK_BAR_Sound)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

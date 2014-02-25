@@ -13,7 +13,8 @@
         Student3,
         Student4,
         Bones,
-
+        //Experience
+        Experience,
         //Health
         Burger,
         Chips,

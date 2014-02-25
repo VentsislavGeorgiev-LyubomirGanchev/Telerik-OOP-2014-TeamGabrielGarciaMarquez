@@ -13,7 +13,7 @@
 
         #region Constructors
 
-        public Student(int x, int y, EntityType type)
+        public Student(float x, float y, EntityType type)
             : base(x, y, new Entity(type))
         {
             this.Health = SetHealth();

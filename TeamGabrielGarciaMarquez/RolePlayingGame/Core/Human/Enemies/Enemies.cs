@@ -8,7 +8,7 @@ namespace RolePlayingGame.Core.Human.Enemies
 
         #region Constructors
 
-        public Enemies(int x, int y, Entity entity)
+        public Enemies(float x, float y, Entity entity)
             : base(x, y, entity, false)
         {
             this.Level = Convert.ToInt32(this.Entity.Special);

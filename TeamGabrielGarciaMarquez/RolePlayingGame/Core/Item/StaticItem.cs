@@ -12,7 +12,7 @@
 
         public bool State { get; private set; }
 
-        public StaticItem(int x, int y, Entity entity, bool flip = false)
+        public StaticItem(float x, float y, Entity entity, bool flip = false)
             : base(x, y, entity, flip)
         {
         }
