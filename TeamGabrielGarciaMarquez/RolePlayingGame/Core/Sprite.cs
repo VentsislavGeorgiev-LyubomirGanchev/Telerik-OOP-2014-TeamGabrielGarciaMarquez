@@ -14,6 +14,7 @@ namespace RolePlayingGame.Core
         #region Constants
 
         private readonly Color _defaultColorKey = Color.FromArgb(75, 75, 75);
+        private static readonly PointF _DefaultAcceleration = new PointF(GameEngine.EntitiesMoveSpeed, GameEngine.EntitiesMoveSpeed);
 
         #endregion Constants
 
@@ -50,7 +51,7 @@ namespace RolePlayingGame.Core
             this._frameRectangles = new List<Rectangle>();
             this.Frames = new List<Bitmap>();
             this.Velocity = PointF.Empty;
-            this.Acceleration = PointF.Empty;
+            this.Acceleration = _DefaultAcceleration;
             this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
                                         y * Tile.TileSizeY + Area.AreaOffsetY);
 

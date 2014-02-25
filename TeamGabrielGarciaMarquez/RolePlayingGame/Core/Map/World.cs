@@ -11,14 +11,12 @@ namespace RolePlayingGame.Core.Map
 {
     internal class World : IRenderable
     {
-        private static readonly Point _PlayerStartPosition = new Point(3, 3);
-
         private const string MapFilePath = @"Content\map.txt";
         private const string StartArea = "start";
 
         private readonly Dictionary<string, Area> _world = new Dictionary<string, Area>();
         private Area _currentArea;
-        private readonly Player _heroEntity;
+        private Player _heroEntity;
         private bool _heroSpriteAnimating;
         private bool _heroSpriteFighting;
         private double _startFightTime = -1.0;
@@ -43,7 +41,19 @@ namespace RolePlayingGame.Core.Map
             this._currentArea = this._world[StartArea];
 
             //Create and position the hero character
-            this._heroEntity = new Player(_PlayerStartPosition.X, _PlayerStartPosition.Y);
+            var tilesMap = this._currentArea.TilesMap;
+            for (int row = 0; row < tilesMap.GetLength(0); row++)
+            {
+                for (int col = 0; col < tilesMap.GetLength(1); col++)
+                {
+                    var mapTile = tilesMap[row, col];
+                    if (mapTile.Type.HasValue && mapTile.Type == EntityType.Player)
+                    {
+                        this._heroEntity = mapTile.Sprite as Player;
+                        mapTile.SetForegroundSprite(null);
+                    }
+                }
+            }
         }
 
         private void ReadMapfile(string mapFile)
@@ -169,7 +179,7 @@ namespace RolePlayingGame.Core.Map
                             //Can we move to the next tile or not (blocking tile or monster)
                             if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
                             {
-                                this._heroEntity.Velocity = new PointF(100, 0);
+                                this._heroEntity.Velocity = new PointF(GameEngine.EntitiesMoveSpeed, 0);
                                 this._heroEntity.Flip = true;
                                 this._heroSpriteAnimating = true;
                                 this._direction = HeroDirection.Right;
@@ -194,7 +204,7 @@ namespace RolePlayingGame.Core.Map
                             //Can we move to the next tile or not (blocking tile or monster)
                             if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
                             {
-                                this._heroEntity.Velocity = new PointF(-100, 0);
+                                this._heroEntity.Velocity = new PointF(-GameEngine.EntitiesMoveSpeed, 0);
                                 this._heroEntity.Flip = false;
                                 this._heroSpriteAnimating = true;
                                 this._direction = HeroDirection.Left;
@@ -218,7 +228,7 @@ namespace RolePlayingGame.Core.Map
                             //Can we move to the next tile or not (blocking tile or monster)
                             if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
                             {
-                                this._heroEntity.Velocity = new PointF(0, -100);
+                                this._heroEntity.Velocity = new PointF(0, -GameEngine.EntitiesMoveSpeed);
                                 this._heroSpriteAnimating = true;
                                 this._direction = HeroDirection.Up;
                                 this._heroEntity.Position.Y--;
@@ -242,7 +252,7 @@ namespace RolePlayingGame.Core.Map
                             //Can we move to the next tile or not (blocking tile or monster)
                             if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
                             {
-                                this._heroEntity.Velocity = new PointF(0, 100);
+                                this._heroEntity.Velocity = new PointF(0, GameEngine.EntitiesMoveSpeed);
                                 this._heroSpriteAnimating = true;
                                 this._direction = HeroDirection.Down;
                                 this._heroEntity.Position.Y++;

@@ -7,14 +7,21 @@ namespace RolePlayingGame.Core.Item
         #region Fields
 
         public int ItemRate { get; private set; }
-        #endregion
+
+        #endregion Fields
 
         #region Methods
-        public DynamicItem(float x, float y, Entity entity, bool flip = false)
+
+        public DynamicItem(int x, int y, Entity entity, bool flip = false)
             : base(x, y, entity, flip)
         {
-            this.ItemRate = Convert.ToInt32(this.Entity.Special);
+            //TODO Add item rates
+            if (this.Entity.Special != string.Empty)
+            {
+                this.ItemRate = Convert.ToInt32(this.Entity.Special);
+            }
         }
-        #endregion
+
+        #endregion Methods
     }
 }

@@ -2,20 +2,24 @@
 {
     internal class StaticItem : Item, IObstacle
     {
-        public StaticItem(float x, float y, Entity entity, bool flip = false)
-            : base(x, y, entity, flip)
-        {
-
-        }
-
         public bool IsStateChangable
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                return this.Entity.Category == EntityCategoryType.Door;
+            }
+        }
+
+        public bool State { get; private set; }
+
+        public StaticItem(int x, int y, Entity entity, bool flip = false)
+            : base(x, y, entity, flip)
+        {
         }
 
         public void ChangeState()
         {
-            throw new System.NotImplementedException();
+            this.State = !this.State;
         }
     }
 }

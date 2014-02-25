@@ -14,6 +14,51 @@ namespace RolePlayingGame.Core.Map
         private readonly Sprite _backgroundSprite;
         private Sprite _foregroundSprite;
 
+        public EntityType? Type
+        {
+            get
+            {
+                if (this._foregroundSprite != null)
+                {
+                    return this._foregroundSprite.Entity.Type;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public EntityCategoryType? Category
+        {
+            get
+            {
+                if (this._foregroundSprite != null)
+                {
+                    return this._foregroundSprite.Category;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public Sprite Sprite
+        {
+            get
+            {
+                if (this._foregroundSprite != null)
+                {
+                    return this._foregroundSprite;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public PointF Location
         {
             get
@@ -39,24 +84,10 @@ namespace RolePlayingGame.Core.Map
             }
         }
 
-        public EntityCategoryType? Category
+        public MapTile(Sprite backgroundSprite, Sprite foregroundSprite = null)
         {
-            get
-            {
-                if (this._foregroundSprite != null)
-                {
-                    return this._foregroundSprite.Category;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        public MapTile(int x, int y, Entity entity)
-        {
-            _backgroundSprite = new Sprite(x, y, entity);
+            this._backgroundSprite = backgroundSprite;
+            this._foregroundSprite = foregroundSprite;
         }
 
         public void UpdateBackgroundTile(Tile newBackgroundTile)
@@ -64,10 +95,9 @@ namespace RolePlayingGame.Core.Map
             this._backgroundSprite.Entity.Tile = newBackgroundTile;
         }
 
-        public void SetForegroundSprite(int x, int y, Entity entity)
+        public void SetForegroundSprite(Sprite foregroundSprite)
         {
-            //Update the sprite
-            this._foregroundSprite = new Sprite(x, y, entity);
+            this._foregroundSprite = foregroundSprite;
         }
 
         public void UpdateForegroundTile(Tile newForegroundTile)

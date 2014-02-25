@@ -5,14 +5,14 @@ using System.IO;
 namespace RolePlayingGame.Core.Map
 {
     /// <summary>
-    /// Area defines the 8x8 grid that contains a set of MapTiles
+    /// Area defines the NxN grid that contains a set of MapTiles
     /// </summary>
     internal class Area : IRenderable
     {
-        public const int AreaOffsetX = 30;
-        public const int AreaOffsetY = 50;
-        public const int MapSizeX = 8;
-        public const int MapSizeY = 8;
+        public const int AreaOffsetX = 0;
+        public const int AreaOffsetY = 0;
+        public const int MapSizeX = 10;
+        public const int MapSizeY = 10;
 
         public MapTile[,] TilesMap = new MapTile[MapSizeX, MapSizeY];
 
@@ -49,13 +49,15 @@ namespace RolePlayingGame.Core.Map
                 for (int col = 0; col < MapSizeX; col++)
                 {
                     var entityKey = line[col].ToString();
-                    MapTile mapTile = new MapTile(col, row, new Entity(entityKey));
+
+                    var backgroundSprite = SpriteFactory.Create(col, row, new Entity(entityKey));
+                    MapTile mapTile = new MapTile(backgroundSprite);
                     this.TilesMap[col, row] = mapTile;
                 }
             }
 
             //Read game objects until the blank line
-            while (!stream.EndOfStream && (line = stream.ReadLine().Trim()) != "")
+            while (!stream.EndOfStream && (line = stream.ReadLine().Trim()) != string.Empty)
             {
                 //Each line is an x, y coordinate and a entityKey
                 //Look up the entity and set the sprite
@@ -63,8 +65,10 @@ namespace RolePlayingGame.Core.Map
                 int x = Convert.ToInt32(elements[0]);
                 int y = Convert.ToInt32(elements[1]);
                 var entityKey = elements[2].ToString();
+
+                var foregroundSprite = SpriteFactory.Create(x, y, new Entity(entityKey));
                 MapTile mapTile = this.TilesMap[x, y];
-                mapTile.SetForegroundSprite(x, y, new Entity(entityKey));
+                mapTile.SetForegroundSprite(foregroundSprite);
             }
         }
 

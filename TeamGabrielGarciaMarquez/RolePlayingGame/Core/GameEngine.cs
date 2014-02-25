@@ -10,6 +10,10 @@ namespace RolePlayingGame.Core
     internal class GameEngine
     {
         public const int FrameRate = 8;
+        public const int EntitiesMoveSpeed = 200;
+
+        public const int HudSpacing = 74;
+        public static readonly Point HudPosition = new Point(850, 65);
 
         public SizeF GameArea;
         public World World;
@@ -91,16 +95,19 @@ namespace RolePlayingGame.Core
             //_armourSprite.Draw(graphics);
             //_treasureSprite.Draw(graphics);
             //_potionSprite.Draw(graphics);
+
+            //TODO Add Keys
             //if (HasBrownKey) _brownKeySprite.Draw(graphics);
             //if (HasGreenKey) _greenKeySprite.Draw(graphics);
             //if (HasRedKey) _redKeySprite.Draw(graphics);
-            int y = 65;
-            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, 650, y);
-            renderer.DrawString(this.Health.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(this.Attack.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(this.Armour.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(this.Treasure.ToString(), _Font, _Brush, 650, y += 74);
-            renderer.DrawString(this.Potions.ToString(), _Font, _Brush, 650, y += 74);
+
+            var hudPosition = new Point(HudPosition.X, HudPosition.Y);
+            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
+            renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
+            renderer.DrawString(this.Attack.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
+            renderer.DrawString(this.Armour.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
+            renderer.DrawString(this.Treasure.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
+            renderer.DrawString(this.Potions.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += HudSpacing);
 
             //If the game is over then display the end game message
             if (this.Health == 0)

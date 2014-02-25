@@ -5,5 +5,7 @@
         bool IsStateChangable { get; }
 
         void ChangeState();
+
+        bool State { get; }
     }
 }
