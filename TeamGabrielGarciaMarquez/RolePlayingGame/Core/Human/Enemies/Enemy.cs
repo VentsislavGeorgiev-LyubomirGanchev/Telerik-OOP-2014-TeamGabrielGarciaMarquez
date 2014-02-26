@@ -49,8 +49,10 @@ namespace RolePlayingGame.Core.Human.Enemies
             {
                 this.Health = 0;
                 //Remove the enemy and set bones
-                this.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
 
+                //TODO EVENT for dead
+
+                this.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
                 //Experience is the monsters max health
                 return this.StartingHealth;
             }

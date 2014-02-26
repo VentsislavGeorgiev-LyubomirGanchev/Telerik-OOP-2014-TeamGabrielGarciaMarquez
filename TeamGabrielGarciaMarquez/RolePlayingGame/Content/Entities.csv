@@ -24,3 +24,4 @@ Monitor,Monitor,Monitor,Defense,Content\TilesTelerikGame.bmp,9,1,TRUE,1,TRUE,,25
 Experience,Experience,Experience,WorldItems,Content\TilesTelerikGame.bmp,6,5,TRUE,1,TRUE,,255;255;255
 Grass,Grass,.,WorldItems,Content\TilesTelerikGame.bmp,4,4,FALSE,1,TRUE,,
 StoneWall,StoneWall,>,WorldItems,Content\TilesTelerikGame.bmp,2,3,FALSE,1,FALSE,,
+Bones,Bones,Bones,WorldItems,Content\TilesTelerikGame.bmp,6,6,TRUE,1,TRUE,,
