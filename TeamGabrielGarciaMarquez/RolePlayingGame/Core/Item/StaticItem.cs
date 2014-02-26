@@ -15,6 +15,10 @@
         public StaticItem(float x, float y, Entity entity, bool flip = false)
             : base(x, y, entity, flip)
         {
+            if (this.IsStateChangable)
+            {
+                this.State = false;
+            }
         }
 
         public void ChangeState()

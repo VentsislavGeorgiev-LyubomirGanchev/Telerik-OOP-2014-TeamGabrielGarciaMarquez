@@ -1,3 +1,4 @@
+using RolePlayingGame.Core.Item;
 using RolePlayingGame.Core.Map;
 using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
@@ -5,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 
 namespace RolePlayingGame.Core
 {
@@ -129,6 +131,20 @@ namespace RolePlayingGame.Core
         /// <param name="renderer"></param>
         public override void Draw(IRenderer renderer)
         {
+            //if (this.Category == EntityCategoryType.Door)
+            //{
+            //    var door = this as StaticItem;
+            //    if (door.State == false)
+            //    {
+            //        var firstFrame = this.Frames.First();
+            //        this.Frames.Clear();
+            //        this.Frames.Add(firstFrame);
+            //        var firstRec = this._frameRectangles[0];
+            //        this._frameRectangles.Clear();
+            //        this._frameRectangles.Add(firstRec);
+            //    }
+            //}
+
             //Draw the correct frame at the current point
             if (this._frameRectangles[this.CurrentFrame] == Rectangle.Empty)
             {

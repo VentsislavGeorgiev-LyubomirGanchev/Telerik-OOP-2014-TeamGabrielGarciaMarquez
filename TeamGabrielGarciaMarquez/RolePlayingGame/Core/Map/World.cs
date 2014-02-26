@@ -1,5 +1,6 @@
 using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Human.Enemies;
+using RolePlayingGame.Core.Item;
 using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 using System;
@@ -30,7 +31,7 @@ namespace RolePlayingGame.Core.Map
         private static readonly Brush _WhiteBrush = new SolidBrush(Color.White);
         private static readonly Brush _BlackBrush = new SolidBrush(Color.Red);
         private static readonly Random _Random = new Random();
-        #endregion 
+        #endregion
 
         public World(GameEngine gameState)
         {
@@ -311,7 +312,7 @@ namespace RolePlayingGame.Core.Map
                 nextMapTile.OnPlayerMove(_heroEntity);
                 return true;
             }
-            
+
             return false;
         }
 
@@ -348,11 +349,15 @@ namespace RolePlayingGame.Core.Map
         private void CheckDoors(MapTile mapTile, int x, int y)
         {
             //If the next tile is a closed door then check if we have the key
-            if (mapTile.IsStateChangable && mapTile.IsPassable)
+            var door = mapTile.Sprite as StaticItem;
+            if (door!=null/*mapTile.IsStateChangable && mapTile.IsPassable*/)
             {
                 //For each key if it matches then open the door by switching the sprite & sprite to its matching open version
                 if (this._heroEntity.HasKey)
                 {
+                    this._heroEntity.HasKey = false;
+                    //var door = mapTile.Sprite as StaticItem;
+                    door.ChangeState();
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["E"]);
                 }

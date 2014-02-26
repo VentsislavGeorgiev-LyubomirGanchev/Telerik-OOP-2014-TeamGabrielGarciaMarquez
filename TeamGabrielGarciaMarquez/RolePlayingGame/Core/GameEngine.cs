@@ -111,7 +111,7 @@ namespace RolePlayingGame.Core
 
         public void Initialize()
         {
-            Sounds.Start();
+            //Sounds.Start();
             //Create all the main gameobjects
             this.World = new World(this);
             this.GameIsWon = false;
