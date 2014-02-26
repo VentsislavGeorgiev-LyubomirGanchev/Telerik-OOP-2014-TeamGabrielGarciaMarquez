@@ -2,41 +2,41 @@ using RolePlayingGame.UI;
 
 namespace RolePlayingGame.Core
 {
-    internal abstract class GameEntity : IRenderable
-    {
-        #region Fields
+	internal abstract class GameEntity : IRenderable, IGameEntity
+	{
+		#region Fields
 
-        public Entity Entity { get; private set; }
+		public Entity Entity { get; private set; }
 
-        public EntityCategoryType Category
-        {
-            get
-            {
-                return this.Entity.Category;
-            }
-        }
+		public EntityCategoryType Category
+		{
+			get
+			{
+				return this.Entity.Category;
+			}
+		}
 
-        public bool IsPassable
-        {
-            get
-            {
-                return this.Entity.IsPassable;
-            }
-        }
+		public bool IsPassable
+		{
+			get
+			{
+				return this.Entity.IsPassable;
+			}
+		}
 
-        #endregion Fields
+		#endregion Fields
 
-        #region Methods
+		#region Methods
 
-        public GameEntity(Entity entity)
-        {
-            this.Entity = entity;
-        }
+		public GameEntity(Entity entity)
+		{
+			this.Entity = entity;
+		}
 
-        public abstract void Update(double gameTime, double elapsedTime);
+		public abstract void Update(double gameTime, double elapsedTime);
 
-        public abstract void Draw(IRenderer graphics);
+		public abstract void Draw(IRenderer graphics);
 
-        #endregion Methods
-    }
+		#endregion Methods
+	}
 }

@@ -1,7 +1,10 @@
-﻿namespace RolePlayingGame.Core.Human
+﻿using RolePlayingGame.UI;
+
+namespace RolePlayingGame.Core
 {
-	internal interface IPlayer : IHuman
+	internal interface IHUD
 	{
+		bool GameIsWon { get; set; }
 		int Health { get; set; }
 
 		int Mana { get; set; }
@@ -14,6 +17,8 @@
 
 		bool HasKey { get; set; }
 
-		bool IsHeroFighting { get; set; }
+		int Level { get; set; }
+
+		void Draw(IRenderer renderer);
 	}
 }

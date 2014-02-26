@@ -65,9 +65,14 @@
   <ItemGroup>
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\EntityRawData.cs" />
-    <Compile Include="Core\Human\IEnemy.cs" />
+    <Compile Include="Core\HUD.cs" />
+    <Compile Include="Core\Human\Enemies\IEnemy.cs" />
+    <Compile Include="Core\Human\IHuman.cs" />
     <Compile Include="Core\Human\IPlayer.cs" />
+    <Compile Include="Core\IGameEntity.cs" />
+    <Compile Include="Core\IHUD.cs" />
     <Compile Include="Core\IRenderable.cs" />
+    <Compile Include="Core\ISprite.cs" />
     <Compile Include="Core\Map\Area.cs" />
     <Compile Include="Core\Human\Enemies\Boss.cs" />
     <Compile Include="Core\Human\Enemies\Enemy.cs" />
@@ -166,11 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ninjaNet.jpg" />
-    <EmbeddedResource Include="Content\Backgrounds\MenuBackground.jpg" />
     <Content Include="Content\AnimationsTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ninjaNet.jpg" />
+    <Content Include="Content\Backgrounds\ninjaNet.jpg" />
     <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -184,9 +188,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Map.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Animations.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\pickup.wav">
@@ -331,9 +332,6 @@
     <Content Include="Content\Textures\woodenWall2.jpg" />
     <Content Include="Content\Textures\woodenWall3.jpg" />
     <Content Include="Content\Textures\woodenWall4.jpg" />
-    <Content Include="Content\Tiles.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\TilesTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

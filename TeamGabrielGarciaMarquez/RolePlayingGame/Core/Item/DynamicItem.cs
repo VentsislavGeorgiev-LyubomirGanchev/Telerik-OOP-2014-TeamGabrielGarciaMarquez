@@ -15,7 +15,6 @@ namespace RolePlayingGame.Core.Item
         public DynamicItem(float x, float y, Entity entity, bool flip = false)
             : base(x, y, entity, flip)
         {
-            //TODO Add item rates
             if (this.Entity.Special != string.Empty)
             {
                 this.ItemRate = Convert.ToInt32(this.Entity.Special);

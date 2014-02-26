@@ -1,138 +1,130 @@
 using RolePlayingGame.Core.Human;
+using RolePlayingGame.Core.Human.Enemies;
 using RolePlayingGame.Core.Map;
+using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
 {
-    [Serializable]
-    internal class GameEngine : IPlayer
-    {
-        public const int FrameRate = 8;
-        public const int EntitiesMoveSpeed = 200;
+	[Serializable]
+	internal class GameEngine
+	{
+		#region Constants
 
-        public SizeF GameArea;
-        public World World;
-        public bool GameIsWon;
+		public const int FrameRate = 8;
+		public const int EntitiesMoveSpeed = 200;
 
-        //TODO Add Tile Experience to The HUD
-        private readonly Sprite _currentLevel;
-        private readonly Sprite _experienceSprite;
-        private readonly Sprite _healthSprite;
-        private readonly Sprite _manaSprite;
-        private readonly Sprite _knowledgeSprite;
-        private readonly Sprite _defenseSprite;
-        private readonly Sprite _keySprite;
+		private const int LuckyScope = 10;
+		private const int LuckyNumber = 3;
 
-        private static readonly Font _Font = new Font("Arial", 24);
-        private static readonly Brush _Brush = new SolidBrush(Color.Black);
+		private const string MissMessage = "miss";
 
-        public GameEngine(SizeF gameArea)
-        {
-            GameArea = gameArea;
+		#endregion Constants
 
-            //Create the sprites for the UI
-            float hudSpacing = 1.46f;
-            PointF hudPosition = new PointF(10.5f, 0.3f);
-            this._currentLevel = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Level));
-            this._experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Experience));
-            this._healthSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Burger));
-            this._manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Beer));
-            this._knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.IntroCSharp));
-            this._defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
-            this._keySprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Key));
-        }
+		#region Fields
 
-        #region Properties
-        public int Health { get; set; }
+		private World _world;
 
-        public int Mana { get; set; }
+		#endregion Fields
 
-        public int Knowledge { get; set; }
+		public GameEngine()
+		{
+			this.HUD = Core.HUD.Instance;
+		}
 
-        public int Defense { get; set; }
+		#region Properties
 
-        public int Experience { get; set; }
+		public IHUD HUD { get; private set; }
 
-        public bool HasKey { get; set; }
+		#endregion Properties
 
-        public int Level { get; set; }
-        #endregion
+		#region Methods
 
-        #region Methods
-        public void Draw(IRenderer renderer)
-        {
-            this.World.Draw(renderer);
+		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)
+		{
+			Sounds.Fight();
+			player.IsHeroFighting = true;
+			popups.Clear();
 
-            //Draw the HUD
-            this._currentLevel.Draw(renderer);
-            this._experienceSprite.Draw(renderer);
-            this._healthSprite.Draw(renderer);
-            this._manaSprite.Draw(renderer);
-            this._knowledgeSprite.Draw(renderer);
-            this._defenseSprite.Draw(renderer);
-            if (this.HasKey)
-            {
-                this._keySprite.Draw(renderer);
-            }
+			//An enemy strength ability is 1/2 for boss and 1/3 for student of their max health. Compare that to your defense
+			//If you outclass them then there is still a chance of a lucky hit
+			int playerDamage = 0;
 
-            //TODO Add Keys
+			if (random.Next(enemy.Strength + 1) >= player.Defense
+				|| (enemy.Strength < player.Defense && random.Next(LuckyScope) == LuckyNumber))
+			{
+				//Enemies do damage up to their max health - if they hit you.
+				playerDamage = random.Next(enemy.Health) + 1;
+				player.Health -= playerDamage;
 
-            int hudSpacing = 97;
-            Point hudPosition = new Point(750, 20);
-            renderer.DrawString(this.Level.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
-            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
-            renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
-            renderer.DrawString(this.Mana.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
-            renderer.DrawString(this.Knowledge.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
-            renderer.DrawString(this.Defense.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
+				if (player.Health <= 0)
+				{
+					player.Health = 0;
+					//TODO EVENT for dead
+					player.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
+				}
+			}
 
-            //If the game is over then display the end game message
-            if (this.Health == 0)
-            {
-                renderer.DrawString("You died!", _Font, _Brush, 200, 250);
-                renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
-            }
+			string playerDamageMessage = playerDamage != 0 ? playerDamage.ToString() : MissMessage;
+			popups.Add(new TextPopup(player.Location.X + 40, player.Location.Y + 20, playerDamageMessage));
 
-            //If the game is won then show congratulations
-            if (this.GameIsWon)
-            {
-                renderer.DrawString("You Won!", _Font, _Brush, 200, 250);
-                renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
-            }
-        }
+			//A enemy armour is 1/5 of their max health
+			if (random.Next(player.Knowledge + 1) >= (enemy.Health / 5))
+			{
+				//Player damage is up to twice the attack rating
+				int enemyDamage = random.Next(player.Knowledge * 2) + 1;
+				if (enemyDamage > 0)
+				{
+					int experiance = enemy.GetDamage(enemyDamage);
+					player.Experience += experiance;
+				}
+				string message = enemyDamage != 0 ? enemyDamage.ToString() : MissMessage;
+				popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, message));
+			}
+			else
+			{
+				popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, MissMessage));
+			}
+		}
 
-        public void Update(double gameTime, double elapsedTime)
-        {
-            this.World.Update(gameTime, elapsedTime);
-        }
+		public void Draw(IRenderer renderer)
+		{
+			this._world.Draw(renderer);
+			this.HUD.Draw(renderer);
+		}
 
-        public void Initialize()
-        {
-            //Sounds.Start();
-            //Create all the main gameobjects
-            this.World = new World(this);
-            this.GameIsWon = false;
-        }
+		public void Update(double gameTime, double elapsedTime)
+		{
+			this._world.Update(gameTime, elapsedTime);
+		}
 
-        public void KeyDown(Keys keys)
-        {
-            //If the game is not over then allow the user to play
-            if (this.Health > 0 && !this.GameIsWon)
-            {
-                this.World.KeyDown(keys);
-            }
-            else
-            {
-                //If game is over then allow S to restart
-                if (keys == Keys.S)
-                {
-                    this.Initialize();
-                }
-            }
-        }
-        #endregion
-    }
+		public void Initialize()
+		{
+			//Sounds.Start();
+			//Create all the main gameobjects
+			this._world = new World(this);
+		}
+
+		public void KeyDown(Keys keys)
+		{
+			//If the game is not over then allow the user to play
+			if (this.HUD.Health > 0 && !this.HUD.GameIsWon)
+			{
+				this._world.KeyDown(keys);
+			}
+			else
+			{
+				//If game is over then allow S to restart
+				if (keys == Keys.S)
+				{
+					this.Initialize();
+				}
+			}
+		}
+
+		#endregion Methods
+	}
 }

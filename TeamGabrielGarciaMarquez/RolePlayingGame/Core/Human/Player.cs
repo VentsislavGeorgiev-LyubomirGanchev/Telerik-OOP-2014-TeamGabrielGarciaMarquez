@@ -1,133 +1,133 @@
-﻿using System;
-using System.Linq;
+﻿using RolePlayingGame.Core.Human.Enemies;
 using RolePlayingGame.Core.Map;
-using RolePlayingGame.Core.Human.Enemies;
 using System.Collections.Generic;
 
 namespace RolePlayingGame.Core.Human
 {
-    internal class Player : Human, IMovable, IPlayer
-    {
-        #region Const
-        private const int DefaultHealth = 500;
-        private const int DefaultMana = 5;
-        private const int DefaultKnowledge = 30;
-        private const int DefaultDefense = 50;
-        private const int DefaultExperience = 0;
-        private const int DefaultLevel = 1;
-        private const int DefaultNextUpgrade = 50;
-        private const int UpgradeMultiplicator = 2;
-        private const int LevelUPMultiplicator = 10;
-        #endregion
+	internal class Player : Human, IMovable, IPlayer
+	{
+		#region Constants
 
-        #region Fields
-        private int _experience;
-        private int _nextUpgrade;
-        #endregion
+		private const int DefaultHealth = 500;
+		private const int DefaultMana = 5;
+		private const int DefaultKnowledge = 30;
+		private const int DefaultDefense = 50;
+		private const int DefaultExperience = 0;
+		private const int DefaultLevel = 1;
+		private const int DefaultNextUpgrade = 50;
+		private const int UpgradeMultiplicator = 2;
+		private const int LevelUPMultiplicator = 10;
 
-        #region Constructors
-        //Just base constructor
-        //Should be singleton design pattern
-        public Player(float x, float y)
-            : base(x, y, new Entity(EntityType.Player), true)
-        {
-            this.Health = DefaultHealth;
-            this.Mana = DefaultMana;
-            this.Knowledge = DefaultKnowledge;
-            this.Defense = DefaultDefense;
-            this.Experience = DefaultExperience;
-            this._nextUpgrade = DefaultNextUpgrade;
-            this.Level = DefaultLevel;
-            this.IsHeroFighting = false;
-            this.IsHeroAnimating = false;
-        }
-        #endregion
+		#endregion Constants
 
-        #region Properties
+		#region Fields
 
-        public int Mana { get; set; }
+		private int _experience;
+		private int _nextUpgrade;
 
-        public int Knowledge { get; set; }
+		#endregion Fields
 
-        public int Defense { get; set; }
+		#region Constructors
 
-        //Experience property automatically upgrades your skill as the 'set' passes
-        public int Experience
-        {
-            get
-            {
-                return _experience;
-            }
-            set
-            {
-                _experience = value;
-                //If we hit the upgrade threshold then increase our abilities
-                if (_experience > _nextUpgrade)
-                {
-                    this.Mana += this.Level * LevelUPMultiplicator;
-                    this.Knowledge += this.Level * LevelUPMultiplicator;
-                    this.Health += this.Level * LevelUPMultiplicator;
-                    this.Defense += this.Level * LevelUPMultiplicator;
-                    this.Level++;
-                    //Each upgrade is a little harder to get
-                    _nextUpgrade *= UpgradeMultiplicator;
-                    
-                }
-            }
-        }
+		//Just base constructor
+		//Should be singleton design pattern
+		public Player(float x, float y)
+			: base(x, y, new Entity(EntityType.Player), true)
+		{
+			this.Health = DefaultHealth;
+			this.Mana = DefaultMana;
+			this.Knowledge = DefaultKnowledge;
+			this.Defense = DefaultDefense;
+			this.Experience = DefaultExperience;
+			this._nextUpgrade = DefaultNextUpgrade;
+			this.Level = DefaultLevel;
+			this.IsHeroFighting = false;
+			this.IsHeroAnimating = false;
+		}
 
-        public bool IsHeroFighting { get; set; }
+		#endregion Constructors
 
-        public bool IsHeroAnimating { get; set; }
+		#region Properties
 
-        public bool HasKey { get; set; }
-        #endregion
+		public int Mana { get; set; }
 
-        #region Methods
+		public int Knowledge { get; set; }
 
-        public void DoMagic(Area currentArea, IList<TextPopup> popups)
-        {
-            if (this.Mana > 0)
-            {
-                Sounds.Magic();
+		public int Defense { get; set; }
 
-                this.Mana--;
+		//Experience property automatically upgrades your skill as the 'set' passes
+		public int Experience
+		{
+			get
+			{
+				return _experience;
+			}
+			set
+			{
+				_experience = value;
+				//If we hit the upgrade threshold then increase our abilities
+				if (_experience > _nextUpgrade)
+				{
+					this.Mana += this.Level * LevelUPMultiplicator;
+					this.Knowledge += this.Level * LevelUPMultiplicator;
+					this.Health += this.Level * LevelUPMultiplicator;
+					this.Defense += this.Level * LevelUPMultiplicator;
+					this.Level++;
+					//Each upgrade is a little harder to get
+					_nextUpgrade *= UpgradeMultiplicator;
+				}
+			}
+		}
 
-                this.IsHeroFighting = true;
-                //_startFightTime = -1;
+		public bool IsHeroFighting { get; set; }
 
-                popups.Clear();
+		public bool IsHeroAnimating { get; set; }
 
-                //All monsters on the screen take maximum damage
-                for (int i = 0; i < Area.MapSizeX; i++)
-                {
-                    for (int j = 0; j < Area.MapSizeY; j++)
-                    {
-                        Enemy enemy = currentArea.TilesMap[i, j].Sprite as Enemy;
-                        if (enemy != null)
-                        {
-                            //Player damage is up to twice the attack rating
-                            int damage = this.Knowledge * 2;
-                            int experiance = enemy.GetDamage(damage);
-                            this.Experience += experiance;
+		public bool HasKey { get; set; }
 
-                            popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, damage.ToString()));
-                        }
-                    }
-                }
-            }
-        }
+		#endregion Properties
 
-        public void UpdateTheHud(GameEngine engine)
-        {
-            engine.Defense = this.Defense;
-            engine.Health = this.Health;
-            engine.Knowledge = this.Knowledge;
-            engine.Level = this.Level;
-            engine.Mana = this.Mana;
-            engine.Experience = this.Experience;
-            engine.HasKey = this.HasKey;
-        }
-        #endregion
-    }
+		#region Methods
+
+		public void DoMagic(Area currentArea, IList<TextPopup> popups)
+		{
+			if (this.Mana > 0)
+			{
+				Sounds.Magic();
+				this.Mana--;
+				this.IsHeroFighting = true;
+				popups.Clear();
+
+				//All monsters on the screen take maximum damage
+				for (int col = 0; col < Area.MapSizeX; col++)
+				{
+					for (int row = 0; row < Area.MapSizeY; row++)
+					{
+						Enemy enemy = currentArea.TilesMap[col, row].Sprite as Enemy;
+						if (enemy != null)
+						{
+							//Player damage is up to twice the attack rating
+							int damage = this.Knowledge * 2;
+							int experiance = enemy.GetDamage(damage);
+							this.Experience += experiance;
+							popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, damage.ToString()));
+						}
+					}
+				}
+			}
+		}
+
+		public void UpdateHUD(IHUD hud)
+		{
+			hud.Defense = this.Defense;
+			hud.Health = this.Health;
+			hud.Knowledge = this.Knowledge;
+			hud.Level = this.Level;
+			hud.Mana = this.Mana;
+			hud.Experience = this.Experience;
+			hud.HasKey = this.HasKey;
+		}
+
+		#endregion Methods
+	}
 }

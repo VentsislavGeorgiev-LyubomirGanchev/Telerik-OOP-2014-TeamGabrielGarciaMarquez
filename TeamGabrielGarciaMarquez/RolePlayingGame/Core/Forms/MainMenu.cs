@@ -38,27 +38,11 @@ namespace RolePlayingGame.Core.Forms
 
         private void BtnSaveGameClick(object sender, EventArgs e)
         {
-            string dir = @"c:\temp";
-            string serializationFile = Path.Combine(dir, "salesmen.bin");
-            //serialize
-            using (Stream stream = File.Open(serializationFile, FileMode.Create))
-            {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                //bformatter.Serialize(stream, _game.GameState.World.map);
-            }
         }
 
         private void BtnLoadGameClick(object sender, EventArgs e)
         {
-            string dir = @"c:\temp";
-            string serializationFile = Path.Combine(dir, "salesmen.bin");
-            using (Stream stream = File.Open(serializationFile, FileMode.Open))
-            {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-                //_game.GameState.World.map = (string)bformatter.Deserialize(stream);
-            }
 
         }
     }

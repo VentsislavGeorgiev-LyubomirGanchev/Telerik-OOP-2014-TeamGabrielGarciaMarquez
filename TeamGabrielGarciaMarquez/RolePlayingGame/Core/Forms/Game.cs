@@ -21,7 +21,7 @@ namespace RolePlayingGame.Core.Forms
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             //Startup the game state
-            this._gameEngine = new GameEngine(this.ClientSize);
+            this._gameEngine = new GameEngine();
             this._gameRenderer = new GDIRenderer();
             this.Initialize();
         }
