@@ -45,9 +45,17 @@ namespace RolePlayingGame.Core
 
 		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)
 		{
-			Sounds.Fight();
 			player.IsHeroFighting = true;
 			popups.Clear();
+
+			if (enemy as IBoss != null)
+			{
+				Sounds.BossFight();
+			}
+			else
+			{
+				Sounds.StudentFight();
+			}
 
 			//An enemy strength ability is 1/2 for boss and 1/3 for student of their max health. Compare that to your defense
 			//If you outclass them then there is still a chance of a lucky hit
@@ -103,7 +111,7 @@ namespace RolePlayingGame.Core
 
 		public void Initialize()
 		{
-			//Sounds.Start();
+			Sounds.Start();
 			//Create all the main gameobjects
 			this._world = new World(this);
 		}

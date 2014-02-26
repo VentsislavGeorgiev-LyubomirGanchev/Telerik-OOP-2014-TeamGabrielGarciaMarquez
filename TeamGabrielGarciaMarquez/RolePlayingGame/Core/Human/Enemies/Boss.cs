@@ -1,49 +1,50 @@
 ﻿namespace RolePlayingGame.Core.Human.Enemies
 {
-    internal class Boss : Enemy
-    {
-        #region Constants
+	internal class Boss : Enemy, IBoss
+	{
+		#region Constants
 
-        private const int HealthMultiplicator = 100;
-        private const int StrengthDivisor = 2;
-        #endregion Constants
+		private const int HealthMultiplicator = 100;
+		private const int StrengthDivisor = 2;
 
-        #region Fields
+		#endregion Constants
 
-        #endregion Fields
+		#region Fields
 
-        #region Constructors
+		#endregion Fields
 
-        public Boss(float x, float y, EntityType type)
-            : base(x, y, new Entity(type))
-        {
-            this.Health = SetHealth();
-            this.StartingHealth = this.Health;
-            this.Strength = this.SetStrength();
-        }
+		#region Constructors
 
-        #endregion Constructors
+		public Boss(float x, float y, EntityType type)
+			: base(x, y, new Entity(type))
+		{
+			this.Health = SetHealth();
+			this.StartingHealth = this.Health;
+			this.Strength = this.SetStrength();
+		}
 
-        #region Properties
+		#endregion Constructors
 
-        #endregion Properties
+		#region Properties
 
-        #region Methods
+		#endregion Properties
 
-        /// <summary>
-        /// Initialize the the health of the Boss. The health will increase her value depending of the boss level!
-        /// </summary>
-        /// <returns>Health in float</returns>
-        public override int SetHealth()
-        {
-            return this.Level * HealthMultiplicator;
-        }
+		#region Methods
 
-        public override int SetStrength()
-        {
-            return this.Health / StrengthDivisor;
-        }
+		/// <summary>
+		/// Initialize the the health of the Boss. The health will increase her value depending of the boss level!
+		/// </summary>
+		/// <returns>Health in float</returns>
+		public override int SetHealth()
+		{
+			return this.Level * HealthMultiplicator;
+		}
 
-        #endregion Methods
-    }
+		public override int SetStrength()
+		{
+			return this.Health / StrengthDivisor;
+		}
+
+		#endregion Methods
+	}
 }
