@@ -24,4 +24,5 @@ Monitor,Monitor,Monitor,Defense,Content\TilesTelerikGame.bmp,9,1,TRUE,1,TRUE,10,
 Experience,Experience,Experience,WorldItems,Content\TilesTelerikGame.bmp,6,5,TRUE,1,TRUE,,255;255;255
 Grass,Grass,.,WorldItems,Content\TilesTelerikGame.bmp,4,4,FALSE,1,TRUE,,
 StoneWall,StoneWall,>,WorldItems,Content\TilesTelerikGame.bmp,2,3,FALSE,1,FALSE,,
-Bones,Bones,Bones,WorldItems,Content\TilesTelerikGame.bmp,6,6,TRUE,1,TRUE,,
+Bones,Bones,Bones,WorldItems,Content\TilesTelerikGame.bmp,7,5,TRUE,1,TRUE,,
+Level,Level,Level,WorldItems,Content\TilesTelerikGame.bmp,12,5,TRUE,1,FALSE,,

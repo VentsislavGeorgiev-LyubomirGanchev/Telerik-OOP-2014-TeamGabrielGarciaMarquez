@@ -24,6 +24,7 @@ namespace RolePlayingGame.Core
         private readonly Sprite _manaSprite;
         private readonly Sprite _knowledgeSprite;
         private readonly Sprite _defenseSprite;
+        private readonly Sprite _currentLevel;
 
         private static readonly Font _Font = new Font("Arial", 24);
         private static readonly Brush _Brush = new SolidBrush(Color.Black);
@@ -34,12 +35,13 @@ namespace RolePlayingGame.Core
 
             //Create the sprites for the UI
             float hudSpacing = 1.5f;
-            PointF hudPosition = new PointF(10.5f, 1);
-            _experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Experience));
-            _healthSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Burger));
-            _manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Beer));
-            _knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.IntroCSharp));
-            _defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
+            PointF hudPosition = new PointF(10.5f, 0.3f);
+            this._currentLevel = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Level));
+            this._experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Experience));
+            this._healthSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Burger));
+            this._manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Beer));
+            this._knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.IntroCSharp));
+            this._defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
         }
 
         #region Properties
@@ -56,7 +58,7 @@ namespace RolePlayingGame.Core
         public bool HasKey { get; set; }
 
         public int Level { get; set; }
-        #endregion  
+        #endregion
 
         #region Methods
         public void Draw(IRenderer renderer)
@@ -64,17 +66,19 @@ namespace RolePlayingGame.Core
             this.World.Draw(renderer);
 
             //Draw the HUD
-            _experienceSprite.Draw(renderer);
-            _healthSprite.Draw(renderer);
-            _manaSprite.Draw(renderer);
-            _knowledgeSprite.Draw(renderer);
-            _defenseSprite.Draw(renderer);
+            this._currentLevel.Draw(renderer);
+            this._experienceSprite.Draw(renderer);
+            this._healthSprite.Draw(renderer);
+            this._manaSprite.Draw(renderer);
+            this._knowledgeSprite.Draw(renderer);
+            this._defenseSprite.Draw(renderer);
 
             //TODO Add Keys
 
             int hudSpacing = 97;
-            Point hudPosition = new Point(750, 78);
-            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
+            Point hudPosition = new Point(750, 30);
+            renderer.DrawString(this.Level.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
+            renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
             renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
             renderer.DrawString(this.Mana.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
             renderer.DrawString(this.Knowledge.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
@@ -123,7 +127,7 @@ namespace RolePlayingGame.Core
                     this.Initialize();
                 }
             }
-        }   
+        }
         #endregion
     }
 }

@@ -15,6 +15,8 @@
         Bones,
         //Experience
         Experience,
+        //Level
+        Level,
         //Health
         Burger,
         Chips,
