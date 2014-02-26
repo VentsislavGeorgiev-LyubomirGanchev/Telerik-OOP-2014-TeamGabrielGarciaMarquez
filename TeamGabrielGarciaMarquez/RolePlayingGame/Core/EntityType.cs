@@ -36,6 +36,8 @@
         //Doors
         UpDirectionOpen,
         SideOpen,
+        //Keys
+        Key,
         //Obstacle
         StoneWall,
         BrickWall,

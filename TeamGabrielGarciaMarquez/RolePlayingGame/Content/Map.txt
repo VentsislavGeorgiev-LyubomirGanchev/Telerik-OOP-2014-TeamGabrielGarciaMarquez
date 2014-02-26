@@ -14,6 +14,7 @@ level1
 >..>......
 >>>>>>>>>>
 4,4,Player
+6,4,Key
 1,2,Boss1
 2,2,Boss2
 3,2,Boss3

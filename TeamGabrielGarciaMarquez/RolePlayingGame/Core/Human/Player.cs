@@ -126,6 +126,7 @@ namespace RolePlayingGame.Core.Human
             engine.Level = this.Level;
             engine.Mana = this.Mana;
             engine.Experience = this.Experience;
+            engine.HasKey = this.HasKey;
         }
         #endregion
     }

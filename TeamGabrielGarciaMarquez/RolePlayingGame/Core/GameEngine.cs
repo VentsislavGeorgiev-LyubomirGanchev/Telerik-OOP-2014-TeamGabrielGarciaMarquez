@@ -18,13 +18,13 @@ namespace RolePlayingGame.Core
         public bool GameIsWon;
 
         //TODO Add Tile Experience to The HUD
+        private readonly Sprite _currentLevel;
         private readonly Sprite _experienceSprite;
-
         private readonly Sprite _healthSprite;
         private readonly Sprite _manaSprite;
         private readonly Sprite _knowledgeSprite;
         private readonly Sprite _defenseSprite;
-        private readonly Sprite _currentLevel;
+        private readonly Sprite _keySprite;
 
         private static readonly Font _Font = new Font("Arial", 24);
         private static readonly Brush _Brush = new SolidBrush(Color.Black);
@@ -34,7 +34,7 @@ namespace RolePlayingGame.Core
             GameArea = gameArea;
 
             //Create the sprites for the UI
-            float hudSpacing = 1.5f;
+            float hudSpacing = 1.46f;
             PointF hudPosition = new PointF(10.5f, 0.3f);
             this._currentLevel = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Level));
             this._experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Experience));
@@ -42,6 +42,7 @@ namespace RolePlayingGame.Core
             this._manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Beer));
             this._knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.IntroCSharp));
             this._defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
+            this._keySprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Key));
         }
 
         #region Properties
@@ -72,11 +73,15 @@ namespace RolePlayingGame.Core
             this._manaSprite.Draw(renderer);
             this._knowledgeSprite.Draw(renderer);
             this._defenseSprite.Draw(renderer);
+            if (this.HasKey)
+            {
+                this._keySprite.Draw(renderer);
+            }
 
             //TODO Add Keys
 
             int hudSpacing = 97;
-            Point hudPosition = new Point(750, 30);
+            Point hudPosition = new Point(750, 20);
             renderer.DrawString(this.Level.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y);
             renderer.DrawString(this.Experience.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);
             renderer.DrawString(this.Health.ToString(), _Font, _Brush, hudPosition.X, hudPosition.Y += hudSpacing);

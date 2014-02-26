@@ -44,6 +44,7 @@ namespace RolePlayingGame.Core
                     }
                     break;
 
+                case EntityCategoryType.Key:
                 case EntityCategoryType.Health:
                 case EntityCategoryType.Mana:
                 case EntityCategoryType.Knowledge:
@@ -51,7 +52,6 @@ namespace RolePlayingGame.Core
                     sprite = new DynamicItem(x, y, entity);
                     break;
 
-                case EntityCategoryType.Key:
                 case EntityCategoryType.Door:
                 case EntityCategoryType.WorldItems:
                     sprite = new StaticItem(x, y, entity);

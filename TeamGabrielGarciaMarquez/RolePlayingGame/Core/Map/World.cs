@@ -246,6 +246,7 @@ namespace RolePlayingGame.Core.Map
                     case Keys.P:
                         //Potion - if we have any
                         this._heroEntity.DoMagic(this._currentArea, this.Popups);
+                        _startFightTime = -1;
                         break;
                 }
             }
@@ -350,7 +351,7 @@ namespace RolePlayingGame.Core.Map
             if (mapTile.IsStateChangable && mapTile.IsPassable)
             {
                 //For each key if it matches then open the door by switching the sprite & sprite to its matching open version
-                if (_gameState.HasKey)
+                if (this._heroEntity.HasKey)
                 {
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["E"]);
