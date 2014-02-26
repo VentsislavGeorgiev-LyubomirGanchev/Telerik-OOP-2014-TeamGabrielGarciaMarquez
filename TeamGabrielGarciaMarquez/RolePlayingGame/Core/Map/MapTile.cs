@@ -1,3 +1,5 @@
+using RolePlayingGame.Core.Human;
+using RolePlayingGame.Core.Item;
 using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 
@@ -105,55 +107,45 @@ namespace RolePlayingGame.Core.Map
             this._foregroundSprite.Entity.Tile = newForegroundTile;
         }
 
-        public void OnPlayerMove(/*IPlayer player*/)
+        public void OnPlayerMove(IPlayer player)
         {
-            //if (this._foregroundTile == null) return;
-            //switch (this._foregroundTile.Category)
-            //{
-            //    //Most objects change your stats in some way.
-            //    case "armour":
-            //        _gameState.Armour++;
-            //        Sounds.Pickup();
-            //        break;
+            var dynamicItem = this.Sprite as DynamicItem;
+            if (dynamicItem == null)
+            {
+                return;
+            }
 
-            //    case "attack":
-            //        _gameState.Attack++;
-            //        Sounds.Pickup();
-            //        break;
+            //Dynamic objects change your stats in some way.
+            switch (dynamicItem.Category)
+            {
+                case EntityCategoryType.Knowledge:
+                    player.Knowledge += dynamicItem.ItemRate;
+                    Sounds.Pickup();
+                    break;
 
-            //    case "food":
-            //        _gameState.Health += 10;
-            //        Sounds.Eat();
-            //        break;
+                case EntityCategoryType.Defense:
+                    player.Defense += dynamicItem.ItemRate;
+                    Sounds.Pickup();
+                    break;
 
-            //    case "treasure":
-            //        _gameState.Treasure += 5;
-            //        Sounds.Pickup();
-            //        break;
+                case EntityCategoryType.Health:
+                    player.Health += dynamicItem.ItemRate;
+                    Sounds.Eat();
+                    break;
 
-            //    case "potion":
-            //        _gameState.Potions++;
-            //        Sounds.Pickup();
-            //        break;
+                case EntityCategoryType.Mana:
+                    player.Mana += dynamicItem.ItemRate;
+                    Sounds.Pickup();
+                    break;
 
-            //    case "key":
-            //        if (this._foregroundTile.Color == "brown") _gameState.HasBrownKey = true;
-            //        if (this._foregroundTile.Color == "green") _gameState.HasGreenKey = true;
-            //        if (this._foregroundTile.Color == "red") _gameState.HasRedKey = true;
-            //        Sounds.Pickup();
-            //        break;
-
-            //    case "fire":
-            //        _gameState.Health -= 2;
-            //        break;
-            //}
+                case EntityCategoryType.Key:
+                    player.HasKey = true;
+                    Sounds.Pickup();
+                    break;
+            }
 
             //Remove the object unless its bones or fire
-            //if (_foregroundTile.Category != "fire" && _foregroundTile.Category != "bones" && _foregroundTile.Category != "character")
-            //{
-            //    this._foregroundTile = null;
-            //    this._foregroundSprite = null;
-            //}
+            this._foregroundSprite = null;
         }
 
         public void Update(double gameTime, double elapsedTime)

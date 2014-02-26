@@ -302,8 +302,14 @@ namespace RolePlayingGame.Core.Map
                 return false;
             }
 
-            //If the next tile is a blocker then we can't move
-            return nextMapTile.IsPassable;
+            //If the next tile is not a blocker then we can move
+            if (nextMapTile.IsPassable)
+            {
+                nextMapTile.OnPlayerMove(_heroEntity);
+                return true;
+            }
+            
+            return false;
         }
 
         private bool DamageMonster(int damage, MapTile mapTile, int x, int y)
