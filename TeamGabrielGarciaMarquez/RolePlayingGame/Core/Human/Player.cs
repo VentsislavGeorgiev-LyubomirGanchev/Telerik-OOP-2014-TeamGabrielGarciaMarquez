@@ -117,17 +117,6 @@ namespace RolePlayingGame.Core.Human
 			}
 		}
 
-		public void UpdateHUD(IHUD hud)
-		{
-			hud.Defense = this.Defense;
-			hud.Health = this.Health;
-			hud.Knowledge = this.Knowledge;
-			hud.Level = this.Level;
-			hud.Mana = this.Mana;
-			hud.Experience = this.Experience;
-			hud.HasKey = this.HasKey;
-		}
-
 		#endregion Methods
 	}
 }

@@ -60,7 +60,7 @@ namespace RolePlayingGame.Core.Map
 					if (mapTile.Type.HasValue && mapTile.Type == EntityType.Player)
 					{
 						this._heroEntity = mapTile.Sprite as Player;
-						this._heroEntity.UpdateHUD(this._gameEngine.HUD);
+						this._gameEngine.HUD.Update(this._heroEntity);
 						mapTile.SetForegroundSprite(null);
 					}
 				}
@@ -118,7 +118,7 @@ namespace RolePlayingGame.Core.Map
 					}
 				}
 			}
-			this._heroEntity.UpdateHUD(this._gameEngine.HUD);
+			this._gameEngine.HUD.Update(this._heroEntity);
 		}
 
 		public void Draw(IRenderer renderer)

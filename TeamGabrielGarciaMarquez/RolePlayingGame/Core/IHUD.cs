@@ -1,4 +1,5 @@
-﻿using RolePlayingGame.UI;
+﻿using RolePlayingGame.Core.Human;
+using RolePlayingGame.UI;
 
 namespace RolePlayingGame.Core
 {
@@ -20,5 +21,7 @@ namespace RolePlayingGame.Core
 		int Level { get; set; }
 
 		void Draw(IRenderer renderer);
+
+		void Update(IPlayer player);
 	}
 }

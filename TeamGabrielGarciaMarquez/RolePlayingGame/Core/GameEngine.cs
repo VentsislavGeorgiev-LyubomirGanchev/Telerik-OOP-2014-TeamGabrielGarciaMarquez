@@ -70,9 +70,7 @@ namespace RolePlayingGame.Core
 
 				if (player.Health <= 0)
 				{
-					player.Health = 0;
-					//TODO EVENT for dead
-					player.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
+					player.Die();
 				}
 			}
 

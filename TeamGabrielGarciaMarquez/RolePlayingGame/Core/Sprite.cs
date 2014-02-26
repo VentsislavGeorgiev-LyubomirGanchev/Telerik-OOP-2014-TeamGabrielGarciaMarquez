@@ -8,6 +8,8 @@ using System.Drawing.Imaging;
 
 namespace RolePlayingGame.Core
 {
+	internal delegate void UpdateSpriteEventHandler(EntityType entityType);
+
 	[Serializable]
 	internal class Sprite : GameEntity, ISprite
 	{
@@ -52,8 +54,15 @@ namespace RolePlayingGame.Core
 			this.Frames = new List<Bitmap>();
 			this.Velocity = PointF.Empty;
 			this.Acceleration = _DefaultAcceleration;
-			this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
-										y * Tile.TileSizeY + Area.AreaOffsetY);
+			if (x > Area.MapSizeX && y > Area.MapSizeY)
+			{
+				this.Location = new PointF(x, y);
+			}
+			else
+			{
+				this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
+											y * Tile.TileSizeY + Area.AreaOffsetY);
+			}
 
 			var entityRectangle = entity.Tile.Rectangle;
 			var entityFramesCount = entity.Tile.FramesCount;
@@ -71,6 +80,8 @@ namespace RolePlayingGame.Core
 		#endregion Constructors
 
 		#region Properties
+
+		public event UpdateSpriteEventHandler UpdateSprite;
 
 		public PointF Acceleration { get; set; }
 
@@ -98,12 +109,12 @@ namespace RolePlayingGame.Core
 
 		#region Methods
 
-		private void SetColorKey(Color value)
+		protected void OnUpdateTile(EntityType type)
 		{
-			this._colorKey = value;
-			//Set the color key for this sprite;
-			this._attributes = new ImageAttributes();
-			this._attributes.SetColorKey(this._colorKey, this._colorKey);
+			if (this.UpdateSprite != null)
+			{
+				this.UpdateSprite(type);
+			}
 		}
 
 		/// <summary>
@@ -175,6 +186,14 @@ namespace RolePlayingGame.Core
 					GraphicsUnit.Pixel,
 					this._attributes);
 			}
+		}
+
+		private void SetColorKey(Color value)
+		{
+			this._colorKey = value;
+			//Set the color key for this sprite;
+			this._attributes = new ImageAttributes();
+			this._attributes.SetColorKey(this._colorKey, this._colorKey);
 		}
 
 		#endregion Methods
