@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\EntityRawData.cs" />
+    <Compile Include="Core\Human\IEnemy.cs" />
+    <Compile Include="Core\Human\IPlayer.cs" />
     <Compile Include="Core\IRenderable.cs" />
     <Compile Include="Core\Map\Area.cs" />
     <Compile Include="Core\Human\Enemies\Boss.cs" />

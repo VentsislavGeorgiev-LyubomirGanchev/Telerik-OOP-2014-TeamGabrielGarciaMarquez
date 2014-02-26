@@ -40,10 +40,9 @@ namespace RolePlayingGame.Core.Human
         #endregion
         
         #region Methods
-
-        //TODO fix parameters with interfaces
-        public static void Fight(Random random, Human firstFighter, Human secondFighter, IList<TextPopup> popups)
+        public static void Fight(Random random, IPlayer firstFighter, IEnemy secondFighter, IList<TextPopup> popups)
         {
+            //TODO Refactore this method to improve abstraction
             var player = firstFighter as Player;
             var enemy = secondFighter as Enemies.Enemy;
 

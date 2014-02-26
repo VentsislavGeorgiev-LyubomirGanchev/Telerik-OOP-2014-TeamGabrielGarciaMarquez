@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace RolePlayingGame.Core.Human
 {
-    internal class Player : Human, IMovable
+    internal class Player : Human, IMovable, IPlayer
     {
         #region Const
         private const int DefaultHealth = 500;
@@ -51,6 +51,7 @@ namespace RolePlayingGame.Core.Human
 
         public bool IsHeroAnimating { get; set; }
 
+        public bool HasKey { get; set; }
         #endregion
 
         #region Methods

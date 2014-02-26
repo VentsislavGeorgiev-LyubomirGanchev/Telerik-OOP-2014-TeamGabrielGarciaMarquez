@@ -3,7 +3,7 @@ using RolePlayingGame.Core.Map.Tiles;
 
 namespace RolePlayingGame.Core.Human.Enemies
 {
-    internal abstract class Enemy : Human
+    internal abstract class Enemy : Human, IEnemy
     {
 
         #region Constructors
