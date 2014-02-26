@@ -1,3 +1,4 @@
+using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Map;
 using RolePlayingGame.UI;
 using System;
@@ -7,26 +8,14 @@ using System.Windows.Forms;
 namespace RolePlayingGame.Core
 {
     [Serializable]
-    internal class GameEngine
+    internal class GameEngine : IPlayer
     {
         public const int FrameRate = 8;
         public const int EntitiesMoveSpeed = 200;
 
         public SizeF GameArea;
         public World World;
-        public int Mana;
-        public int Knowledge;
-        public int Level;
-        public int Health;
-        public int Defense;
-        public int Potions;
-        public bool HasBrownKey;
-        public bool HasGreenKey;
-        public bool HasRedKey;
         public bool GameIsWon;
-
-        private int _experience;
-        private int _nextUpgrade;
 
         //TODO Add Tile Experience to The HUD
         private readonly Sprite _experienceSprite;
@@ -48,34 +37,28 @@ namespace RolePlayingGame.Core
             PointF hudPosition = new PointF(10.5f, 1);
             _experienceSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y, new Entity(EntityType.Experience));
             _healthSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Burger));
-            _manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Water));
-            _knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.DotNet));
+            _manaSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Beer));
+            _knowledgeSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.IntroCSharp));
             _defenseSprite = SpriteFactory.Create(hudPosition.X, hudPosition.Y += hudSpacing, new Entity(EntityType.Keyboard));
         }
 
-        //Experience property automatically upgrades your skill as the 'set' passes
-        //the level threshold
-        public int Experience
-        {
-            get
-            {
-                return _experience;
-            }
-            set
-            {
-                _experience = value;
-                //If we hit the upgrade threshold then increase our abilities
-                if (_experience > _nextUpgrade)
-                {
-                    Mana++;
-                    Knowledge++;
-                    //Each upgrade is a little harder to get
-                    _nextUpgrade = _nextUpgrade + 20 * Level;
-                    Level++;
-                }
-            }
-        }
+        #region Properties
+        public int Health { get; set; }
 
+        public int Mana { get; set; }
+
+        public int Knowledge { get; set; }
+
+        public int Defense { get; set; }
+
+        public int Experience { get; set; }
+
+        public bool HasKey { get; set; }
+
+        public int Level { get; set; }
+        #endregion  
+
+        #region Methods
         public void Draw(IRenderer renderer)
         {
             this.World.Draw(renderer);
@@ -120,19 +103,8 @@ namespace RolePlayingGame.Core
         public void Initialize()
         {
             Sounds.Start();
-
             //Create all the main gameobjects
             this.World = new World(this);
-
-            //Reset the game state
-            this.Mana = 1;
-            this.Potions = 10;
-            this.Knowledge = 1;
-            this.Experience = 0;
-            this.Level = 1;
-            this._nextUpgrade = 20;
-            this.Health = 100;
-            this.Defense = 0;
             this.GameIsWon = false;
         }
 
@@ -151,6 +123,7 @@ namespace RolePlayingGame.Core
                     this.Initialize();
                 }
             }
-        }
+        }   
+        #endregion
     }
 }

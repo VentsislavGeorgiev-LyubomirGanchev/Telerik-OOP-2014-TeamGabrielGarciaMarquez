@@ -15,9 +15,14 @@ namespace RolePlayingGame.Core.Human
         private const int DefaultDefense = 50;
         private const int DefaultExperience = 0;
         private const int DefaultLevel = 1;
+        private const int DefaultNextUpgrade = 50;
+        private const int UpgradeMultiplicator = 2;
+        private const int LevelUPMultiplicator = 10;
         #endregion
 
         #region Fields
+        private int _experience;
+        private int _nextUpgrade;
         #endregion
 
         #region Constructors
@@ -31,6 +36,7 @@ namespace RolePlayingGame.Core.Human
             this.Knowledge = DefaultKnowledge;
             this.Defense = DefaultDefense;
             this.Experience = DefaultExperience;
+            this._nextUpgrade = DefaultNextUpgrade;
             this.Level = DefaultLevel;
             this.IsHeroFighting = false;
             this.IsHeroAnimating = false;
@@ -45,7 +51,30 @@ namespace RolePlayingGame.Core.Human
 
         public int Defense { get; set; }
 
-        public int Experience { get; set; }
+        //Experience property automatically upgrades your skill as the 'set' passes
+        public int Experience
+        {
+            get
+            {
+                return _experience;
+            }
+            set
+            {
+                _experience = value;
+                //If we hit the upgrade threshold then increase our abilities
+                if (_experience > _nextUpgrade)
+                {
+                    this.Mana += this.Level * LevelUPMultiplicator;
+                    this.Knowledge += this.Level * LevelUPMultiplicator;
+                    this.Health += this.Level * LevelUPMultiplicator;
+                    this.Defense += this.Level * LevelUPMultiplicator;
+                    this.Level++;
+                    //Each upgrade is a little harder to get
+                    _nextUpgrade *= UpgradeMultiplicator;
+                    
+                }
+            }
+        }
 
         public bool IsHeroFighting { get; set; }
 
@@ -80,13 +109,23 @@ namespace RolePlayingGame.Core.Human
                             //Player damage is up to twice the attack rating
                             int damage = this.Knowledge * 2;
                             int experiance = enemy.GetDamage(damage);
-                            this.Experience = experiance;
+                            this.Experience += experiance;
 
                             popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, damage.ToString()));
                         }
                     }
                 }
             }
+        }
+
+        public void UpdateTheHud(GameEngine engine)
+        {
+            engine.Defense = this.Defense;
+            engine.Health = this.Health;
+            engine.Knowledge = this.Knowledge;
+            engine.Level = this.Level;
+            engine.Mana = this.Mana;
+            engine.Experience = this.Experience;
         }
         #endregion
     }

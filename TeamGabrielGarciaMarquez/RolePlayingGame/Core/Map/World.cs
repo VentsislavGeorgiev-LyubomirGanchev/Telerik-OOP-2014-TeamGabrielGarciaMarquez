@@ -55,6 +55,7 @@ namespace RolePlayingGame.Core.Map
                     if (mapTile.Type.HasValue && mapTile.Type == EntityType.Player)
                     {
                         this._heroEntity = mapTile.Sprite as Player;
+                        this._heroEntity.UpdateTheHud(this._gameState);
                         mapTile.SetForegroundSprite(null);
                     }
                 }
@@ -113,6 +114,7 @@ namespace RolePlayingGame.Core.Map
                     }
                 }
             }
+            this._heroEntity.UpdateTheHud(this._gameState);
         }
 
         public void Draw(IRenderer renderer)
@@ -348,22 +350,10 @@ namespace RolePlayingGame.Core.Map
             if (mapTile.IsStateChangable && mapTile.IsPassable)
             {
                 //For each key if it matches then open the door by switching the sprite & sprite to its matching open version
-                if (_gameState.HasBrownKey)
+                if (_gameState.HasKey)
                 {
                     //Open the door
                     //mapTile.SetBackgroundSprite(x, y, _tiles["E"]);
-                }
-
-                if (_gameState.HasRedKey)
-                {
-                    //Open the door
-                    //mapTile.SetBackgroundSprite(x, y, _tiles["I"]);
-                }
-
-                if (_gameState.HasGreenKey)
-                {
-                    //Open the door
-                    //mapTile.SetBackgroundSprite(x, y, _tiles["G"]);
                 }
             }
         }
