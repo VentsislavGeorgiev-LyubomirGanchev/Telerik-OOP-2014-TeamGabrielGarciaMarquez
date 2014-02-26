@@ -16,6 +16,7 @@ namespace RolePlayingGame.Core
         private static readonly SoundPlayer _studentFight = new SoundPlayer(@"Content\Sounds\studentFight.wav");
         private static readonly SoundPlayer _doorOpen = new SoundPlayer(@"Content\Sounds\doorOpen.wav");
         private static readonly SoundPlayer _magic = new SoundPlayer(@"Content\Sounds\magicSound.wav");
+        private static readonly SoundPlayer _pickUp = new SoundPlayer(@"Content\Sounds\pickup.wav");
         private static readonly SoundPlayer _Start = new SoundPlayer(@"Content\Sounds\start.wav");
 
 		static Sounds()
@@ -26,33 +27,63 @@ namespace RolePlayingGame.Core
             _defenseUp.Load();
             _knowledgeUp.Load();
             _levelUp.Load();
+            _bossFight.Load();
+            _studentFight.Load();
+            _doorOpen.Load();
+            _magic.Load();
+            _pickUp.Load();
 			_Start.Load();
 		}
 
-		public static void Eat()
+		public static void HealthUp()
 		{
             _healthUp.Play();
 		}
 
-		public static void Pickup()
+		public static void ManaUp()
 		{
             _manaUp.Play();
 		}
 
-		public static void Fight()
+		public static void DefenseUp()
 		{
             _defenseUp.Play();
 		}
 
-		public static void Kiss()
+		public static void KnowledgeUp()
 		{
             _knowledgeUp.Play();
 		}
 
-		public static void Magic()
+		public static void LevelUp()
 		{
             _levelUp.Play();
 		}
+
+        public static void BossFight()
+        {
+            _bossFight.Play();
+        }
+
+        public static void StudentFight()
+        {
+            _studentFight.Play();
+        }
+
+        public static void DoorOpen()
+        {
+            _doorOpen.Play();
+        }
+
+        public static void Magic()
+        {
+            _magic.Play();
+        }
+
+        public static void Pickup()
+        {
+            _pickUp.Play();
+        }
 
 		public static void Start()
 		{

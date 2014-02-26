@@ -1,4 +1,5 @@
-﻿using RolePlayingGame.Core.Map;
+﻿using RolePlayingGame.Core.Human.Enemies;
+using RolePlayingGame.Core.Map;
 using RolePlayingGame.Core.Map.Tiles;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,15 @@ namespace RolePlayingGame.Core.Human
             var player = firstFighter as Player;
             var enemy = secondFighter as Enemies.Enemy;
 
-            Sounds.Fight();
+            if (enemy as Boss != null)
+            {
+                Sounds.BossFight();
+            }
+            else
+            {
+                Sounds.StudentFight();
+            }
+            
             player.IsHeroFighting = true;
             popups.Clear();
 

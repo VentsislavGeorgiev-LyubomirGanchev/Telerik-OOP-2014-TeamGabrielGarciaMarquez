@@ -120,22 +120,22 @@ namespace RolePlayingGame.Core.Map
             {
                 case EntityCategoryType.Knowledge:
                     player.Knowledge += dynamicItem.ItemRate;
-                    Sounds.Pickup();
+                    Sounds.KnowledgeUp();
                     break;
 
                 case EntityCategoryType.Defense:
                     player.Defense += dynamicItem.ItemRate;
-                    Sounds.Pickup();
+                    Sounds.DefenseUp();
                     break;
 
                 case EntityCategoryType.Health:
                     player.Health += dynamicItem.ItemRate;
-                    Sounds.Eat();
+                    Sounds.HealthUp();
                     break;
 
                 case EntityCategoryType.Mana:
                     player.Mana += dynamicItem.ItemRate;
-                    Sounds.Pickup();
+                    Sounds.ManaUp();
                     break;
 
                 case EntityCategoryType.Key:
