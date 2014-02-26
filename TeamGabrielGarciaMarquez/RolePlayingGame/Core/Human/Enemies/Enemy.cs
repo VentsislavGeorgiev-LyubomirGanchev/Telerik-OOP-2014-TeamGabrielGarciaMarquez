@@ -5,15 +5,12 @@ namespace RolePlayingGame.Core.Human.Enemies
 {
     internal abstract class Enemy : Human
     {
-        public int Level { get; private set; }
 
         #region Constructors
 
         public Enemy(float x, float y, Entity entity)
             : base(x, y, entity, false)
-        {
-            this.Level = Convert.ToInt32(this.Entity.Special);
-        }
+        { }
 
         #endregion Constructors
 

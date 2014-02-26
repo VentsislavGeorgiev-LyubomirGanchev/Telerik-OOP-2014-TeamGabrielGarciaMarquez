@@ -8,8 +8,16 @@ namespace RolePlayingGame.Core.Human
 {
     internal class Player : Human, IMovable
     {
+        #region Const
+        private const int DefaultHealth = 500;
+        private const int DefaultMana = 5;
+        private const int DefaultKnowledge = 30;
+        private const int DefaultDefense = 50;
+        private const int DefaultExperience = 0;
+        private const int DefaultLevel = 1;
+        #endregion
+
         #region Fields
-        private int _level;
         #endregion
 
         #region Constructors
@@ -18,6 +26,14 @@ namespace RolePlayingGame.Core.Human
         public Player(float x, float y)
             : base(x, y, new Entity(EntityType.Player), true)
         {
+            this.Health = DefaultHealth;
+            this.Mana = DefaultMana;
+            this.Knowledge = DefaultKnowledge;
+            this.Defense = DefaultDefense;
+            this.Experience = DefaultExperience;
+            this.Level = DefaultLevel;
+            this.IsHeroFighting = false;
+            this.IsHeroAnimating = false;
         }
         #endregion
 
@@ -31,11 +47,15 @@ namespace RolePlayingGame.Core.Human
 
         public int Experience { get; set; }
 
+        public bool IsHeroFighting { get; set; }
+
+        public bool IsHeroAnimating { get; set; }
+
         #endregion
 
         #region Methods
 
-        public void DoMagic(Area currentArea)
+        public void DoMagic(Area currentArea, IList<TextPopup> popups)
         {
             if (this.Mana > 0)
             {
@@ -43,10 +63,10 @@ namespace RolePlayingGame.Core.Human
 
                 this.Mana--;
 
-                //_heroSpriteFighting = true;
+                this.IsHeroFighting = true;
                 //_startFightTime = -1;
 
-                var popups = new List<TextPopup>();
+                popups.Clear();
 
                 //All monsters on the screen take maximum damage
                 for (int i = 0; i < Area.MapSizeX; i++)
@@ -61,7 +81,7 @@ namespace RolePlayingGame.Core.Human
                             int experiance = enemy.GetDamage(damage);
                             this.Experience = experiance;
 
-                            popups.Add(new TextPopup(enemy.Position.X + 40, enemy.Position.Y + 20, damage.ToString()));
+                            popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, damage.ToString()));
                         }
                     }
                 }

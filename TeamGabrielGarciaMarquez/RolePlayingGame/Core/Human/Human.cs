@@ -1,4 +1,5 @@
-﻿using RolePlayingGame.Core.Map.Tiles;
+﻿using RolePlayingGame.Core.Map;
+using RolePlayingGame.Core.Map.Tiles;
 using System;
 using System.Collections.Generic;
 
@@ -16,9 +17,6 @@ namespace RolePlayingGame.Core.Human
         #endregion Const
 
         #region Fields
-
-        public Point Position { get; private set; }
-
         #endregion Fields
 
         #region Constructors
@@ -27,29 +25,41 @@ namespace RolePlayingGame.Core.Human
             : base(x, y, entity, flip)
         {
             this.Position = new Point((int)x, (int)y);
+            if (this.Entity.Special != string.Empty)
+            {
+                this.Level = Convert.ToInt32(this.Entity.Special);
+            }
         }
 
         #endregion Constructors
 
+        #region Properties
         public int Health { get; set; }
-
+        public int Level { get; protected set; }
+        public Point Position { get; private set; }
+        #endregion
+        
         #region Methods
 
         //TODO fix parameters with interfaces
-        public static void Fight(Random random, Human firstFighter, Human secondFighter)
+        public static void Fight(Random random, Human firstFighter, Human secondFighter, IList<TextPopup> popups)
         {
             var player = firstFighter as Player;
             var enemy = secondFighter as Enemies.Enemy;
 
-            var popups = new List<TextPopup>();
+            Sounds.Fight();
+            player.IsHeroFighting = true;
+            popups.Clear();
 
             //An enemy strength ability is 1/2 for boss and 1/3 for student of their max health. Compare that to your defense
             //If you outclass them then there is still a chance of a lucky hit
+            int playerDamage = 0;
+
             if (random.Next(enemy.Strength + 1) >= player.Defense
                 || (enemy.Strength < player.Defense && random.Next(LuckyScope) == LuckyNumber))
             {
                 //Enemies do damage up to their max health - if they hit you.
-                int playerDamage = random.Next(enemy.Health) + 1;
+                playerDamage = random.Next(enemy.Health) + 1;
                 player.Health -= playerDamage;
 
                 if (player.Health <= 0)
@@ -57,9 +67,11 @@ namespace RolePlayingGame.Core.Human
                     player.Health = 0;
                     player.Entity.Tile = new Tile(Entity.TileDescriptions[EntityType.Bones.ToString()]);
                 }
-                string message = playerDamage != 0 ? playerDamage.ToString() : MissMessage;
-                popups.Add(new TextPopup(player.Position.X + 40, player.Position.Y + 20, message));
+
             }
+
+            string playerDamageMessage = playerDamage != 0 ? playerDamage.ToString() : MissMessage;
+            popups.Add(new TextPopup(player.Location.X + 40, player.Location.Y + 20, playerDamageMessage));
 
             //A enemy armour is 1/5 of their max health
             if (random.Next(player.Knowledge + 1) >= (enemy.Health / 5))
@@ -72,11 +84,11 @@ namespace RolePlayingGame.Core.Human
                     player.Experience += experiance;
                 }
                 string message = enemyDamage != 0 ? enemyDamage.ToString() : MissMessage;
-                popups.Add(new TextPopup(enemy.Position.X + 40, enemy.Position.Y + 20, message));
+                popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, message));
             }
             else
             {
-                popups.Add(new TextPopup(enemy.Position.X + 40, enemy.Position.Y + 20, MissMessage));
+                popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, MissMessage));
             }
         }
 

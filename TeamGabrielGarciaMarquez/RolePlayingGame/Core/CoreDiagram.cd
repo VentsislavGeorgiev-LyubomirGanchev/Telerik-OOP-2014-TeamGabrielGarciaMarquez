@@ -14,8 +14,8 @@
       <FileName>Core\EntityRawData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RolePlayingGame.Core.GameEntity" Collapsed="true">
-    <Position X="13.5" Y="1.75" Width="1.5" />
+  <Class Name="RolePlayingGame.Core.GameEntity">
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAQAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Core\GameEntity.cs</FileName>
@@ -51,7 +51,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Sprite" Collapsed="true">
-    <Position X="13.5" Y="3" Width="1.5" />
+    <Position X="13.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gASAAAAAAAAAgggCAAJBAAEAAACAAAAAgAAMAAAEAAE=</HashCode>
       <FileName>Core\Sprite.cs</FileName>
@@ -88,35 +88,28 @@
   <Class Name="RolePlayingGame.Core.Human.Enemies.Boss" Collapsed="true">
     <Position X="13.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAEAAAAAAgAAAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAgAAAAA=</HashCode>
       <FileName>Core\Human\Enemies\Boss.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RolePlayingGame.Core.Human.Enemies.Enemies" Collapsed="true">
-    <Position X="12.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAAABAAAAAAAAAABAAAAAgAAAAA=</HashCode>
-      <FileName>Core\Human\Enemies\Enemies.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Enemies.Student" Collapsed="true">
     <Position X="11.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAEAAAAAAgACAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAgACAAA=</HashCode>
       <FileName>Core\Human\Enemies\Student.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Human" Collapsed="true">
     <Position X="11.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAACAAAAIAJAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAACAAAAIAJAAAgAAAAAAAAAEAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Core\Human\Human.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RolePlayingGame.Core.Human.Player" Collapsed="true">
     <Position X="9" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAIgAAQBA=</HashCode>
+      <HashCode>AAAAAAgAAAACAgAAAAAEAAAAAAAAAAAAAAAAMgAGQBA=</HashCode>
       <FileName>Core\Human\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -187,6 +180,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>Core\Utils\EntitiesCache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RolePlayingGame.Core.Human.Enemies.Enemy" Collapsed="true">
+    <Position X="12.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAAAAAAAAgAAAAAAEAAAAAAAABAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Core\Human\Enemies\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="RolePlayingGame.Core.TextPopup" Collapsed="true">

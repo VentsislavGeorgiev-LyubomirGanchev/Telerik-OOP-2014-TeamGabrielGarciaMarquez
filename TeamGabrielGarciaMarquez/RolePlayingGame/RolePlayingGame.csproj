@@ -89,7 +89,6 @@
     <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
     <Compile Include="Core\SpriteFactory.cs" />
-    <Compile Include="Core\TextPopup.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\PointF.cs" />
     <Compile Include="Core\Utils\BitmapCache.cs" />
