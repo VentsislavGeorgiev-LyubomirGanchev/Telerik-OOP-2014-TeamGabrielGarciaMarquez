@@ -14,7 +14,7 @@ namespace RolePlayingGame.Core.Human
 		private const int DefaultDefense = 6;
 		private const int DefaultExperience = 0;
 		private const int DefaultLevel = 1;
-		private const int DefaultNextUpgrade = 100;
+		private const int DefaultNextUpgrade = 50;
 		private const int UpgradeMultiplicator = 2;
 		private const int LevelUPMultiplicator = 2;
 

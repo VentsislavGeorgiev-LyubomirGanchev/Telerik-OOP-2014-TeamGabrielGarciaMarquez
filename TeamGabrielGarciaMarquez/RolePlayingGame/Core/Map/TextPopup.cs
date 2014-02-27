@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace RolePlayingGame.Core.Map
 {
-	internal class TextPopup
+	internal struct TextPopup
 	{
 		#region Static
 
@@ -15,6 +15,7 @@ namespace RolePlayingGame.Core.Map
 		#endregion Static
 
 		public TextPopup(float x, float y, string text)
+            :this()
 		{
 			this.X = x;
 			this.Y = y;
