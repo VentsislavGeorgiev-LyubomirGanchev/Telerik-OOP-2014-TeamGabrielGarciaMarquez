@@ -5,7 +5,7 @@
 		#region Constants
 
 		private const int HealthMultiplicator = 100;
-		private const int StrengthDivisor = 2;
+		private const int StrengthDivisor = 4;
 
 		#endregion Constants
 

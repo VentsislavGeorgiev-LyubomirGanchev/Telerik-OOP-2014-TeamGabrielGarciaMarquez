@@ -36,5 +36,7 @@ namespace RolePlayingGame.Core
 		public PointF Location { get; set; }
 
 		public Point Position { get; set; }
+
+		public string Area { get; set; }
 	}
 }

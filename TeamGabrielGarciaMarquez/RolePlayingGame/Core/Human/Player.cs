@@ -8,15 +8,15 @@ namespace RolePlayingGame.Core.Human
 	{
 		#region Constants
 
-		private const int DefaultHealth = 500;
-		private const int DefaultMana = 5;
-		private const int DefaultKnowledge = 30;
-		private const int DefaultDefense = 50;
+		private const int DefaultHealth = 100;
+		private const int DefaultMana = 1;
+		private const int DefaultKnowledge = 6;
+		private const int DefaultDefense = 6;
 		private const int DefaultExperience = 0;
 		private const int DefaultLevel = 1;
-		private const int DefaultNextUpgrade = 50;
+		private const int DefaultNextUpgrade = 100;
 		private const int UpgradeMultiplicator = 2;
-		private const int LevelUPMultiplicator = 10;
+		private const int LevelUPMultiplicator = 2;
 
 		#endregion Constants
 
@@ -73,7 +73,7 @@ namespace RolePlayingGame.Core.Human
 					this.Health += this.Level * LevelUPMultiplicator;
 					this.Defense += this.Level * LevelUPMultiplicator;
 					this.Level++;
-                    Sounds.LevelUp();
+					Sounds.LevelUp();
 					//Each upgrade is a little harder to get
 					_nextUpgrade *= UpgradeMultiplicator;
 				}
@@ -129,6 +129,12 @@ namespace RolePlayingGame.Core.Human
 			this.Level = savegame.Level;
 			this.Location = new PointF(savegame.Location);
 			this.Position = new Point(savegame.Position);
+		}
+
+		public override void Die()
+		{
+			this.Health = 0;
+			this.CreateFrames(this.Position.X, this.Position.Y, new Entity(EntityType.Bones));
 		}
 
 		#endregion Methods

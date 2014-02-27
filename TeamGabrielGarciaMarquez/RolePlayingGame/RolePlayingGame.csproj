@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\EntityRawData.cs" />
+    <Compile Include="Core\FileParseException.cs" />
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\HUD.cs" />
     <Compile Include="Core\Human\Enemies\IBoss.cs" />

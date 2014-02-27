@@ -35,15 +35,23 @@ namespace RolePlayingGame.Core.Forms
 
 		private void NewGame(object sender, EventArgs e)
 		{
-			var game = new Game(this._gameState);
-			game.FormClosed += game_FormClosed;
-			this._gameState = game.GameState;
+			try
+			{
+				var game = new Game(this._gameState);
+				game.FormClosed += game_FormClosed;
+				this._gameState = game.GameState;
 
-			btn_NewGame.Text = "Continue";
-			btn_Restart.Show();
-			this.Hide();
-			game.Show();
-			this._loadedSaveGame = false;
+				btn_NewGame.Text = "Continue";
+				btn_Restart.Show();
+				this.Hide();
+				game.Show();
+				this._loadedSaveGame = false;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString(), ex.Message);
+				this.Close();
+			}
 		}
 
 		private void BtnSettingsClick(object sender, EventArgs e)
@@ -54,15 +62,23 @@ namespace RolePlayingGame.Core.Forms
 
 		private void BtnSaveGameClick(object sender, EventArgs e)
 		{
-			using (var stream = File.OpenWrite(_SaveGameFileName))
+			if (this._gameState != null)
 			{
-				BinaryFormatter binaryFormatter = new BinaryFormatter();
-				binaryFormatter.Serialize(stream, this._gameState.SaveGame());
+				using (var stream = File.OpenWrite(_SaveGameFileName))
+				{
+					BinaryFormatter binaryFormatter = new BinaryFormatter();
+					binaryFormatter.Serialize(stream, this._gameState.SaveGame());
+				}
 			}
 		}
 
 		private void BtnLoadGameClick(object sender, EventArgs e)
 		{
+			if (!File.Exists(_SaveGameFileName))
+			{
+				return;
+			}
+
 			using (var stream = File.OpenRead(_SaveGameFileName))
 			{
 				BinaryFormatter binaryFormatter = new BinaryFormatter();

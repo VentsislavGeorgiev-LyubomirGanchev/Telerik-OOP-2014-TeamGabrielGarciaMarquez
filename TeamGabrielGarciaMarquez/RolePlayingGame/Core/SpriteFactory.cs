@@ -16,6 +16,15 @@ namespace RolePlayingGame.Core
 		{
 			return Create(location.X, location.Y, entity);
 		}
+		public static Sprite Create(Point location, EntityType entityType)
+		{
+			return Create(location.X, location.Y, new Entity(entityType.ToString()));
+		}
+
+		public static Sprite Create(Point location, Entity entity)
+		{
+			return Create(location.X, location.Y, entity);
+		}
 
 		public static Sprite Create(int x, int y, Entity entity)
 		{

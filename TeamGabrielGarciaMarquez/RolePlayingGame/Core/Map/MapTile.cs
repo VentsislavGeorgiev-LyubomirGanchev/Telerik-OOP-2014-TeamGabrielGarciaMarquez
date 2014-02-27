@@ -98,18 +98,17 @@ namespace RolePlayingGame.Core.Map
 			if (foregroundSprite != null)
 			{
 				this._foregroundSprite.UpdateSprite += UpdateForegroundSprite;
-				this._foregroundSprite.AnimationEnded += UpdateForegroundSprite;
 			}
 		}
 
-		public void UpdateBackgroundSprite(EntityType type)
+		public void UpdateBackgroundSprite(EntityType type, Point location)
 		{
-			this._backgroundSprite = SpriteFactory.Create(this._backgroundSprite.Location, type);
+			this._backgroundSprite = SpriteFactory.Create(location, type);
 		}
 
-		public void UpdateForegroundSprite(EntityType type)
+		public void UpdateForegroundSprite(EntityType type, Point location)
 		{
-			this._foregroundSprite = SpriteFactory.Create(this._foregroundSprite.Location, type);
+			this._foregroundSprite = SpriteFactory.Create(location, type);
 		}
 
 		public void OnPlayerMove(IPlayer player)
