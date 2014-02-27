@@ -1,6 +1,5 @@
-using System.IO;
 using System.Media;
-using System.Reflection;
+using System.Windows.Forms;
 using WMPLib;
 
 namespace RolePlayingGame.Core
@@ -10,7 +9,7 @@ namespace RolePlayingGame.Core
 	/// </summary>
 	public static class Sounds
 	{
-		private static readonly string AppDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.FullName;
+        private static readonly string AppDirectory = Application.StartupPath;
 		private static readonly WindowsMediaPlayer _player = new WindowsMediaPlayer();
 		private static readonly SoundPlayer _healthUp = new SoundPlayer(@"Content\Sounds\eatHealth.wav");
 		private static readonly SoundPlayer _manaUp = new SoundPlayer(@"Content\Sounds\manaDrink.wav");
