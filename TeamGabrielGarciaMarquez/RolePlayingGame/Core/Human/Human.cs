@@ -28,8 +28,6 @@ namespace RolePlayingGame.Core.Human
 
 		public int Level { get; protected set; }
 
-		public Point Position { get; set; }
-
 		#endregion Properties
 
 		#region Methods

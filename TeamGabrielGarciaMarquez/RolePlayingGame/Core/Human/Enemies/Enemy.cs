@@ -45,7 +45,7 @@
 			{
 				this.Die();
 				//Experience is the monsters max health
-				return this.StartingHealth;
+				return this.StartingHealth / 3;
 			}
 			return 0;
 		}

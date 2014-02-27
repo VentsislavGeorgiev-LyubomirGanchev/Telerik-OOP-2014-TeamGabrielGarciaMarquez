@@ -4,7 +4,7 @@
     {
         #region Constants
         private const int HealthCoefficient = 2;
-        private const int HealthMultiplicator = 10;
+        private const int HealthMultiplicator = 12;
         private const int StrengthDivisor = 2;
         #endregion Constants
 

@@ -66,6 +66,7 @@ namespace RolePlayingGame.Core.Map
 						if (savegame != null)
 						{
 							this._heroEntity.LoadSaveGame(savegame);
+							this._currentArea = this._world[savegame.Area];
 						}
 
 						this._gameState.HUD.Update(this._heroEntity);
@@ -79,7 +80,9 @@ namespace RolePlayingGame.Core.Map
 
 		public SaveGameData SaveGame()
 		{
-			return new SaveGameData(this._heroEntity);
+			var savegame = new SaveGameData(this._heroEntity);
+			savegame.Area = this._currentArea.Name;
+			return savegame;
 		}
 
 		public void Update(double gameTime, double elapsedTime)
@@ -333,11 +336,17 @@ namespace RolePlayingGame.Core.Map
 
 			if (mapTile.IsStateChangable && mapTile.IsPassable)
 			{
+				var obstacle = mapTile.Sprite as IObstacle;
+				if (obstacle.State)
+				{
+					return true;
+				}
+
 				//For each key if it matches then open the door by switching the sprite & sprite to its matching open version
 				if (this._heroEntity.HasKey)
 				{
 					this._heroEntity.HasKey = false;
-					(mapTile.Sprite as IObstacle).ChangeState();
+					obstacle.ChangeState();
 					return false;
 				}
 				return true;

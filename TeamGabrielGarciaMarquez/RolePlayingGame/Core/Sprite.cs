@@ -7,7 +7,7 @@ using System.Drawing.Imaging;
 
 namespace RolePlayingGame.Core
 {
-	internal delegate void EntityTypeEventHandler(EntityType entityType);
+	internal delegate void EntityTypeEventHandler(EntityType entityType, Point location);
 
 	internal class Sprite : GameEntity, ISprite
 	{
@@ -31,9 +31,9 @@ namespace RolePlayingGame.Core
 
 		private ImageAttributes _attributes;
 
-		private readonly List<Rectangle> _frameRectangles;
+		private List<Rectangle> _frameRectangles;
 
-		private readonly List<Bitmap> _frames;
+		private List<Bitmap> _frames;
 
 		private bool _animationEnded;
 
@@ -47,38 +47,7 @@ namespace RolePlayingGame.Core
 			: base(entity)
 		{
 			this.IsAnimationEnabled = true;
-
-			if (entity.Tile.IsTransparent)
-			{
-				this.SetColorKey(entity.ColorKey ?? this._defaultColorKey);
-			}
-
-			this.Flip = flip;
-			this._frameRectangles = new List<Rectangle>();
-			this._frames = new List<Bitmap>();
-			this.Velocity = PointF.Empty;
-			this.Acceleration = _DefaultAcceleration;
-			if (x > Area.MapSizeX && y > Area.MapSizeY)
-			{
-				this.Location = new PointF(x, y);
-			}
-			else
-			{
-				this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
-											y * Tile.TileSizeY + Area.AreaOffsetY);
-			}
-
-			var entityRectangle = entity.Tile.Rectangle;
-			var entityFramesCount = entity.Tile.FramesCount;
-			var entityBitmap = entity.Tile.Bitmap;
-			this.Size = new SizeF(entityRectangle.Width / entityFramesCount, entityRectangle.Height);
-
-			for (int i = 0; i < entityFramesCount; i++)
-			{
-				this._frames.Add(entityBitmap);
-				this._frameRectangles.Add(new Rectangle(entityRectangle.X + i * entityRectangle.Width / entityFramesCount,
-					entityRectangle.Y, entityRectangle.Width / entityFramesCount, entityRectangle.Height));
-			}
+			this.CreateFrames(x, y, entity, flip);
 		}
 
 		#endregion Constructors
@@ -87,8 +56,6 @@ namespace RolePlayingGame.Core
 
 		public event EntityTypeEventHandler UpdateSprite;
 
-		public event EntityTypeEventHandler AnimationEnded;
-
 		public PointF Acceleration { get; set; }
 
 		public int CurrentFrameIndex { get; set; }
@@ -96,6 +63,8 @@ namespace RolePlayingGame.Core
 		public bool Flip { get; set; }
 
 		public PointF Location { get; set; }
+
+		public Point Position { get; set; }
 
 		public bool IsAnimationEnabled { get; set; }
 
@@ -127,15 +96,7 @@ namespace RolePlayingGame.Core
 		{
 			if (this.UpdateSprite != null)
 			{
-				this.UpdateSprite(type);
-			}
-		}
-
-		protected void OnAnimationEnded(EntityType type)
-		{
-			if (this.AnimationEnded != null)
-			{
-				this.AnimationEnded(type);
+				this.UpdateSprite(type, this.Position);
 			}
 		}
 
@@ -214,6 +175,43 @@ namespace RolePlayingGame.Core
 					currentFrameRectangle.Height,
 					GraphicsUnit.Pixel,
 					this._attributes);
+			}
+		}
+
+		protected void CreateFrames(float x, float y, Entity entity, bool flip = false)
+		{
+			if (entity.Tile.IsTransparent)
+			{
+				this.SetColorKey(entity.ColorKey ?? this._defaultColorKey);
+			}
+
+			this.Flip = flip;
+			this._frameRectangles = new List<Rectangle>();
+			this._frames = new List<Bitmap>();
+			this.Velocity = PointF.Empty;
+			this.Acceleration = _DefaultAcceleration;
+
+			if (x > Area.MapSizeX && y > Area.MapSizeY)
+			{
+				this.Location = new PointF(x, y);
+			}
+			else
+			{
+				this.Position = new Point((int)x, (int)y);
+				this.Location = new PointF(x * Tile.TileSizeX + Area.AreaOffsetX,
+											y * Tile.TileSizeY + Area.AreaOffsetY);
+			}
+
+			var entityRectangle = entity.Tile.Rectangle;
+			var entityFramesCount = entity.Tile.FramesCount;
+			var entityBitmap = entity.Tile.Bitmap;
+			this.Size = new SizeF(entityRectangle.Width / entityFramesCount, entityRectangle.Height);
+
+			for (int i = 0; i < entityFramesCount; i++)
+			{
+				this._frames.Add(entityBitmap);
+				this._frameRectangles.Add(new Rectangle(entityRectangle.X + i * entityRectangle.Width / entityFramesCount,
+					entityRectangle.Y, entityRectangle.Width / entityFramesCount, entityRectangle.Height));
 			}
 		}
 
