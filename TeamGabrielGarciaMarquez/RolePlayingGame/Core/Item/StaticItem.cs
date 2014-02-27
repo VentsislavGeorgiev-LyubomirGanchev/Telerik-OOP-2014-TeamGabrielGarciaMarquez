@@ -17,6 +17,12 @@
 		{
 			this.State = !this.State;
 			this.IsAnimationEnabled = !this.IsAnimationEnabled;
+			switch (this.Category)
+			{
+				case EntityCategoryType.Door:
+					Sounds.DoorOpen();
+					break;
+			}
 		}
 	}
 }

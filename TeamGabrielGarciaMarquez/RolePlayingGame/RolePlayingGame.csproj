@@ -190,11 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\Interop.WMPLib.dll" />
-    <None Include="Resources\ninjaNet.jpg" />
     <Content Include="Content\AnimationsTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Backgrounds\ninjaNet.jpg" />
     <Content Include="Content\Sounds\bossFight.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -202,9 +200,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\doorOpen.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Sounds\eat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\eatHealth.wav">
@@ -246,139 +241,6 @@
     <Content Include="Content\StudentNinjasTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\beer.jpg" />
-    <Content Include="Content\Textures\beer1.jpg" />
-    <Content Include="Content\Textures\beer2.jpg" />
-    <Content Include="Content\Textures\beer3.jpg" />
-    <Content Include="Content\Textures\book.jpg" />
-    <Content Include="Content\Textures\book1.jpg" />
-    <Content Include="Content\Textures\book2.jpg" />
-    <Content Include="Content\Textures\book3.jpg" />
-    <Content Include="Content\Textures\brickWall.jpg" />
-    <Content Include="Content\Textures\brickWall1.jpg" />
-    <Content Include="Content\Textures\brickWall2.jpg" />
-    <Content Include="Content\Textures\bridge.jpg" />
-    <Content Include="Content\Textures\bridge1.jpg" />
-    <Content Include="Content\Textures\bridge2.jpg" />
-    <Content Include="Content\Textures\bridge3.jpg" />
-    <Content Include="Content\Textures\bridge4.jpg" />
-    <Content Include="Content\Textures\burger.jpg" />
-    <Content Include="Content\Textures\Burger1-64x64x32.png" />
-    <Content Include="Content\Textures\burger2.jpg" />
-    <Content Include="Content\Textures\burger3.jpg" />
-    <Content Include="Content\Textures\burger4.jpg" />
-    <Content Include="Content\Textures\bush.jpg" />
-    <Content Include="Content\Textures\bush1.jpg" />
-    <Content Include="Content\Textures\bush2.jpg" />
-    <Content Include="Content\Textures\bush3.jpg" />
-    <Content Include="Content\Textures\bush4.jpg" />
-    <Content Include="Content\Textures\bush5.jpg" />
-    <Content Include="Content\Textures\chair.jpg" />
-    <Content Include="Content\Textures\chair1.jpg" />
-    <Content Include="Content\Textures\chair2.jpg" />
-    <Content Include="Content\Textures\chair3.jpg" />
-    <Content Include="Content\Textures\chair4.jpg" />
-    <Content Include="Content\Textures\chips 48x48.jpg" />
-    <Content Include="Content\Textures\chips1.jpg" />
-    <Content Include="Content\Textures\chips2.jpg" />
-    <Content Include="Content\Textures\circuit1.jpg" />
-    <Content Include="Content\Textures\circuit2.jpg" />
-    <Content Include="Content\Textures\circuit3.jpg" />
-    <Content Include="Content\Textures\column.jpg" />
-    <Content Include="Content\Textures\column1.jpg" />
-    <Content Include="Content\Textures\column2.jpg" />
-    <Content Include="Content\Textures\column3.jpg" />
-    <Content Include="Content\Textures\column4.jpg" />
-    <Content Include="Content\Textures\column5.jpg" />
-    <Content Include="Content\Textures\do not delete.txt" />
-    <Content Include="Content\Textures\door.jpg" />
-    <Content Include="Content\Textures\door1.jpg" />
-    <Content Include="Content\Textures\FryPotatoes 64x64.jpg" />
-    <Content Include="Content\Textures\fryPotatoes.jpg" />
-    <Content Include="Content\Textures\fryPotatoes1.jpg" />
-    <Content Include="Content\Textures\FryPotatoes2 64x64.jpg" />
-    <Content Include="Content\Textures\grass.jpg" />
-    <Content Include="Content\Textures\grass1.jpg" />
-    <Content Include="Content\Textures\grass2.jpg" />
-    <Content Include="Content\Textures\grass3.jpg" />
-    <Content Include="Content\Textures\grass4.jpg" />
-    <Content Include="Content\Textures\juice.jpg" />
-    <Content Include="Content\Textures\juice1.jpg" />
-    <Content Include="Content\Textures\juice2.jpg" />
-    <Content Include="Content\Textures\juice3.jpg" />
-    <Content Include="Content\Textures\juice4.jpg" />
-    <Content Include="Content\Textures\keyboard.jpg" />
-    <Content Include="Content\Textures\keyboard1.jpg" />
-    <Content Include="Content\Textures\keyboard2.jpg" />
-    <Content Include="Content\Textures\keyboard3.jpg" />
-    <Content Include="Content\Textures\keyboard4.jpg" />
-    <Content Include="Content\Textures\keyboard5.jpg" />
-    <Content Include="Content\Textures\laptopTable.jpg" />
-    <Content Include="Content\Textures\laptopTable75x75.jpg" />
-    <Content Include="Content\Textures\laptopTable96x96.jpg" />
-    <Content Include="Content\Textures\laptopTable96x96_2.jpg" />
-    <Content Include="Content\Textures\monitor.jpg" />
-    <Content Include="Content\Textures\monitor1.jpg" />
-    <Content Include="Content\Textures\monitor2.jpg" />
-    <Content Include="Content\Textures\monitor3.jpg" />
-    <Content Include="Content\Textures\monitor4.jpg" />
-    <Content Include="Content\Textures\monitor5.jpg" />
-    <Content Include="Content\Textures\monitor6.jpg" />
-    <Content Include="Content\Textures\msdn.jpg" />
-    <Content Include="Content\Textures\msdn1.jpg" />
-    <Content Include="Content\Textures\msdn2.jpg" />
-    <Content Include="Content\Textures\msdn3.jpg" />
-    <Content Include="Content\Textures\msdn5.jpg" />
-    <Content Include="Content\Textures\net.jpg" />
-    <Content Include="Content\Textures\net1.jpg" />
-    <Content Include="Content\Textures\net2.jpg" />
-    <Content Include="Content\Textures\net3.jpg" />
-    <Content Include="Content\Textures\net4.jpg" />
-    <Content Include="Content\Textures\river.jpg" />
-    <Content Include="Content\Textures\river1.jpg" />
-    <Content Include="Content\Textures\river2.jpg" />
-    <Content Include="Content\Textures\river3.jpg" />
-    <Content Include="Content\Textures\stairs.jpg" />
-    <Content Include="Content\Textures\stairs1.jpg" />
-    <Content Include="Content\Textures\stairs2.jpg" />
-    <Content Include="Content\Textures\stairs3.jpg" />
-    <Content Include="Content\Textures\stoneFloor.jpg" />
-    <Content Include="Content\Textures\stoneFloor1.jpg" />
-    <Content Include="Content\Textures\stoneFloor2.jpg" />
-    <Content Include="Content\Textures\stoneFloor3.jpg" />
-    <Content Include="Content\Textures\stoneFloor4.jpg" />
-    <Content Include="Content\Textures\stoneFloor5.jpg" />
-    <Content Include="Content\Textures\stoneWall.jpg" />
-    <Content Include="Content\Textures\stoneWall1.jpg" />
-    <Content Include="Content\Textures\stoneWall2.jpg" />
-    <Content Include="Content\Textures\stoneWall3.jpg" />
-    <Content Include="Content\Textures\stoneWall4.jpg" />
-    <Content Include="Content\Textures\table.jpg" />
-    <Content Include="Content\Textures\table1.jpg" />
-    <Content Include="Content\Textures\table2.jpg" />
-    <Content Include="Content\Textures\table3.jpg" />
-    <Content Include="Content\Textures\table4.jpg" />
-    <Content Include="Content\Textures\table5.jpg" />
-    <Content Include="Content\Textures\tree.jpg" />
-    <Content Include="Content\Textures\tree1.jpg" />
-    <Content Include="Content\Textures\tree2.jpg" />
-    <Content Include="Content\Textures\tree3.jpg" />
-    <Content Include="Content\Textures\tree4.jpg" />
-    <Content Include="Content\Textures\water1.jpg" />
-    <Content Include="Content\Textures\water2.jpg" />
-    <Content Include="Content\Textures\water3.jpg" />
-    <Content Include="Content\Textures\water4.jpg" />
-    <Content Include="Content\Textures\woodenFloor.jpg" />
-    <Content Include="Content\Textures\woodenFloor1.jpg" />
-    <Content Include="Content\Textures\woodenFloor2.jpg" />
-    <Content Include="Content\Textures\woodenFloor3.jpg" />
-    <Content Include="Content\Textures\woodenFloor4.jpg" />
-    <Content Include="Content\Textures\woodenFloor5.jpg" />
-    <Content Include="Content\Textures\woodenWall.jpg" />
-    <Content Include="Content\Textures\woodenWall1.jpg" />
-    <Content Include="Content\Textures\woodenWall2.jpg" />
-    <Content Include="Content\Textures\woodenWall3.jpg" />
-    <Content Include="Content\Textures\woodenWall4.jpg" />
     <Content Include="Content\TilesTelerikGame.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -396,9 +258,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Saved Games\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
