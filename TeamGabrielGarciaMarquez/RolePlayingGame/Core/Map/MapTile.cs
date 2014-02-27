@@ -1,7 +1,6 @@
 using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Item;
 using RolePlayingGame.UI;
-using System;
 
 namespace RolePlayingGame.Core.Map
 {
@@ -73,7 +72,7 @@ namespace RolePlayingGame.Core.Map
 		{
 			get
 			{
-				return this._backgroundSprite.IsPassable &&
+				return (this._backgroundSprite.IsPassable || (this._foregroundSprite == null || this._foregroundSprite.IsStateChangable)) &&
 					(this._foregroundSprite == null || this._foregroundSprite.IsPassable);
 			}
 		}

@@ -1,18 +1,18 @@
-﻿using RolePlayingGame.Core.Human;
-using RolePlayingGame.Core.Map;
-using System;
+﻿using RolePlayingGame.Core.Map;
 using System.Windows.Forms;
+
 namespace RolePlayingGame.Core
 {
 	internal static class GameMaster
 	{
 		#region Constants
 
-		public static Point SaveSpot = new Point(8, 2);
+		public static Point SaveSpot = new Point(2, 8);
 
 		#endregion Constants
 
 		#region Methods
+
 		public static string Teleport(KeyEventArgs e)
 		{
 			LevelType? gameLevel = null;
@@ -21,30 +21,39 @@ namespace RolePlayingGame.Core
 				case Keys.Q:
 					gameLevel = LevelType.Start;
 					break;
+
 				case Keys.W:
 					gameLevel = LevelType.Level1;
 					break;
+
 				case Keys.E:
 					gameLevel = LevelType.Level2;
 					break;
+
 				case Keys.R:
 					gameLevel = LevelType.Level3;
 					break;
+
 				case Keys.T:
 					gameLevel = LevelType.Level4;
 					break;
+
 				case Keys.Y:
 					gameLevel = LevelType.Level5;
 					break;
+
 				case Keys.U:
 					gameLevel = LevelType.Level6;
 					break;
+
 				case Keys.I:
 					gameLevel = LevelType.Level7;
 					break;
+
 				case Keys.O:
 					gameLevel = LevelType.Level8;
 					break;
+
 				case Keys.P:
 					gameLevel = LevelType.Level9;
 					break;
@@ -72,17 +81,19 @@ namespace RolePlayingGame.Core
 				case Keys.H:
 					gameLevel = LevelType.Level15;
 					break;
+
 				case Keys.J:
 					gameLevel = LevelType.Level16;
 					break;
 			}
 
-			if (gameLevel.HasValue && e.Modifiers.HasFlag(Keys.Alt))
+			if (gameLevel.HasValue && e.Modifiers.HasFlag(Keys.Shift))
 			{
 				return gameLevel.ToString().ToLower();
 			}
 			return null;
 		}
-		#endregion
+
+		#endregion Methods
 	}
 }

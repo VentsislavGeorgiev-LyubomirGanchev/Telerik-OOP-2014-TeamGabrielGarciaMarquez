@@ -31,6 +31,12 @@
 
 		#region Methods
 
+		public override void Die()
+		{
+			this.Health = 0;
+			this.OnUpdateTile(EntityType.Key);
+		}
+
 		/// <summary>
 		/// Initialize the the health of the Boss. The health will increase her value depending of the boss level!
 		/// </summary>
