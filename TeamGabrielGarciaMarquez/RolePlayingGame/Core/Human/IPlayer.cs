@@ -12,6 +12,8 @@
 
 		int Experience { get; set; }
 
+        int NextUpgrade { get; set; }
+
 		bool HasKey { get; set; }
 
 		bool IsHeroFighting { get; set; }

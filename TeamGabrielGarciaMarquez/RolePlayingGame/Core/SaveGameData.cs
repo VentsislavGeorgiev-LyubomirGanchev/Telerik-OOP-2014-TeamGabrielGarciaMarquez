@@ -17,6 +17,7 @@ namespace RolePlayingGame.Core
 			this.Level = player.Level;
 			this.Location = player.Location;
 			this.Position = player.Position;
+            this.NextUpgradeExperience = player.NextUpgrade;
 		}
 
 		public int Health { get; set; }
@@ -38,5 +39,7 @@ namespace RolePlayingGame.Core
 		public Point Position { get; set; }
 
 		public string Area { get; set; }
+
+        public int NextUpgradeExperience { get; set; }
 	}
 }
