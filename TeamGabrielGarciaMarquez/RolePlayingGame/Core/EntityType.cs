@@ -40,6 +40,7 @@
         Key,
         //Obstacle
         StoneWall,
+        StoneWall1,
         BrickWall,
         WoodenWall,
         Tree,
@@ -60,11 +61,13 @@
         River,
         //Paths
         Path,
+        Path1,
         Grass,
         Grass1,
         Stairs,
         WoodenFloor,
         StoneFloor,
+        CarpetFloor,
         Bridge
     }
 }
