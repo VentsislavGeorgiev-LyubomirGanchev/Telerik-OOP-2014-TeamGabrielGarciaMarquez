@@ -97,9 +97,12 @@ namespace RolePlayingGame.Core.Forms
 
 		private void Game_Shown(object sender, EventArgs e)
 		{
-			//Form help = new HelpForm();
-			//help.Show();
-			//help.Focus();
+			if (!this._hasSavedState)
+			{
+				Form help = new HelpForm();
+				help.Show();
+				help.Focus();
+			}
 		}
 	}
 }
