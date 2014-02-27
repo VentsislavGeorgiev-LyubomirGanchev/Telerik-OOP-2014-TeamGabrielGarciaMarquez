@@ -339,7 +339,7 @@ namespace RolePlayingGame.Core.Map
 				var obstacle = mapTile.Sprite as IObstacle;
 				if (obstacle.State)
 				{
-					return true;
+                    return false;
 				}
 
 				//For each key if it matches then open the door by switching the sprite & sprite to its matching open version
