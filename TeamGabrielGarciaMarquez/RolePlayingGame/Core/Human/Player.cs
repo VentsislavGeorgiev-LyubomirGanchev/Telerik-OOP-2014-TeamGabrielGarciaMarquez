@@ -117,6 +117,19 @@ namespace RolePlayingGame.Core.Human
 			}
 		}
 
+		public void LoadSaveGame(SaveGameData savegame)
+		{
+			this.Health = savegame.Health;
+			this.Mana = savegame.Mana;
+			this.Knowledge = savegame.Knowledge;
+			this.Defense = savegame.Defense;
+			this.Experience = savegame.Experience;
+			this.IsHeroFighting = savegame.IsHeroFighting;
+			this.Level = savegame.Level;
+			this.Location = new PointF(savegame.Location);
+			this.Position = new Point(savegame.Position);
+		}
+
 		#endregion Methods
 	}
 }

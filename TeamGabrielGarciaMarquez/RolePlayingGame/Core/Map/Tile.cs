@@ -2,7 +2,7 @@ using RolePlayingGame.Core.Utils;
 using System;
 using System.Drawing;
 
-namespace RolePlayingGame.Core.Map.Tiles
+namespace RolePlayingGame.Core.Map
 {
     internal class Tile
     {

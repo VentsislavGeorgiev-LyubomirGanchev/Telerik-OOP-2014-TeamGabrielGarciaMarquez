@@ -1,5 +1,6 @@
 ﻿using RolePlayingGame.Core.Human;
 using RolePlayingGame.UI;
+using System;
 using System.Drawing;
 
 namespace RolePlayingGame.Core
@@ -7,6 +8,7 @@ namespace RolePlayingGame.Core
 	/// <summary>
 	/// Head-up Display Singleton class
 	/// </summary>
+	
 	internal sealed class HUD : IHUD
 	{
 		#region Constants

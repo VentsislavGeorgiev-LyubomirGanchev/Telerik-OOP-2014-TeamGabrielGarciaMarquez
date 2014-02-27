@@ -50,6 +50,12 @@
 			return 0;
 		}
 
+		public override void Die()
+		{
+			this.Health = 0;
+			this.OnUpdateTile(EntityType.Key);
+		}
+
 		#endregion Methods
 	}
 }

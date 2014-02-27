@@ -1,4 +1,4 @@
-﻿using RolePlayingGame.Core.Map.Tiles;
+﻿using RolePlayingGame.Core.Map;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace RolePlayingGame.Core
 {
+	
     internal class Entity
     {
         #region Static

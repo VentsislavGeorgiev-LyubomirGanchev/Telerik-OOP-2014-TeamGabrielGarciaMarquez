@@ -15,5 +15,7 @@
 		bool HasKey { get; set; }
 
 		bool IsHeroFighting { get; set; }
+
+		void LoadSaveGame(SaveGameData savegame);
 	}
 }

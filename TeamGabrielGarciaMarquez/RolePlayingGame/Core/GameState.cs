@@ -1,7 +1,6 @@
 using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Human.Enemies;
 using RolePlayingGame.Core.Map;
-using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
@@ -9,10 +8,11 @@ using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
 {
-	[Serializable]
-	internal class GameEngine
+	internal class GameState
 	{
 		#region Constants
+
+		public const string MissMessage = "miss";
 
 		public const int FrameRate = 8;
 		public const int EntitiesMoveSpeed = 200;
@@ -20,19 +20,23 @@ namespace RolePlayingGame.Core
 		private const int LuckyScope = 10;
 		private const int LuckyNumber = 3;
 
-		private const string MissMessage = "miss";
-
 		#endregion Constants
 
 		#region Fields
 
 		private World _world;
+		private SaveGameData _savegame;
 
 		#endregion Fields
 
-		public GameEngine()
+		public GameState(SaveGameData savegame = null)
 		{
+			this._savegame = savegame;
 			this.HUD = Core.HUD.Instance;
+			if (savegame != null)
+			{
+				this.Initialize();
+			}
 		}
 
 		#region Properties
@@ -42,6 +46,13 @@ namespace RolePlayingGame.Core
 		#endregion Properties
 
 		#region Methods
+
+		public void Initialize()
+		{
+			Sounds.Start();
+			//Create all the main gameobjects
+			this._world = new World(this, this._savegame);
+		}
 
 		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)
 		{
@@ -96,6 +107,11 @@ namespace RolePlayingGame.Core
 			}
 		}
 
+		public SaveGameData SaveGame()
+		{
+			return this._world.SaveGame();
+		}
+
 		public void Draw(IRenderer renderer)
 		{
 			this._world.Draw(renderer);
@@ -107,24 +123,17 @@ namespace RolePlayingGame.Core
 			this._world.Update(gameTime, elapsedTime);
 		}
 
-		public void Initialize()
-		{
-			Sounds.Start();
-			//Create all the main gameobjects
-			this._world = new World(this);
-		}
-
-		public void KeyDown(Keys keys)
+		public void KeyDown(KeyEventArgs e)
 		{
 			//If the game is not over then allow the user to play
 			if (this.HUD.Health > 0 && !this.HUD.GameIsWon)
 			{
-				this._world.KeyDown(keys);
+				this._world.KeyDown(e);
 			}
 			else
 			{
 				//If game is over then allow S to restart
-				if (keys == Keys.S)
+				if (e.KeyCode == Keys.S)
 				{
 					this.Initialize();
 				}

@@ -1,5 +1,4 @@
-﻿using RolePlayingGame.Core.Map.Tiles;
-using System;
+﻿using System;
 
 namespace RolePlayingGame.Core.Human
 {
@@ -29,13 +28,13 @@ namespace RolePlayingGame.Core.Human
 
 		public int Level { get; protected set; }
 
-		public Point Position { get; private set; }
+		public Point Position { get; set; }
 
 		#endregion Properties
 
 		#region Methods
 
-		public void Die()
+		public virtual void Die()
 		{
 			this.Health = 0;
 			this.OnUpdateTile(EntityType.Bones);

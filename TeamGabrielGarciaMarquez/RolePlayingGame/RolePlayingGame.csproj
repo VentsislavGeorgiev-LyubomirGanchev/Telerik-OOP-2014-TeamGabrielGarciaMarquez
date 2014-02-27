@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\EntityRawData.cs" />
+    <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\HUD.cs" />
     <Compile Include="Core\Human\Enemies\IBoss.cs" />
     <Compile Include="Core\Human\Enemies\IEnemy.cs" />
@@ -92,10 +93,12 @@
     <Compile Include="Core\Item\IObstacle.cs" />
     <Compile Include="Core\Item\DynamicItem.cs" />
     <Compile Include="Core\Item\Item.cs" />
+    <Compile Include="Core\Map\LevelType.cs" />
     <Compile Include="Core\Map\TextPopup.cs" />
     <Compile Include="Core\EntityCategoryType.cs" />
     <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
+    <Compile Include="Core\SaveGameData.cs" />
     <Compile Include="Core\SpriteFactory.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\PointF.cs" />
@@ -107,7 +110,7 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\GameEntity.cs" />
-    <Compile Include="Core\GameEngine.cs" />
+    <Compile Include="Core\GameState.cs" />
     <Compile Include="Core\Forms\Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,7 +170,7 @@
     </Compile>
     <Compile Include="Core\Sounds.cs" />
     <Compile Include="Core\Sprite.cs" />
-    <Compile Include="Core\Map\Tiles\Tile.cs" />
+    <Compile Include="Core\Map\Tile.cs" />
     <Compile Include="Core\Map\World.cs" />
   </ItemGroup>
   <ItemGroup>

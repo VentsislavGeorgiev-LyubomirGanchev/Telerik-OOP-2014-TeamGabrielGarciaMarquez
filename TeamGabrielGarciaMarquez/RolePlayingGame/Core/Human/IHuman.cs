@@ -4,6 +4,8 @@
 	{
 		int Level { get; }
 
+		Point Position { get; }
+
 		void Die();
 	}
 }

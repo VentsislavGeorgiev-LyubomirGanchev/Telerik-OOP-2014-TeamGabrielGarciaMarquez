@@ -1,5 +1,8 @@
-﻿namespace RolePlayingGame.Core
+﻿using System;
+
+namespace RolePlayingGame.Core
 {
+	[Serializable]
 	internal class Point
 	{
 		public int X { get; set; }
