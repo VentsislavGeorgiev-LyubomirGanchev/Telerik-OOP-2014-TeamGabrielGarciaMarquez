@@ -73,6 +73,7 @@ namespace RolePlayingGame.Core.Human
 					this.Health += this.Level * LevelUPMultiplicator;
 					this.Defense += this.Level * LevelUPMultiplicator;
 					this.Level++;
+                    Sounds.LevelUp();
 					//Each upgrade is a little harder to get
 					_nextUpgrade *= UpgradeMultiplicator;
 				}
