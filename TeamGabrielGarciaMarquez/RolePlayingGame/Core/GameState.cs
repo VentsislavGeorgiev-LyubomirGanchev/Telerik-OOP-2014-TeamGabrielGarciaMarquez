@@ -135,6 +135,7 @@ namespace RolePlayingGame.Core
 				//If game is over then allow S to restart
 				if (e.KeyCode == Keys.S)
 				{
+                    this.HUD.GameIsWon = false;
 					this.Initialize();
 				}
 			}

@@ -68,6 +68,7 @@ namespace RolePlayingGame.Core
 				case EntityCategoryType.Mana:
 				case EntityCategoryType.Knowledge:
 				case EntityCategoryType.Defense:
+                case EntityCategoryType.Certificate:
 					sprite = new DynamicItem(x, y, entity);
 					break;
 

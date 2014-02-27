@@ -86,6 +86,8 @@ namespace RolePlayingGame.Core.Human
 
 		public bool HasKey { get; set; }
 
+        public bool HasCertificate { get; set; }
+
 		#endregion Properties
 
 		#region Methods
@@ -138,5 +140,5 @@ namespace RolePlayingGame.Core.Human
 		}
 
 		#endregion Methods
-	}
+    }
 }
