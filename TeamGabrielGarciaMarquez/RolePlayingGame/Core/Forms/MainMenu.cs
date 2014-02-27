@@ -96,6 +96,7 @@ namespace RolePlayingGame.Core.Forms
 		private void btn_Restart_Click(object sender, EventArgs e)
 		{
 			this._gameState = null;
+			Sounds.StopBackgroundSound();
 			btn_NewGame.Text = "New Game";
 			btn_Restart.Hide();
 		}

@@ -37,6 +37,7 @@ namespace RolePlayingGame.Core
 			{
 				this.Initialize();
 			}
+			Sounds.PlayBackgroundSound();
 		}
 
 		#region Properties
@@ -49,7 +50,6 @@ namespace RolePlayingGame.Core
 
 		public void Initialize()
 		{
-			Sounds.Start();
 			//Create all the main gameobjects
 			this._world = new World(this, this._savegame);
 		}
