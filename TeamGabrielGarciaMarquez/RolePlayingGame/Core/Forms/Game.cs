@@ -37,38 +37,62 @@ namespace RolePlayingGame.Core.Forms
 
 		private void Initialize()
 		{
-			if (!this._hasSavedState)
+			try
 			{
-				this.GameState.Initialize();
-			}
+				if (!this._hasSavedState)
+				{
+					this.GameState.Initialize();
+				}
 
-			//Initialise and start the timer
-			_gameLastTimeUpdate = 0.0;
-			_gameTimeTracker.Reset();
-			_gameTimeTracker.Start();
+				//Initialise and start the timer
+				_gameLastTimeUpdate = 0.0;
+				_gameTimeTracker.Reset();
+				_gameTimeTracker.Start();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString(), ex.Message);
+				this.Close();
+			}
 		}
 
 		private void Game_Paint(object sender, PaintEventArgs e)
 		{
-			//Work out how long since we were last here in seconds
-			double gameTime = _gameTimeTracker.ElapsedMilliseconds / 1000.0;
-			double elapsedTime = gameTime - _gameLastTimeUpdate;
-			_gameLastTimeUpdate = gameTime;
+			try
+			{
+				//Work out how long since we were last here in seconds
+				double gameTime = _gameTimeTracker.ElapsedMilliseconds / 1000.0;
+				double elapsedTime = gameTime - _gameLastTimeUpdate;
+				_gameLastTimeUpdate = gameTime;
 
-			//Perform any animation and updates
-			this.GameState.Update(gameTime, elapsedTime);
+				//Perform any animation and updates
+				this.GameState.Update(gameTime, elapsedTime);
 
-			//Draw everything
-			this._gameRenderer.SetGraphics(e.Graphics);
-			this.GameState.Draw(this._gameRenderer);
+				//Draw everything
+				this._gameRenderer.SetGraphics(e.Graphics);
+				this.GameState.Draw(this._gameRenderer);
 
-			//Force the next Paint()
-			this.Invalidate();
+				//Force the next Paint()
+				this.Invalidate();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString(), ex.Message);
+				this.Close();
+			}
 		}
 
 		private void Game_KeyDown(object sender, KeyEventArgs e)
 		{
-			GameState.KeyDown(e);
+			try
+			{
+				GameState.KeyDown(e);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString(), ex.Message);
+				this.Close();
+			}
 		}
 
 		private void Game_Shown(object sender, EventArgs e)

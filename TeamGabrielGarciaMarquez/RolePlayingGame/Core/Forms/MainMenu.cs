@@ -35,15 +35,23 @@ namespace RolePlayingGame.Core.Forms
 
 		private void NewGame(object sender, EventArgs e)
 		{
-			var game = new Game(this._gameState);
-			game.FormClosed += game_FormClosed;
-			this._gameState = game.GameState;
+			try
+			{
+				var game = new Game(this._gameState);
+				game.FormClosed += game_FormClosed;
+				this._gameState = game.GameState;
 
-			btn_NewGame.Text = "Continue";
-			btn_Restart.Show();
-			this.Hide();
-			game.Show();
-			this._loadedSaveGame = false;
+				btn_NewGame.Text = "Continue";
+				btn_Restart.Show();
+				this.Hide();
+				game.Show();
+				this._loadedSaveGame = false;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString(), ex.Message);
+				this.Close();
+			}
 		}
 
 		private void BtnSettingsClick(object sender, EventArgs e)

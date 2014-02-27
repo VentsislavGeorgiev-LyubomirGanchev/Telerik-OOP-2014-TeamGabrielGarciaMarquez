@@ -4,95 +4,109 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
 {
-	
-    internal class Entity
-    {
-        #region Static
+	internal class Entity
+	{
+		#region Constants
 
-        private static Dictionary<string, EntityRawData> _TileDescriptions;
+		private const string _filePath = @"Content\Entities.csv";
 
-        public static Dictionary<string, EntityRawData> TileDescriptions
-        {
-            get
-            {
-                if (Entity._TileDescriptions == null)
-                {
-                    Entity._TileDescriptions = new Dictionary<string, EntityRawData>();
-                    using (StreamReader stream = new StreamReader(@"Content\Entities.csv"))
-                    {
-                        string line;
-                        // Skip header
-                        stream.ReadLine();
-                        while ((line = stream.ReadLine()) != null)
-                        {
-                            string[] elements = line.Split(',');
-                            var entityRawData = new EntityRawData(elements);
-                            Entity._TileDescriptions.Add(entityRawData.Key, entityRawData);
-                        }
-                    }
-                }
-                return Entity._TileDescriptions;
-            }
-        }
+		#endregion Constants
 
-        #endregion Static
+		#region Static
 
-        #region Fields
+		private static Dictionary<string, EntityRawData> _TileDescriptions;
 
-        public Tile Tile { get; set; }
+		public static Dictionary<string, EntityRawData> TileDescriptions
+		{
+			get
+			{
+				if (Entity._TileDescriptions == null)
+				{
+					Entity._TileDescriptions = new Dictionary<string, EntityRawData>();
+					using (StreamReader stream = new StreamReader(_filePath))
+					{
+						string line;
+						// Skip header
+						stream.ReadLine();
+						while ((line = stream.ReadLine()) != null)
+						{
+							string[] elements = line.Split(',');
 
-        public string Name { get; set; }
+							var entityRawData = new EntityRawData(elements);
+							Entity._TileDescriptions.Add(entityRawData.Key, entityRawData);
+						}
+					}
+				}
+				return Entity._TileDescriptions;
+			}
+		}
 
-        public EntityCategoryType Category { get; set; }
+		#endregion Static
 
-        public EntityType Type { get; set; }
+		#region Fields
 
-        public string Key { get; set; }
+		public Tile Tile { get; set; }
 
-        public bool IsPassable { get; private set; }
+		public string Name { get; set; }
 
-        public bool IsTransparent { get; private set; }
+		public EntityCategoryType Category { get; set; }
 
-        public string Special { get; private set; }
+		public EntityType Type { get; set; }
 
-        public Color? ColorKey { get; private set; }
+		public string Key { get; set; }
 
-        public EntityRawData Raw { get; private set; }
+		public bool IsPassable { get; private set; }
 
-        #endregion Fields
+		public bool IsTransparent { get; private set; }
 
-        public Entity(EntityType type)
-            : this(type.ToString())
-        {
-        }
+		public string Special { get; private set; }
 
-        public Entity(string key)
-        {
-            var entityRawData = Entity.TileDescriptions[key];
+		public Color? ColorKey { get; private set; }
 
-            this.Name = entityRawData.Name;
-            this.Key = entityRawData.Key;
-            this.Category = (EntityCategoryType)Enum.Parse(typeof(EntityCategoryType), entityRawData.Category);
-            this.Type = (EntityType)Enum.Parse(typeof(EntityType), entityRawData.Type);
-            this.IsPassable = bool.Parse(entityRawData.IsPassable);
-            this.IsTransparent = bool.Parse(entityRawData.IsTransparent);
-            this.Tile = new Tile(entityRawData);
-            this.Special = entityRawData.Special;
-            if (!string.IsNullOrWhiteSpace(entityRawData.ColorKey))
-            {
-                var colors = entityRawData.ColorKey.Split(';')
-                    .Select(item => Convert.ToInt32(item))
-                    .ToArray();
-                int red = colors[0];
-                int green = colors[1];
-                int blue = colors[2];
-                this.ColorKey = Color.FromArgb(red, green, blue);
-            }
+		public EntityRawData Raw { get; private set; }
 
-            this.Raw = entityRawData;
-        }
-    }
+		#endregion Fields
+
+		public Entity(EntityType type)
+			: this(type.ToString())
+		{
+		}
+
+		public Entity(string key)
+		{
+			var entityRawData = Entity.TileDescriptions[key];
+			try
+			{
+				this.Name = entityRawData.Name;
+				this.Key = entityRawData.Key;
+				this.Category = (EntityCategoryType)Enum.Parse(typeof(EntityCategoryType), entityRawData.Category);
+				this.Type = (EntityType)Enum.Parse(typeof(EntityType), entityRawData.Type);
+				this.IsPassable = bool.Parse(entityRawData.IsPassable);
+				this.IsTransparent = bool.Parse(entityRawData.IsTransparent);
+				this.Tile = new Tile(entityRawData);
+				this.Special = entityRawData.Special;
+				if (!string.IsNullOrWhiteSpace(entityRawData.ColorKey))
+				{
+					var colors = entityRawData.ColorKey.Split(';')
+						.Select(item => Convert.ToInt32(item))
+						.ToArray();
+					int red = colors[0];
+					int green = colors[1];
+					int blue = colors[2];
+					this.ColorKey = Color.FromArgb(red, green, blue);
+				}
+
+				this.Raw = entityRawData;
+			}
+			catch (Exception ex)
+			{
+				var exception = new FileParseException(_filePath, ex.Message, ex);
+				MessageBox.Show(exception.Message, ex.Message);
+			}
+		}
+	}
 }
