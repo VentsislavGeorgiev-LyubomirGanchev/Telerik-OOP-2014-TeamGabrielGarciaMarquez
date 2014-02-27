@@ -135,6 +135,10 @@ namespace RolePlayingGame.Core
 			this.Mana = player.Mana;
 			this.Experience = player.Experience;
 			this.HasKey = player.HasKey;
+            if (player.HasCertificate)
+            {
+                this.GameIsWon = true;
+            }
 		}
 
 		private void SetSprite(out Sprite sprite, PointF position, float spacing, Entity entity)

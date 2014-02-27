@@ -36,6 +36,7 @@ WoodenFloor,WoodenFloor,d,WorldItems,Content\TilesTelerikGame.bmp,10,4,FALSE,1,T
 CarpetFloor,CarpetFloor,&,WorldItems,Content\TilesTelerikGame.bmp,3,3,FALSE,1,TRUE,,
 StoneWall,StoneWall,>,WorldItems,Content\TilesTelerikGame.bmp,2,3,FALSE,1,FALSE,,
 StoneWall1,StoneWall1,%,WorldItems,Content\TilesTelerikGame.bmp,1,5,FALSE,1,FALSE,,
+StoneWall2,StoneWall2,`,WorldItems,Content\TilesTelerikGame.bmp,2,5,FALSE,1,FALSE,,
 BrickWall,BrickWall,<,WorldItems,Content\TilesTelerikGame.bmp,1,3,FALSE,1,FALSE,,
 WoodenWall,WoodenWall,w,WorldItems,Content\TilesTelerikGame.bmp,3,5,FALSE,1,FALSE,,
 Tree,Tree,t,WorldItems,Content\TilesTelerikGame.bmp,9,2,TRUE,1,FALSE,,255;255;255
@@ -55,3 +56,4 @@ Column,Column,\,WorldItems,Content\TilesTelerikGame.bmp,2,4,TRUE,1,FALSE,,255;25
 Column1,Column1,/,WorldItems,Content\TilesTelerikGame.bmp,3,4,TRUE,1,FALSE,,255;255;255
 River,River,+,WorldItems,Content\TilesTelerikGame.bmp,11,4,FALSE,1,FALSE,,
 Bridge,Bridge,?,WorldItems,Content\TilesTelerikGame.bmp,8,5,FALSE,1,TRUE,,
+Certificate,Certificate,cert,Certificate,Content\TilesTelerikGame.bmp,2,6,TRUE,1,TRUE,,

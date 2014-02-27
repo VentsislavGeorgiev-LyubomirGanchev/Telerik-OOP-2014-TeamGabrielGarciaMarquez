@@ -13,6 +13,7 @@
         Student3,
         Student4,
         Bones,
+        Certificate,
         //Experience
         Experience,
         //Level
@@ -41,6 +42,7 @@
         //Obstacle
         StoneWall,
         StoneWall1,
+        StoneWall2,
         BrickWall,
         WoodenWall,
         Tree,

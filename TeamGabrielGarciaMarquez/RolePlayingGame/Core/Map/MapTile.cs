@@ -142,6 +142,11 @@ namespace RolePlayingGame.Core.Map
 					Sounds.ManaUp();
 					break;
 
+                case EntityCategoryType.Certificate:
+                    player.HasCertificate = true;
+                    Sounds.LevelUp();
+                    break;
+
 				case EntityCategoryType.Key:
 					player.HasKey = true;
 					Sounds.Pickup();

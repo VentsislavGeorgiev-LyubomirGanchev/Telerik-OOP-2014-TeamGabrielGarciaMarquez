@@ -16,6 +16,8 @@
 
 		bool IsHeroFighting { get; set; }
 
+        bool HasCertificate { get; set; }
+
 		void LoadSaveGame(SaveGameData savegame);
 	}
 }

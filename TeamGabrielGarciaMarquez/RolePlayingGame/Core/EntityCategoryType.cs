@@ -7,6 +7,7 @@
         Mana,
         Knowledge,
         Defense,
+        Certificate,
         Key,
         Door,
         WorldItems
