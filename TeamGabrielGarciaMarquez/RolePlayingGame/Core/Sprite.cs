@@ -132,6 +132,7 @@ namespace RolePlayingGame.Core
 				if (!this._animationEnded && this.IsStateChangable && currentFrameIndex == this._frames.Count - 1)
 				{
 					this._animationEnded = true;
+					this.Entity.IsPassable = true;
 				}
 
 				if (this._animationEnded)

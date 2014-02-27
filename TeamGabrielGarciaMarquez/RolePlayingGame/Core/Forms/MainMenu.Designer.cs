@@ -39,77 +39,78 @@
 			this.btn_Restart = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
-			// BTN_NewGame
+			// btn_NewGame
 			// 
 			this.btn_NewGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_NewGame.Location = new System.Drawing.Point(22, 110);
-			this.btn_NewGame.Name = "BTN_NewGame";
+			this.btn_NewGame.Name = "btn_NewGame";
 			this.btn_NewGame.Size = new System.Drawing.Size(262, 36);
 			this.btn_NewGame.TabIndex = 1;
 			this.btn_NewGame.Text = "New Game";
 			this.btn_NewGame.UseVisualStyleBackColor = true;
 			this.btn_NewGame.Click += new System.EventHandler(this.NewGame);
 			// 
-			// BTN_LoadGame
+			// btn_LoadGame
 			// 
 			this.btn_LoadGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_LoadGame.Location = new System.Drawing.Point(22, 199);
-			this.btn_LoadGame.Name = "BTN_LoadGame";
+			this.btn_LoadGame.Name = "btn_LoadGame";
 			this.btn_LoadGame.Size = new System.Drawing.Size(262, 36);
 			this.btn_LoadGame.TabIndex = 2;
 			this.btn_LoadGame.Text = "Load Game";
 			this.btn_LoadGame.UseVisualStyleBackColor = true;
 			this.btn_LoadGame.Click += new System.EventHandler(this.BtnLoadGameClick);
 			// 
-			// BTN_SaveGame
+			// btn_SaveGame
 			// 
 			this.btn_SaveGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_SaveGame.Location = new System.Drawing.Point(22, 285);
-			this.btn_SaveGame.Name = "BTN_SaveGame";
+			this.btn_SaveGame.Name = "btn_SaveGame";
 			this.btn_SaveGame.Size = new System.Drawing.Size(262, 36);
 			this.btn_SaveGame.TabIndex = 3;
 			this.btn_SaveGame.Text = "Save Game";
 			this.btn_SaveGame.UseVisualStyleBackColor = true;
 			this.btn_SaveGame.Click += new System.EventHandler(this.BtnSaveGameClick);
 			// 
-			// BTN_Credits
+			// btn_Credits
 			// 
 			this.btn_Credits.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_Credits.Location = new System.Drawing.Point(442, 285);
-			this.btn_Credits.Name = "BTN_Credits";
+			this.btn_Credits.Name = "btn_Credits";
 			this.btn_Credits.Size = new System.Drawing.Size(262, 36);
 			this.btn_Credits.TabIndex = 4;
 			this.btn_Credits.Text = "Credits";
 			this.btn_Credits.UseVisualStyleBackColor = true;
+			this.btn_Credits.Click += new System.EventHandler(this.btn_Credits_Click);
 			// 
-			// BTN_HighScores
+			// btn_HighScores
 			// 
 			this.btn_HighScores.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_HighScores.Location = new System.Drawing.Point(442, 199);
-			this.btn_HighScores.Name = "BTN_HighScores";
+			this.btn_HighScores.Name = "btn_HighScores";
 			this.btn_HighScores.Size = new System.Drawing.Size(262, 36);
 			this.btn_HighScores.TabIndex = 5;
 			this.btn_HighScores.Text = "High Scores";
 			this.btn_HighScores.UseVisualStyleBackColor = true;
 			// 
-			// BTN_Settings
+			// btn_Settings
 			// 
 			this.btn_Settings.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btn_Settings.Location = new System.Drawing.Point(442, 110);
-			this.btn_Settings.Name = "BTN_Settings";
+			this.btn_Settings.Name = "btn_Settings";
 			this.btn_Settings.Size = new System.Drawing.Size(262, 36);
 			this.btn_Settings.TabIndex = 6;
 			this.btn_Settings.Text = "Settings";
 			this.btn_Settings.UseVisualStyleBackColor = true;
 			this.btn_Settings.Click += new System.EventHandler(this.BtnSettingsClick);
 			// 
-			// TXT_Title
+			// txt_Title
 			// 
 			this.txt_Title.BackColor = System.Drawing.Color.Transparent;
 			this.txt_Title.Font = new System.Drawing.Font("Times New Roman", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
 			this.txt_Title.ForeColor = System.Drawing.Color.Lime;
 			this.txt_Title.Location = new System.Drawing.Point(233, 9);
-			this.txt_Title.Name = "TXT_Title";
+			this.txt_Title.Name = "txt_Title";
 			this.txt_Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.txt_Title.Size = new System.Drawing.Size(236, 65);
 			this.txt_Title.TabIndex = 7;

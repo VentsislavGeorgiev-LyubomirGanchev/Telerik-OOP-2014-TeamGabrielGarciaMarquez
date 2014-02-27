@@ -100,5 +100,11 @@ namespace RolePlayingGame.Core.Forms
 			btn_NewGame.Text = "New Game";
 			btn_Restart.Hide();
 		}
+
+		private void btn_Credits_Click(object sender, EventArgs e)
+		{
+			var credits = new Credits();
+			credits.ShowDialog();
+		}
 	}
 }

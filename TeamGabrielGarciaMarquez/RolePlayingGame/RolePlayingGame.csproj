@@ -71,6 +71,12 @@
     <Compile Include="Core\Entity.cs" />
     <Compile Include="Core\EntityRawData.cs" />
     <Compile Include="Core\FileParseException.cs" />
+    <Compile Include="Core\Forms\Credits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\Credits.Designer.cs">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\HUD.cs" />
     <Compile Include="Core\Human\Enemies\IBoss.cs" />
@@ -135,6 +141,9 @@
     </Compile>
     <Compile Include="UI\GDIRenderer.cs" />
     <Compile Include="UI\IRenderer.cs" />
+    <EmbeddedResource Include="Core\Forms\Credits.resx">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\Forms\Game.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Game.cs</DependentUpon>

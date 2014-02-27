@@ -59,7 +59,7 @@ namespace RolePlayingGame.Core
 
 		public string Key { get; set; }
 
-		public bool IsPassable { get; private set; }
+		public bool IsPassable { get; set; }
 
 		public bool IsTransparent { get; private set; }
 
