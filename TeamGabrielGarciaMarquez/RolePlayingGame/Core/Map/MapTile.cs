@@ -72,7 +72,7 @@ namespace RolePlayingGame.Core.Map
 		{
 			get
 			{
-				return (this._backgroundSprite.IsPassable || (this._foregroundSprite == null || this._foregroundSprite.IsStateChangable)) &&
+				return (this._backgroundSprite.IsPassable || (this._foregroundSprite != null && this._foregroundSprite.IsStateChangable)) &&
 					(this._foregroundSprite == null || this._foregroundSprite.IsPassable);
 			}
 		}
