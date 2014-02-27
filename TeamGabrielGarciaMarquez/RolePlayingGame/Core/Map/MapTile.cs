@@ -1,6 +1,7 @@
 using RolePlayingGame.Core.Human;
 using RolePlayingGame.Core.Item;
 using RolePlayingGame.UI;
+using System;
 
 namespace RolePlayingGame.Core.Map
 {
@@ -81,7 +82,7 @@ namespace RolePlayingGame.Core.Map
 		{
 			get
 			{
-				return this._backgroundSprite.Category == EntityCategoryType.Door;
+				return this._foregroundSprite != null && this._foregroundSprite.IsStateChangable;
 			}
 		}
 
@@ -98,6 +99,7 @@ namespace RolePlayingGame.Core.Map
 			if (foregroundSprite != null)
 			{
 				this._foregroundSprite.UpdateSprite += UpdateForegroundSprite;
+				this._foregroundSprite.AnimationEnded += UpdateForegroundSprite;
 			}
 		}
 
@@ -159,7 +161,7 @@ namespace RolePlayingGame.Core.Map
 			{
 				if (this._foregroundSprite.FramesCount > 1)
 				{
-					this._foregroundSprite.CurrentFrame = Sprite.CalculateNextFrame(gameTime, this._foregroundSprite.FramesCount);
+					this._foregroundSprite.CurrentFrameIndex = Sprite.CalculateNextFrame(gameTime, this._foregroundSprite.FramesCount);
 				}
 				this._foregroundSprite.Update(gameTime, elapsedTime);
 			}

@@ -1,5 +1,4 @@
 using RolePlayingGame.Core.Map;
-using RolePlayingGame.Core.Map.Tiles;
 using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
@@ -8,15 +7,14 @@ using System.Drawing.Imaging;
 
 namespace RolePlayingGame.Core
 {
-	internal delegate void UpdateSpriteEventHandler(EntityType entityType);
+	internal delegate void EntityTypeEventHandler(EntityType entityType);
 
-	[Serializable]
 	internal class Sprite : GameEntity, ISprite
 	{
 		#region Constants
 
 		private readonly Color _defaultColorKey = Color.FromArgb(75, 75, 75);
-		private static readonly PointF _DefaultAcceleration = new PointF(GameEngine.EntitiesMoveSpeed, GameEngine.EntitiesMoveSpeed);
+		private static readonly PointF _DefaultAcceleration = new PointF(GameState.EntitiesMoveSpeed, GameState.EntitiesMoveSpeed);
 
 		#endregion Constants
 
@@ -24,7 +22,7 @@ namespace RolePlayingGame.Core
 
 		public static int CalculateNextFrame(double gameTime, int framesCount)
 		{
-			return (int)((gameTime * GameEngine.FrameRate) % (double)framesCount);
+			return (int)((gameTime * GameState.FrameRate) % (double)framesCount);
 		}
 
 		#endregion Static
@@ -35,6 +33,10 @@ namespace RolePlayingGame.Core
 
 		private readonly List<Rectangle> _frameRectangles;
 
+		private readonly List<Bitmap> _frames;
+
+		private bool _animationEnded;
+
 		private Color _colorKey;
 
 		#endregion Fields
@@ -44,6 +46,8 @@ namespace RolePlayingGame.Core
 		public Sprite(float x, float y, Entity entity, bool flip = false)
 			: base(entity)
 		{
+			this.IsAnimationEnabled = true;
+
 			if (entity.Tile.IsTransparent)
 			{
 				this.SetColorKey(entity.ColorKey ?? this._defaultColorKey);
@@ -51,7 +55,7 @@ namespace RolePlayingGame.Core
 
 			this.Flip = flip;
 			this._frameRectangles = new List<Rectangle>();
-			this.Frames = new List<Bitmap>();
+			this._frames = new List<Bitmap>();
 			this.Velocity = PointF.Empty;
 			this.Acceleration = _DefaultAcceleration;
 			if (x > Area.MapSizeX && y > Area.MapSizeY)
@@ -71,7 +75,7 @@ namespace RolePlayingGame.Core
 
 			for (int i = 0; i < entityFramesCount; i++)
 			{
-				this.Frames.Add(entityBitmap);
+				this._frames.Add(entityBitmap);
 				this._frameRectangles.Add(new Rectangle(entityRectangle.X + i * entityRectangle.Width / entityFramesCount,
 					entityRectangle.Y, entityRectangle.Width / entityFramesCount, entityRectangle.Height));
 			}
@@ -81,23 +85,33 @@ namespace RolePlayingGame.Core
 
 		#region Properties
 
-		public event UpdateSpriteEventHandler UpdateSprite;
+		public event EntityTypeEventHandler UpdateSprite;
+
+		public event EntityTypeEventHandler AnimationEnded;
 
 		public PointF Acceleration { get; set; }
 
-		public int CurrentFrame { get; set; }
+		public int CurrentFrameIndex { get; set; }
 
 		public bool Flip { get; set; }
 
-		protected List<Bitmap> Frames { get; set; }
-
 		public PointF Location { get; set; }
+
+		public bool IsAnimationEnabled { get; set; }
+
+		public bool IsStateChangable
+		{
+			get
+			{
+				return this.Entity.Category == EntityCategoryType.Door;
+			}
+		}
 
 		public int FramesCount
 		{
 			get
 			{
-				return this.Frames.Count;
+				return this._frames.Count;
 			}
 		}
 
@@ -114,6 +128,14 @@ namespace RolePlayingGame.Core
 			if (this.UpdateSprite != null)
 			{
 				this.UpdateSprite(type);
+			}
+		}
+
+		protected void OnAnimationEnded(EntityType type)
+		{
+			if (this.AnimationEnded != null)
+			{
+				this.AnimationEnded(type);
 			}
 		}
 
@@ -139,24 +161,31 @@ namespace RolePlayingGame.Core
 		/// <param name="renderer"></param>
 		public override void Draw(IRenderer renderer)
 		{
-			//if (this.Category == EntityCategoryType.Door)
-			//{
-			//    var door = this as StaticItem;
-			//    if (door.State == false)
-			//    {
-			//        var firstFrame = this.Frames.First();
-			//        this.Frames.Clear();
-			//        this.Frames.Add(firstFrame);
-			//        var firstRec = this._frameRectangles[0];
-			//        this._frameRectangles.Clear();
-			//        this._frameRectangles.Add(firstRec);
-			//    }
-			//}
+			int currentFrameIndex = this.CurrentFrameIndex;
+			if (!this.IsAnimationEnabled)
+			{
+				currentFrameIndex = 0;
+			}
+			else
+			{
+				if (!this._animationEnded && this.IsStateChangable && currentFrameIndex == this._frames.Count - 1)
+				{
+					this._animationEnded = true;
+				}
+
+				if (this._animationEnded)
+				{
+					currentFrameIndex = this._frames.Count - 1;
+				}
+			}
+
+			var currentFrameRectangle = this._frameRectangles[currentFrameIndex];
+			var currentFrame = this._frames[currentFrameIndex];
 
 			//Draw the correct frame at the current point
-			if (this._frameRectangles[this.CurrentFrame] == Rectangle.Empty)
+			if (currentFrameRectangle == Rectangle.Empty)
 			{
-				renderer.DrawImage(this.Frames[this.CurrentFrame], this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
+				renderer.DrawImage(currentFrame, this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
 			}
 			else
 			{
@@ -178,11 +207,11 @@ namespace RolePlayingGame.Core
 				}
 
 				renderer.DrawImage(
-					this.Frames[this.CurrentFrame], outputRect,
-					this._frameRectangles[this.CurrentFrame].X,
-					this._frameRectangles[this.CurrentFrame].Y,
-					this._frameRectangles[this.CurrentFrame].Width,
-					this._frameRectangles[this.CurrentFrame].Height,
+					currentFrame, outputRect,
+					currentFrameRectangle.X,
+					currentFrameRectangle.Y,
+					currentFrameRectangle.Width,
+					currentFrameRectangle.Height,
 					GraphicsUnit.Pixel,
 					this._attributes);
 			}

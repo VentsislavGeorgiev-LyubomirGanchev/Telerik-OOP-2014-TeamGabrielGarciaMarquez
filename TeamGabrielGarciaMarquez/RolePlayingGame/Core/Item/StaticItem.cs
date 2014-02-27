@@ -1,29 +1,22 @@
 ﻿namespace RolePlayingGame.Core.Item
 {
-    internal class StaticItem : Item, IObstacle
-    {
-        public bool IsStateChangable
-        {
-            get
-            {
-                return this.Entity.Category == EntityCategoryType.Door;
-            }
-        }
+	internal class StaticItem : Item, IObstacle
+	{
+		public bool State { get; private set; }
 
-        public bool State { get; private set; }
+		public StaticItem(float x, float y, Entity entity, bool flip = false)
+			: base(x, y, entity, flip)
+		{
+			if (this.IsStateChangable)
+			{
+				this.IsAnimationEnabled = false;
+			}
+		}
 
-        public StaticItem(float x, float y, Entity entity, bool flip = false)
-            : base(x, y, entity, flip)
-        {
-            if (this.IsStateChangable)
-            {
-                this.State = false;
-            }
-        }
-
-        public void ChangeState()
-        {
-            this.State = !this.State;
-        }
-    }
+		public void ChangeState()
+		{
+			this.State = !this.State;
+			this.IsAnimationEnabled = !this.IsAnimationEnabled;
+		}
+	}
 }

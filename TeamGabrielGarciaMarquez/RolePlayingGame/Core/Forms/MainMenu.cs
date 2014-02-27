@@ -1,49 +1,87 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace RolePlayingGame.Core.Forms
 {
-    public partial class MainMenu : Form
-    {
-        private readonly Game _game;
-        public MainMenu()
-        {
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.InitializeComponent();
-            _game = new Game();
-            _game.Hide();
-        }
+	public partial class MainMenu : Form
+	{
+		#region Constants
 
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-        }
+		private const string _SaveGameFileName = "save.bin";
 
-        private void Button1Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            _game.ShowDialog();
-            this.Show();
-        }
+		#endregion Constants
 
-        private void BtnSettingsClick(object sender, EventArgs e)
-        {
-            Settings settings = new Settings();
-            settings.Show();
-        }
+		#region Fields
 
-        private void Label1Click(object sender, EventArgs e)
-        {
-        }
+		private GameState _gameState;
+		private bool _loadedSaveGame;
 
-        private void BtnSaveGameClick(object sender, EventArgs e)
-        {
+		#endregion Fields
 
-        }
+		public MainMenu()
+		{
+			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+			this.InitializeComponent();
 
-        private void BtnLoadGameClick(object sender, EventArgs e)
-        {
+			this._loadedSaveGame = false;
+			this._gameState = null;
+		}
 
-        }
-    }
+		private void MainMenu_Load(object sender, EventArgs e)
+		{
+		}
+
+		private void NewGame(object sender, EventArgs e)
+		{
+			var game = new Game(this._gameState);
+			game.FormClosed += game_FormClosed;
+			this._gameState = game.GameState;
+
+			btn_NewGame.Text = "Continue";
+			btn_Restart.Show();
+			this.Hide();
+			game.Show();
+			this._loadedSaveGame = false;
+		}
+
+		private void BtnSettingsClick(object sender, EventArgs e)
+		{
+			Settings settings = new Settings();
+			settings.Show();
+		}
+
+		private void BtnSaveGameClick(object sender, EventArgs e)
+		{
+			using (var stream = File.OpenWrite(_SaveGameFileName))
+			{
+				BinaryFormatter binaryFormatter = new BinaryFormatter();
+				binaryFormatter.Serialize(stream, this._gameState.SaveGame());
+			}
+		}
+
+		private void BtnLoadGameClick(object sender, EventArgs e)
+		{
+			using (var stream = File.OpenRead(_SaveGameFileName))
+			{
+				BinaryFormatter binaryFormatter = new BinaryFormatter();
+				this._gameState = new GameState((SaveGameData)binaryFormatter.Deserialize(stream));
+				this._loadedSaveGame = true;
+				this.NewGame(sender, e);
+			}
+		}
+
+		private void game_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			this.Show();
+		}
+
+		private void btn_Restart_Click(object sender, EventArgs e)
+		{
+			this._gameState = null;
+			btn_NewGame.Text = "New Game";
+			btn_Restart.Hide();
+		}
+	}
 }

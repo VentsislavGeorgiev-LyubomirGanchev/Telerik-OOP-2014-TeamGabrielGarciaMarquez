@@ -1,151 +1,165 @@
 ﻿namespace RolePlayingGame.Core.Forms
 {
-    partial class MainMenu
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class MainMenu
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
-            this.BTN_NewGame = new System.Windows.Forms.Button();
-            this.BTN_LoadGame = new System.Windows.Forms.Button();
-            this.BTN_SaveGame = new System.Windows.Forms.Button();
-            this.BTN_Credits = new System.Windows.Forms.Button();
-            this.BTN_HighScores = new System.Windows.Forms.Button();
-            this.BTN_Settings = new System.Windows.Forms.Button();
-            this.TXT_Title = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // BTN_NewGame
-            // 
-            this.BTN_NewGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_NewGame.Location = new System.Drawing.Point(22, 110);
-            this.BTN_NewGame.Name = "BTN_NewGame";
-            this.BTN_NewGame.Size = new System.Drawing.Size(262, 36);
-            this.BTN_NewGame.TabIndex = 1;
-            this.BTN_NewGame.Text = "New Game";
-            this.BTN_NewGame.UseVisualStyleBackColor = true;
-            this.BTN_NewGame.Click += new System.EventHandler(this.Button1Click);
-            // 
-            // BTN_LoadGame
-            // 
-            this.BTN_LoadGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_LoadGame.Location = new System.Drawing.Point(22, 199);
-            this.BTN_LoadGame.Name = "BTN_LoadGame";
-            this.BTN_LoadGame.Size = new System.Drawing.Size(262, 36);
-            this.BTN_LoadGame.TabIndex = 2;
-            this.BTN_LoadGame.Text = "Load Game";
-            this.BTN_LoadGame.UseVisualStyleBackColor = true;
-            this.BTN_LoadGame.Click += new System.EventHandler(this.BtnLoadGameClick);
-            // 
-            // BTN_SaveGame
-            // 
-            this.BTN_SaveGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_SaveGame.Location = new System.Drawing.Point(22, 285);
-            this.BTN_SaveGame.Name = "BTN_SaveGame";
-            this.BTN_SaveGame.Size = new System.Drawing.Size(262, 36);
-            this.BTN_SaveGame.TabIndex = 3;
-            this.BTN_SaveGame.Text = "Save Game";
-            this.BTN_SaveGame.UseVisualStyleBackColor = true;
-            this.BTN_SaveGame.Click += new System.EventHandler(this.BtnSaveGameClick);
-            // 
-            // BTN_Credits
-            // 
-            this.BTN_Credits.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_Credits.Location = new System.Drawing.Point(442, 285);
-            this.BTN_Credits.Name = "BTN_Credits";
-            this.BTN_Credits.Size = new System.Drawing.Size(262, 36);
-            this.BTN_Credits.TabIndex = 4;
-            this.BTN_Credits.Text = "Credits";
-            this.BTN_Credits.UseVisualStyleBackColor = true;
-            // 
-            // BTN_HighScores
-            // 
-            this.BTN_HighScores.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_HighScores.Location = new System.Drawing.Point(442, 199);
-            this.BTN_HighScores.Name = "BTN_HighScores";
-            this.BTN_HighScores.Size = new System.Drawing.Size(262, 36);
-            this.BTN_HighScores.TabIndex = 5;
-            this.BTN_HighScores.Text = "High Scores";
-            this.BTN_HighScores.UseVisualStyleBackColor = true;
-            // 
-            // BTN_Settings
-            // 
-            this.BTN_Settings.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BTN_Settings.Location = new System.Drawing.Point(442, 110);
-            this.BTN_Settings.Name = "BTN_Settings";
-            this.BTN_Settings.Size = new System.Drawing.Size(262, 36);
-            this.BTN_Settings.TabIndex = 6;
-            this.BTN_Settings.Text = "Settings";
-            this.BTN_Settings.UseVisualStyleBackColor = true;
-            this.BTN_Settings.Click += new System.EventHandler(this.BtnSettingsClick);
-            // 
-            // TXT_Title
-            // 
-            this.TXT_Title.BackColor = System.Drawing.Color.Transparent;
-            this.TXT_Title.Font = new System.Drawing.Font("Times New Roman", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.TXT_Title.ForeColor = System.Drawing.Color.Lime;
-            this.TXT_Title.Location = new System.Drawing.Point(233, 9);
-            this.TXT_Title.Name = "TXT_Title";
-            this.TXT_Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TXT_Title.Size = new System.Drawing.Size(236, 65);
-            this.TXT_Title.TabIndex = 7;
-            this.TXT_Title.Text = "Ninja.Net";
-            this.TXT_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TXT_Title.Click += new System.EventHandler(this.Label1Click);
-            // 
-            // MainMenu
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::RolePlayingGame.Properties.Resources.ninjaNet;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(728, 413);
-            this.Controls.Add(this.TXT_Title);
-            this.Controls.Add(this.BTN_Settings);
-            this.Controls.Add(this.BTN_HighScores);
-            this.Controls.Add(this.BTN_Credits);
-            this.Controls.Add(this.BTN_SaveGame);
-            this.Controls.Add(this.BTN_LoadGame);
-            this.Controls.Add(this.BTN_NewGame);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainMenu";
-            this.Text = "Ninja.Net";
-            this.Load += new System.EventHandler(this.MainMenu_Load);
-            this.ResumeLayout(false);
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
+			this.btn_NewGame = new System.Windows.Forms.Button();
+			this.btn_LoadGame = new System.Windows.Forms.Button();
+			this.btn_SaveGame = new System.Windows.Forms.Button();
+			this.btn_Credits = new System.Windows.Forms.Button();
+			this.btn_HighScores = new System.Windows.Forms.Button();
+			this.btn_Settings = new System.Windows.Forms.Button();
+			this.txt_Title = new System.Windows.Forms.Label();
+			this.btn_Restart = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// BTN_NewGame
+			// 
+			this.btn_NewGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_NewGame.Location = new System.Drawing.Point(22, 110);
+			this.btn_NewGame.Name = "BTN_NewGame";
+			this.btn_NewGame.Size = new System.Drawing.Size(262, 36);
+			this.btn_NewGame.TabIndex = 1;
+			this.btn_NewGame.Text = "New Game";
+			this.btn_NewGame.UseVisualStyleBackColor = true;
+			this.btn_NewGame.Click += new System.EventHandler(this.NewGame);
+			// 
+			// BTN_LoadGame
+			// 
+			this.btn_LoadGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_LoadGame.Location = new System.Drawing.Point(22, 199);
+			this.btn_LoadGame.Name = "BTN_LoadGame";
+			this.btn_LoadGame.Size = new System.Drawing.Size(262, 36);
+			this.btn_LoadGame.TabIndex = 2;
+			this.btn_LoadGame.Text = "Load Game";
+			this.btn_LoadGame.UseVisualStyleBackColor = true;
+			this.btn_LoadGame.Click += new System.EventHandler(this.BtnLoadGameClick);
+			// 
+			// BTN_SaveGame
+			// 
+			this.btn_SaveGame.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_SaveGame.Location = new System.Drawing.Point(22, 285);
+			this.btn_SaveGame.Name = "BTN_SaveGame";
+			this.btn_SaveGame.Size = new System.Drawing.Size(262, 36);
+			this.btn_SaveGame.TabIndex = 3;
+			this.btn_SaveGame.Text = "Save Game";
+			this.btn_SaveGame.UseVisualStyleBackColor = true;
+			this.btn_SaveGame.Click += new System.EventHandler(this.BtnSaveGameClick);
+			// 
+			// BTN_Credits
+			// 
+			this.btn_Credits.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_Credits.Location = new System.Drawing.Point(442, 285);
+			this.btn_Credits.Name = "BTN_Credits";
+			this.btn_Credits.Size = new System.Drawing.Size(262, 36);
+			this.btn_Credits.TabIndex = 4;
+			this.btn_Credits.Text = "Credits";
+			this.btn_Credits.UseVisualStyleBackColor = true;
+			// 
+			// BTN_HighScores
+			// 
+			this.btn_HighScores.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_HighScores.Location = new System.Drawing.Point(442, 199);
+			this.btn_HighScores.Name = "BTN_HighScores";
+			this.btn_HighScores.Size = new System.Drawing.Size(262, 36);
+			this.btn_HighScores.TabIndex = 5;
+			this.btn_HighScores.Text = "High Scores";
+			this.btn_HighScores.UseVisualStyleBackColor = true;
+			// 
+			// BTN_Settings
+			// 
+			this.btn_Settings.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_Settings.Location = new System.Drawing.Point(442, 110);
+			this.btn_Settings.Name = "BTN_Settings";
+			this.btn_Settings.Size = new System.Drawing.Size(262, 36);
+			this.btn_Settings.TabIndex = 6;
+			this.btn_Settings.Text = "Settings";
+			this.btn_Settings.UseVisualStyleBackColor = true;
+			this.btn_Settings.Click += new System.EventHandler(this.BtnSettingsClick);
+			// 
+			// TXT_Title
+			// 
+			this.txt_Title.BackColor = System.Drawing.Color.Transparent;
+			this.txt_Title.Font = new System.Drawing.Font("Times New Roman", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.txt_Title.ForeColor = System.Drawing.Color.Lime;
+			this.txt_Title.Location = new System.Drawing.Point(233, 9);
+			this.txt_Title.Name = "TXT_Title";
+			this.txt_Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.txt_Title.Size = new System.Drawing.Size(236, 65);
+			this.txt_Title.TabIndex = 7;
+			this.txt_Title.Text = "Ninja.Net";
+			this.txt_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// btn_Restart
+			// 
+			this.btn_Restart.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btn_Restart.Location = new System.Drawing.Point(229, 354);
+			this.btn_Restart.Name = "btn_Restart";
+			this.btn_Restart.Size = new System.Drawing.Size(262, 36);
+			this.btn_Restart.TabIndex = 8;
+			this.btn_Restart.Text = "Restart Game";
+			this.btn_Restart.UseVisualStyleBackColor = true;
+			this.btn_Restart.Visible = false;
+			this.btn_Restart.Click += new System.EventHandler(this.btn_Restart_Click);
+			// 
+			// MainMenu
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImage = global::RolePlayingGame.Properties.Resources.ninjaNet;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.ClientSize = new System.Drawing.Size(728, 413);
+			this.Controls.Add(this.btn_Restart);
+			this.Controls.Add(this.txt_Title);
+			this.Controls.Add(this.btn_Settings);
+			this.Controls.Add(this.btn_HighScores);
+			this.Controls.Add(this.btn_Credits);
+			this.Controls.Add(this.btn_SaveGame);
+			this.Controls.Add(this.btn_LoadGame);
+			this.Controls.Add(this.btn_NewGame);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "MainMenu";
+			this.Text = "Ninja.Net";
+			this.Load += new System.EventHandler(this.MainMenu_Load);
+			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Button BTN_NewGame;
-        private System.Windows.Forms.Button BTN_LoadGame;
-        private System.Windows.Forms.Button BTN_SaveGame;
-        private System.Windows.Forms.Button BTN_Credits;
-        private System.Windows.Forms.Button BTN_HighScores;
-        private System.Windows.Forms.Button BTN_Settings;
-        private System.Windows.Forms.Label TXT_Title;
-    }
+		private System.Windows.Forms.Button btn_NewGame;
+		private System.Windows.Forms.Button btn_LoadGame;
+		private System.Windows.Forms.Button btn_SaveGame;
+		private System.Windows.Forms.Button btn_Credits;
+		private System.Windows.Forms.Button btn_HighScores;
+		private System.Windows.Forms.Button btn_Settings;
+		private System.Windows.Forms.Label txt_Title;
+		private System.Windows.Forms.Button btn_Restart;
+	}
 }

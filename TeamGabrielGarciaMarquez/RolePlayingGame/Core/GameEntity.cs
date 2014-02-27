@@ -1,7 +1,9 @@
 using RolePlayingGame.UI;
+using System;
 
 namespace RolePlayingGame.Core
 {
+	
 	internal abstract class GameEntity : IRenderable, IGameEntity
 	{
 		#region Fields
