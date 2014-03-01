@@ -6,7 +6,9 @@
 
 		public Enemy(float x, float y, Entity entity)
 			: base(x, y, entity, false)
-		{ }
+		{
+			this.IsAnimationForced = true;
+		}
 
 		#endregion Constructors
 

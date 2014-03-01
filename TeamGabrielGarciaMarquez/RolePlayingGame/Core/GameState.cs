@@ -57,7 +57,7 @@ namespace RolePlayingGame.Core
 
 		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)
 		{
-			player.IsHeroFighting = true;
+			player.IsFighting = true;
 			popups.Clear();
 
 			if (enemy as IBoss != null)
@@ -122,6 +122,8 @@ namespace RolePlayingGame.Core
 			{
 				popups.Add(new TextPopup(enemy.Location.X + 40, enemy.Location.Y + 20, MissMessage));
 			}
+
+			player.FightStartTime = -1;
 		}
 
 		public SaveGameData SaveGame()

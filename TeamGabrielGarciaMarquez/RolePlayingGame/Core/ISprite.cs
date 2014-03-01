@@ -4,6 +4,8 @@
 	{
 		PointF Location { get; set; }
 
-		Point Position { get; }
+		bool IsAnimationEnabled { get; set; }
+
+		Point Position { get; set; }
 	}
 }

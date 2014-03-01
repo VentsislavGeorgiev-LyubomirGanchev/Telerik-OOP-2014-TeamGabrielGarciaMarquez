@@ -1,6 +1,6 @@
 ﻿namespace RolePlayingGame.Core
 {
-	internal interface IGameEntity
+	internal interface IGameEntity : IRenderable
 	{
 		Entity Entity { get; }
 	}

@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\HUD.cs" />
+    <Compile Include="Core\Direction.cs" />
     <Compile Include="Core\Human\Enemies\IBoss.cs" />
     <Compile Include="Core\Human\Enemies\IEnemy.cs" />
     <Compile Include="Core\Human\IHuman.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Core\Item\IObstacle.cs" />
     <Compile Include="Core\Item\DynamicItem.cs" />
     <Compile Include="Core\Item\Item.cs" />
+    <Compile Include="Core\Map\IArea.cs" />
     <Compile Include="Core\Map\LevelType.cs" />
     <Compile Include="Core\Map\TextPopup.cs" />
     <Compile Include="Core\EntityCategoryType.cs" />

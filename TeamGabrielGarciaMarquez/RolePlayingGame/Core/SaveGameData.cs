@@ -13,7 +13,7 @@ namespace RolePlayingGame.Core
 			this.Knowledge = player.Knowledge;
 			this.Defense = player.Defense;
 			this.Experience = player.Experience;
-			this.IsHeroFighting = player.IsHeroFighting;
+			this.IsFighting = player.IsFighting;
 			this.Level = player.Level;
 			this.Location = player.Location;
 			this.Position = player.Position;
@@ -30,7 +30,7 @@ namespace RolePlayingGame.Core
 
 		public int Experience { get; set; }
 
-		public bool IsHeroFighting { get; set; }
+		public bool IsFighting { get; set; }
 
 		public int Level { get; set; }
 

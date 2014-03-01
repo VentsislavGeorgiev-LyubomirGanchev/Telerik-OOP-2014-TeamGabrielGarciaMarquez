@@ -1,4 +1,7 @@
-﻿namespace RolePlayingGame.Core.Human
+﻿using RolePlayingGame.Core.Map;
+using System.Collections.Generic;
+
+namespace RolePlayingGame.Core.Human
 {
 	internal interface IPlayer : IHuman
 	{
@@ -16,9 +19,9 @@
 
 		bool HasKey { get; set; }
 
-		bool IsHeroFighting { get; set; }
-
         bool HasCertificate { get; set; }
+
+		void AttackWithMagic(IArea area, IList<TextPopup> popups);
 
 		void LoadSaveGame(SaveGameData savegame);
 	}
