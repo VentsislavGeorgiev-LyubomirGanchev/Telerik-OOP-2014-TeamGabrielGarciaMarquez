@@ -57,7 +57,7 @@
 			this.btn_LoadGame.Name = "btn_LoadGame";
 			this.btn_LoadGame.Size = new System.Drawing.Size(262, 36);
 			this.btn_LoadGame.TabIndex = 2;
-			this.btn_LoadGame.Text = "Load Game";
+			this.btn_LoadGame.Text = "Load Game (F6)";
 			this.btn_LoadGame.UseVisualStyleBackColor = true;
 			this.btn_LoadGame.Click += new System.EventHandler(this.BtnLoadGameClick);
 			// 
@@ -68,7 +68,7 @@
 			this.btn_SaveGame.Name = "btn_SaveGame";
 			this.btn_SaveGame.Size = new System.Drawing.Size(262, 36);
 			this.btn_SaveGame.TabIndex = 3;
-			this.btn_SaveGame.Text = "Save Game";
+			this.btn_SaveGame.Text = "Save Game (F5)";
 			this.btn_SaveGame.UseVisualStyleBackColor = true;
 			this.btn_SaveGame.Click += new System.EventHandler(this.BtnSaveGameClick);
 			// 
