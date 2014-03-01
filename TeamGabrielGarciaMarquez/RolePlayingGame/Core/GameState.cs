@@ -25,7 +25,7 @@ namespace RolePlayingGame.Core
 
 		#region Fields
 
-		private World _world;
+		private GameMovement _world;
 		private SaveGameData _savegame;
 
 		#endregion Fields
@@ -52,7 +52,7 @@ namespace RolePlayingGame.Core
 		public void Initialize()
 		{
 			//Create all the main gameobjects
-			this._world = new World(this, this._savegame);
+			this._world = new GameMovement(this, this._savegame);
 		}
 
 		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)

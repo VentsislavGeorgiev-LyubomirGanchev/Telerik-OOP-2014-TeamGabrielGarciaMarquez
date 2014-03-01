@@ -13,6 +13,7 @@ namespace RolePlayingGame.Core
 		#region Constants
 
 		private const string _filePath = @"Content\Entities.csv";
+		private const char _csvSeparator = ',';
 
 		#endregion Constants
 
@@ -34,7 +35,7 @@ namespace RolePlayingGame.Core
 						stream.ReadLine();
 						while ((line = stream.ReadLine()) != null)
 						{
-							string[] elements = line.Split(',');
+							string[] elements = line.Split(_csvSeparator);
 
 							var entityRawData = new EntityRawData(elements);
 							Entity._TileDescriptions.Add(entityRawData.Key, entityRawData);

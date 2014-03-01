@@ -111,6 +111,7 @@
     <Compile Include="Core\EntityCategoryType.cs" />
     <Compile Include="Core\EntityType.cs" />
     <Compile Include="Core\Item\StaticItem.cs" />
+    <Compile Include="Core\GameMovement.cs" />
     <Compile Include="Core\SaveGameData.cs" />
     <Compile Include="Core\SpriteFactory.cs" />
     <Compile Include="Core\Point.cs" />
