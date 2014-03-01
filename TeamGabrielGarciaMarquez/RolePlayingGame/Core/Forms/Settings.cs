@@ -42,6 +42,7 @@ namespace RolePlayingGame.Core.Forms
 			uint newVolumeAllChannels = (((uint)newVolume & 0x0000ffff) | ((uint)newVolume << 16));
 			// Set the volume
 			waveOutSetVolume(IntPtr.Zero, newVolumeAllChannels);
+			Sounds.SetBackgroundSoundVolume(track_Wave.Value * 10);
 		}
 	}
 }

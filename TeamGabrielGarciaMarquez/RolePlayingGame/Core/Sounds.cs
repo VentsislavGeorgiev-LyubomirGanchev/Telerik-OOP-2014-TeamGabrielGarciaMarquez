@@ -52,6 +52,11 @@ namespace RolePlayingGame.Core
 			_player.controls.stop();
 		}
 
+		public static void SetBackgroundSoundVolume(int volume)
+		{
+			_player.settings.volume = volume;
+		}
+
 		public static void HealthUp()
 		{
 			_healthUp.Play();

@@ -151,13 +151,8 @@ namespace RolePlayingGame.Core.Map
 			//Ignore keypresses while we are animating or fighting
 			if (!this._heroEntity.IsHeroAnimating && !this._heroEntity.IsHeroFighting)
 			{
-				var teleportLevel = GameMaster.Teleport(e);
-				if (teleportLevel != null)
+				if (this.CheckForTeleportation(e))
 				{
-					this._currentArea = this._world[teleportLevel];
-					this._heroEntity.Position = new Point(GameMaster.SaveSpot);
-					this.SetDestination();
-					this._heroEntity.Location = this._heroNextLocation;
 					return;
 				}
 
@@ -165,7 +160,7 @@ namespace RolePlayingGame.Core.Map
 				{
 					case Keys.Right:
 						//Are we at the edge of the map?
-						if (this._heroEntity.Position.X < Area.MapSizeX - 1)
+						if (this._heroEntity.CanMoveRight(Area.MapSizeXMaxIndex))
 						{
 							//Can we move to the next tile or not (blocking tile or monster)
 							if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X + 1, this._heroEntity.Position.Y], this._heroEntity.Position.X + 1, this._heroEntity.Position.Y))
@@ -175,7 +170,7 @@ namespace RolePlayingGame.Core.Map
 								this._heroEntity.IsHeroAnimating = true;
 								this._direction = HeroDirection.Right;
 								this._heroEntity.Position.X++;
-								this.SetDestination();
+								this.CalculateSpriteLocation(false);
 							}
 						}
 						else if (this._currentArea.EastArea != "-")
@@ -183,14 +178,13 @@ namespace RolePlayingGame.Core.Map
 							//Edge of map - move to next area
 							this._currentArea = this._world[this._currentArea.EastArea];
 							this._heroEntity.Position.X = 0;
-							this.SetDestination();
-							this._heroEntity.Location = this._heroNextLocation;
+							this.CalculateSpriteLocation(true);
 						}
 						break;
 
 					case Keys.Left:
 						//Are we at the edge of the map?
-						if (this._heroEntity.Position.X > 0)
+						if (this._heroEntity.CanMoveLeft(Area.MapSizeXMinIndex))
 						{
 							//Can we move to the next tile or not (blocking tile or monster)
 							if (this.CheckNextTile(this._currentArea.TilesMap[this._heroEntity.Position.X - 1, this._heroEntity.Position.Y], this._heroEntity.Position.X - 1, this._heroEntity.Position.Y))
@@ -200,21 +194,20 @@ namespace RolePlayingGame.Core.Map
 								this._heroEntity.IsHeroAnimating = true;
 								this._direction = HeroDirection.Left;
 								this._heroEntity.Position.X--;
-								this.SetDestination();
+								this.CalculateSpriteLocation(false);
 							}
 						}
 						else if (this._currentArea.WestArea != "-")
 						{
 							this._currentArea = this._world[_currentArea.WestArea];
 							this._heroEntity.Position.X = Area.MapSizeX - 1;
-							this.SetDestination();
-							this._heroEntity.Location = _heroNextLocation;
+							this.CalculateSpriteLocation(true);
 						}
 						break;
 
 					case Keys.Up:
 						//Are we at the edge of the map?
-						if (this._heroEntity.Position.Y > 0)
+						if (this._heroEntity.CanMoveUp(Area.MapSizeYMinIndex))
 						{
 							//Can we move to the next tile or not (blocking tile or monster)
 							if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y - 1], this._heroEntity.Position.X, this._heroEntity.Position.Y - 1))
@@ -223,7 +216,7 @@ namespace RolePlayingGame.Core.Map
 								this._heroEntity.IsHeroAnimating = true;
 								this._direction = HeroDirection.Up;
 								this._heroEntity.Position.Y--;
-								this.SetDestination();
+								this.CalculateSpriteLocation(false);
 							}
 						}
 						else if (_currentArea.NorthArea != "-")
@@ -231,14 +224,13 @@ namespace RolePlayingGame.Core.Map
 							//Edge of map - move to next area
 							this._currentArea = _world[_currentArea.NorthArea];
 							this._heroEntity.Position.Y = Area.MapSizeY - 1;
-							this.SetDestination();
-							this._heroEntity.Location = _heroNextLocation;
+							this.CalculateSpriteLocation(true);
 						}
 						break;
 
 					case Keys.Down:
 						//Are we at the edge of the map?
-						if (this._heroEntity.Position.Y < Area.MapSizeY - 1)
+						if (this._heroEntity.CanMoveDown(Area.MapSizeYMaxIndex))
 						{
 							//Can we move to the next tile or not (blocking tile or monster)
 							if (this.CheckNextTile(_currentArea.TilesMap[this._heroEntity.Position.X, this._heroEntity.Position.Y + 1], this._heroEntity.Position.X, this._heroEntity.Position.Y + 1))
@@ -247,7 +239,7 @@ namespace RolePlayingGame.Core.Map
 								this._heroEntity.IsHeroAnimating = true;
 								this._direction = HeroDirection.Down;
 								this._heroEntity.Position.Y++;
-								this.SetDestination();
+								this.CalculateSpriteLocation(false);
 							}
 						}
 						else if (_currentArea.SouthArea != "-")
@@ -255,8 +247,7 @@ namespace RolePlayingGame.Core.Map
 							//Edge of map - move to next area
 							this._currentArea = _world[_currentArea.SouthArea];
 							this._heroEntity.Position.Y = 0;
-							this.SetDestination();
-							this._heroEntity.Location = _heroNextLocation;
+							this.CalculateSpriteLocation(true);
 						}
 						break;
 
@@ -303,6 +294,19 @@ namespace RolePlayingGame.Core.Map
 			throw new ArgumentException("Direction is not set correctly");
 		}
 
+		private bool CheckForTeleportation(KeyEventArgs e)
+		{
+			var teleportLevel = GameMaster.Teleport(e);
+			if (teleportLevel != null)
+			{
+				this._currentArea = this._world[teleportLevel];
+				this._heroEntity.Position = new Point(GameMaster.SaveSpot);
+				this.CalculateSpriteLocation(true);
+				return true;
+			}
+			return false;
+		}
+
 		private bool CheckNextTile(MapTile nextMapTile, int x, int y)
 		{
 			//See if there is a door we need to open
@@ -339,7 +343,7 @@ namespace RolePlayingGame.Core.Map
 				var obstacle = mapTile.Sprite as IObstacle;
 				if (obstacle.State)
 				{
-                    return false;
+					return false;
 				}
 
 				//For each key if it matches then open the door by switching the sprite & sprite to its matching open version
@@ -357,11 +361,15 @@ namespace RolePlayingGame.Core.Map
 		/// <summary>
 		/// Calculate the next position of the player
 		/// </summary>
-		private void SetDestination()
+		private void CalculateSpriteLocation(bool setTheLocation)
 		{
 			//Calculate the eventual sprite destination based on the area grid coordinates
-			_heroNextLocation = new PointF(this._heroEntity.Position.X * Tile.TileSizeX + Area.AreaOffsetX,
+			this._heroNextLocation = new PointF(this._heroEntity.Position.X * Tile.TileSizeX + Area.AreaOffsetX,
 											this._heroEntity.Position.Y * Tile.TileSizeY + Area.AreaOffsetY);
+			if (setTheLocation)
+			{
+				this._heroEntity.Location = this._heroNextLocation;
+			}
 		}
 
 		private enum HeroDirection

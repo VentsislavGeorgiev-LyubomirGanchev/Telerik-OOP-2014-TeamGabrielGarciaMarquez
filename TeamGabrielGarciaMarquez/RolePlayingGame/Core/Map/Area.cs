@@ -15,6 +15,12 @@ namespace RolePlayingGame.Core.Map
 		public const int MapSizeX = 10;
 		public const int MapSizeY = 10;
 
+		public const int MapSizeXMaxIndex = MapSizeX - 1;
+		public const int MapSizeYMaxIndex = MapSizeY - 1;
+
+		public const int MapSizeXMinIndex = 0;
+		public const int MapSizeYMinIndex = 0;
+
 		public MapTile[,] TilesMap = new MapTile[MapSizeX, MapSizeY];
 
 		public string Name { get; private set; }
