@@ -18,7 +18,8 @@ namespace RolePlayingGame.Core
 		public const int EntitiesMoveSpeed = 200;
 
 		private const int LuckyScope = 10;
-		private const int LuckyNumber = 3;
+		private const int MissNumber = 6;
+		private const int MaxScopeForLuckyHit = 5;
 
 		#endregion Constants
 
@@ -68,15 +69,27 @@ namespace RolePlayingGame.Core
 				Sounds.StudentFight();
 			}
 
-			//An enemy strength ability is 1/2 for boss and 1/3 for student of their max health. Compare that to your defense
-			//If you outclass them then there is still a chance of a lucky hit
 			int playerDamage = 0;
 
-			if (random.Next(enemy.Strength + 1) >= player.Defense
-				|| (enemy.Strength < player.Defense && random.Next(LuckyScope) == LuckyNumber))
+			//Logic for enemy making damage on the player
+
+			if (random.Next(LuckyScope) != MissNumber)
 			{
-				//Enemies do damage up to their max health - if they hit you.
-				playerDamage = random.Next(enemy.Health) + 1;
+				if (enemy.Strength > player.Defense)
+				{
+					int scopeHit = enemy.Strength - player.Defense;
+
+					playerDamage = random.Next((scopeHit / 100) * 10, scopeHit + 1);
+				}
+				else
+				{
+					if (enemy.Strength + MaxScopeForLuckyHit > player.Defense)
+					{
+						int scopeHit = (enemy.Strength + MaxScopeForLuckyHit) - player.Defense;
+						playerDamage = random.Next((scopeHit / 100) * 50, scopeHit + 1);
+					}
+				}
+
 				player.Health -= playerDamage;
 
 				if (player.Health <= 0)
@@ -88,11 +101,15 @@ namespace RolePlayingGame.Core
 			string playerDamageMessage = playerDamage != 0 ? playerDamage.ToString() : MissMessage;
 			popups.Add(new TextPopup(player.Location.X + 40, player.Location.Y + 20, playerDamageMessage));
 
-			//A enemy armour is 1/5 of their max health
-			if (random.Next(player.Knowledge + 1) >= (enemy.Health / 5))
+			//Logic for player making damage on the enemy
+			if (random.Next(LuckyScope) != MissNumber)
 			{
-				//Player damage is up to twice the attack rating
-				int enemyDamage = random.Next(player.Knowledge * 2) + 1;
+				int enemyDamage = 0;
+				if (player.Knowledge >= enemy.Defense)
+				{
+					int scopeHit = (player.Knowledge * 2) - player.Defense;
+					enemyDamage = random.Next((scopeHit / 100) * 30, scopeHit + 1);
+				}
 				if (enemyDamage > 0)
 				{
 					int experiance = enemy.GetDamage(enemyDamage);
@@ -135,7 +152,7 @@ namespace RolePlayingGame.Core
 				//If game is over then allow S to restart
 				if (e.KeyCode == Keys.S)
 				{
-                    this.HUD.GameIsWon = false;
+					this.HUD.GameIsWon = false;
 					this.Initialize();
 				}
 			}

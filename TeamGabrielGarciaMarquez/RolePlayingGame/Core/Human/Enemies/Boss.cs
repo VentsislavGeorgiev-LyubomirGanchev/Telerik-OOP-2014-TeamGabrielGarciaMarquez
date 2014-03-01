@@ -4,9 +4,9 @@
 	{
 		#region Constants
 
-		private const int HealthMultiplicator = 100;
-		private const int StrengthDivisor = 4;
-
+		private const int HealthMultiplicator = 60;
+		private const int StrengthPercentage = 40;
+		private const int DefenseDivisor = 5;
 		#endregion Constants
 
 		#region Fields
@@ -21,6 +21,7 @@
 			this.Health = SetHealth();
 			this.StartingHealth = this.Health;
 			this.Strength = this.SetStrength();
+			this.Defense = this.Health / DefenseDivisor;
 		}
 
 		#endregion Constructors
@@ -48,7 +49,7 @@
 
 		public override int SetStrength()
 		{
-			return this.Health / StrengthDivisor;
+			return (int)(((float)this.Health / 100) * StrengthPercentage);
 		}
 
 		#endregion Methods

@@ -9,8 +9,8 @@ namespace RolePlayingGame.Core.Human
         #region Constants
 
         private const int DefaultHealth = 200;
-        private const int DefaultMana = 1;
-        private const int DefaultKnowledge = 6;
+        private const int DefaultMana = 2;
+        private const int DefaultKnowledge = 7;
         private const int DefaultDefense = 6;
         private const int DefaultExperience = 0;
         private const int DefaultLevel = 1;
@@ -96,10 +96,10 @@ namespace RolePlayingGame.Core.Human
 
         public void DoMagic(Area currentArea, IList<TextPopup> popups)
         {
-            if (this.Mana > 0)
+            if (this.Mana > 1)
             {
                 Sounds.Magic();
-                this.Mana--;
+                this.Mana-=2;
                 this.IsHeroFighting = true;
                 popups.Clear();
 

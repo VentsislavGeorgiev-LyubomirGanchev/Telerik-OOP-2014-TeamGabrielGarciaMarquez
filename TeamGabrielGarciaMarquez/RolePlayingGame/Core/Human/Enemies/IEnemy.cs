@@ -6,6 +6,8 @@
 
 		int Health { get; set; }
 
+		int Defense { get; set; }
+
 		int GetDamage(int enemyDamage);
 	}
 }
