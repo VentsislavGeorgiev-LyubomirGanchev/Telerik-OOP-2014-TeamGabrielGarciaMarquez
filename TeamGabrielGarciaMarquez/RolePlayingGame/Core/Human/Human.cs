@@ -182,6 +182,7 @@ namespace RolePlayingGame.Core.Human
 			if (this.IsAnimationEnabled || this.IsFighting)
 			{
 				this.CurrentFrameIndex = Sprite.CalculateNextFrame(gameTime, this.FramesCount);
+				this.IsAnimationEnabled = true;
 			}
 			else
 			{
@@ -201,6 +202,7 @@ namespace RolePlayingGame.Core.Human
 					if (gameTime - this.FightStartTime > 1.0)
 					{
 						this.IsFighting = false;
+						this.IsAnimationEnabled = false;
 					}
 				}
 			}
