@@ -3,13 +3,13 @@
     internal class Student : Enemy
     {
         #region Constants
-        
-        private const int HealthMultiplicator = 12;
-        private const int StrengthDivisor = 2;
+
+        private const int HealthMultiplicator = 20;
+        private const int StrengthPercentage = 80;
+		private const int DefenseDivisor = 5;
         #endregion Constants
 
         #region Fields
-        private int healthCoefficient = 2;
         #endregion Fields
 
         #region Constructors
@@ -20,7 +20,7 @@
             this.Health = SetHealth();
             this.StartingHealth = this.Health;
             this.Strength = this.SetStrength();
-            healthCoefficient += this.Level - 1;
+			this.Defense = this.Health / DefenseDivisor;
         }
 
         #endregion Constructors
@@ -37,12 +37,12 @@
         /// <returns>Health in float</returns>
         public override int SetHealth()
         {
-            return (this.Level * HealthMultiplicator) * healthCoefficient;
+            return (this.Level * HealthMultiplicator);
         }
 
         public override int SetStrength()
         {
-            return this.Health / StrengthDivisor;
+			return (int)(((float)this.Health / 100) * StrengthPercentage);
         }
 
         #endregion Methods

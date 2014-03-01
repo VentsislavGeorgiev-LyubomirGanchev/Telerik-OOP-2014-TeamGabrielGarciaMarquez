@@ -16,6 +16,8 @@
 
 		public int Strength { get; set; }
 
+		public int Defense { get; set; }
+
 		#endregion Properties
 
 		#region Methods
@@ -44,7 +46,7 @@
 			if (this.IsAlive() == false)
 			{
 				this.Die();
-				//Experience is the monsters max health
+				//Experience is the monsters max health divided by 3
 				return this.StartingHealth / 3;
 			}
 			return 0;
