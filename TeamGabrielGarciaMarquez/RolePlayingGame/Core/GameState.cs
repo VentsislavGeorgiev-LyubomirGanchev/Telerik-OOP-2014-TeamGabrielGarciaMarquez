@@ -4,6 +4,8 @@ using RolePlayingGame.Core.Map;
 using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
@@ -17,15 +19,36 @@ namespace RolePlayingGame.Core
 		public const int FrameRate = 8;
 		public const int EntitiesMoveSpeed = 200;
 
-		private const int LuckyScope = 10;
-		private const int MissNumber = 6;
-		private const int MaxScopeForLuckyHit = 5;
+		private const int _LuckyScope = 10;
+		private const int _MissNumber = 6;
+		private const int _MaxScopeForLuckyHit = 5;
+
+		private const string _SaveGameFileName = "save.bin";
 
 		#endregion Constants
 
+		#region Static
+
+		public static GameState LoadGame()
+		{
+			if (!File.Exists(_SaveGameFileName))
+			{
+				return null;
+			}
+
+			using (var stream = File.OpenRead(_SaveGameFileName))
+			{
+				BinaryFormatter binaryFormatter = new BinaryFormatter();
+				var savedGameState = new GameState((SaveGameData)binaryFormatter.Deserialize(stream));
+				return savedGameState;
+			}
+		}
+
+		#endregion Static
+
 		#region Fields
 
-		private GameMovement _world;
+		private GameMovement _gameMovement;
 		private SaveGameData _savegame;
 
 		#endregion Fields
@@ -38,7 +61,6 @@ namespace RolePlayingGame.Core
 			{
 				this.Initialize();
 			}
-			Sounds.PlayBackgroundSound();
 		}
 
 		#region Properties
@@ -52,7 +74,7 @@ namespace RolePlayingGame.Core
 		public void Initialize()
 		{
 			//Create all the main gameobjects
-			this._world = new GameMovement(this, this._savegame);
+			this._gameMovement = new GameMovement(this, this._savegame);
 		}
 
 		public void Fight(Random random, IPlayer player, IEnemy enemy, IList<TextPopup> popups)
@@ -73,7 +95,7 @@ namespace RolePlayingGame.Core
 
 			//Logic for enemy making damage on the player
 
-			if (random.Next(LuckyScope) != MissNumber)
+			if (random.Next(_LuckyScope) != _MissNumber)
 			{
 				if (enemy.Strength > player.Defense)
 				{
@@ -83,9 +105,9 @@ namespace RolePlayingGame.Core
 				}
 				else
 				{
-					if (enemy.Strength + MaxScopeForLuckyHit > player.Defense)
+					if (enemy.Strength + _MaxScopeForLuckyHit > player.Defense)
 					{
-						int scopeHit = (enemy.Strength + MaxScopeForLuckyHit) - player.Defense;
+						int scopeHit = (enemy.Strength + _MaxScopeForLuckyHit) - player.Defense;
 						playerDamage = random.Next((scopeHit / 100) * 50, scopeHit + 1);
 					}
 				}
@@ -102,7 +124,7 @@ namespace RolePlayingGame.Core
 			popups.Add(new TextPopup(player.Location.X + 40, player.Location.Y + 20, playerDamageMessage));
 
 			//Logic for player making damage on the enemy
-			if (random.Next(LuckyScope) != MissNumber)
+			if (random.Next(_LuckyScope) != _MissNumber)
 			{
 				int enemyDamage = 0;
 				if (player.Knowledge >= enemy.Defense)
@@ -126,37 +148,47 @@ namespace RolePlayingGame.Core
 			player.FightStartTime = -1;
 		}
 
-		public SaveGameData SaveGame()
+		public void SaveGame()
 		{
-			return this._world.SaveGame();
+			var savegame = this._gameMovement.SaveGame();
+			using (var stream = File.OpenWrite(_SaveGameFileName))
+			{
+				BinaryFormatter binaryFormatter = new BinaryFormatter();
+				binaryFormatter.Serialize(stream, savegame);
+			}
 		}
 
 		public void Draw(IRenderer renderer)
 		{
-			this._world.Draw(renderer);
+			this._gameMovement.Draw(renderer);
 			this.HUD.Draw(renderer);
 		}
 
 		public void Update(double gameTime, double elapsedTime)
 		{
-			this._world.Update(gameTime, elapsedTime);
+			this._gameMovement.Update(gameTime, elapsedTime);
 		}
 
 		public void KeyDown(KeyEventArgs e)
 		{
-			//If the game is not over then allow the user to play
-			if (this.HUD.Health > 0 && !this.HUD.GameIsWon)
+			switch (e.KeyCode)
 			{
-				this._world.KeyDown(e);
-			}
-			else
-			{
-				//If game is over then allow S to restart
-				if (e.KeyCode == Keys.S)
-				{
-					this.HUD.GameIsWon = false;
-					this.Initialize();
-				}
+				default:
+					//If the game is not over then allow the user to play
+					if (this.HUD.Health > 0 && !this.HUD.GameIsWon)
+					{
+						this._gameMovement.KeyDown(e);
+					}
+					else
+					{
+						//If game is over then allow S to restart
+						if (e.KeyCode == Keys.S)
+						{
+							this.HUD.GameIsWon = false;
+							this.Initialize();
+						}
+					}
+					break;
 			}
 		}
 

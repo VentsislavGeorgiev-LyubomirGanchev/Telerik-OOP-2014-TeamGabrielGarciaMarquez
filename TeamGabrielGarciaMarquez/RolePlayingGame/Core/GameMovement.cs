@@ -5,6 +5,7 @@ using RolePlayingGame.Core.Map;
 using RolePlayingGame.UI;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
@@ -63,6 +64,7 @@ namespace RolePlayingGame.Core
 			}
 
 			gameState.HUD.Update(this._player);
+			Sounds.PlayBackgroundSound(LevelType.Level1);
 		}
 
 		#region Methods
@@ -299,6 +301,9 @@ namespace RolePlayingGame.Core
 						throw new InvalidOperationException();
 				}
 				this.CalculateSpriteNextLocation(true);
+
+				var areaNameTitleCase = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(areaName);
+				Sounds.PlayBackgroundSound((LevelType)Enum.Parse(typeof(LevelType), areaNameTitleCase));
 			}
 		}
 

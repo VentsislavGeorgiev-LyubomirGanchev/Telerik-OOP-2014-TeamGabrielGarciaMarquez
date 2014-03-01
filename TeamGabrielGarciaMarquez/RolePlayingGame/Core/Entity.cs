@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace RolePlayingGame.Core
 {
@@ -106,7 +105,7 @@ namespace RolePlayingGame.Core
 			catch (Exception ex)
 			{
 				var exception = new FileParseException(_filePath, ex.Message, ex);
-				MessageBox.Show(exception.Message, ex.Message);
+				throw exception;
 			}
 		}
 	}

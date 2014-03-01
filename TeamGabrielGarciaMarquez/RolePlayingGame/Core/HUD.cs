@@ -1,6 +1,5 @@
 ﻿using RolePlayingGame.Core.Human;
 using RolePlayingGame.UI;
-using System;
 using System.Drawing;
 
 namespace RolePlayingGame.Core
@@ -8,7 +7,7 @@ namespace RolePlayingGame.Core
 	/// <summary>
 	/// Head-up Display Singleton class
 	/// </summary>
-	
+
 	internal sealed class HUD : IHUD
 	{
 		#region Constants
@@ -54,6 +53,8 @@ namespace RolePlayingGame.Core
 		private readonly Sprite _knowledgeSprite;
 		private readonly Sprite _defenseSprite;
 		private readonly Sprite _keySprite;
+
+		private bool _gameFinishSoundPlayed;
 
 		#endregion Fields
 
@@ -114,15 +115,22 @@ namespace RolePlayingGame.Core
 			//If the game is over then display the end game message
 			if (this.Health == 0)
 			{
-				renderer.DrawString("You died!", _Font, _Brush, 200, 250);
-				renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
+				this.DrawMessage(renderer, new[] { "You died!", "Press 's' to play again" });
 			}
 
 			//If the game is won then show congratulations
 			if (this.GameIsWon)
 			{
-				renderer.DrawString("You Won!", _Font, _Brush, 200, 250);
-				renderer.DrawString("Press 's' to play again", _Font, _Brush, 100, 300);
+				this.DrawMessage(renderer, new[] { "You won!", "Press 's' to play again" });
+			}
+		}
+
+		public void DrawMessage(IRenderer renderer, string[] text)
+		{
+			renderer.DrawString(text[0], _Font, _Brush, 200, 250);
+			if (text.Length > 1)
+			{
+				renderer.DrawString(text[1], _Font, _Brush, 100, 300);
 			}
 		}
 
@@ -135,10 +143,13 @@ namespace RolePlayingGame.Core
 			this.Mana = player.Mana;
 			this.Experience = player.Experience;
 			this.HasKey = player.HasKey;
-            if (player.HasCertificate)
-            {
-                this.GameIsWon = true;
-            }
+			if (player.HasCertificate && !this._gameFinishSoundPlayed)
+			{
+				this.GameIsWon = true;
+				Sounds.StopSound();
+				Sounds.End();
+				this._gameFinishSoundPlayed = true;
+			}
 		}
 
 		private void SetSprite(out Sprite sprite, PointF position, float spacing, Entity entity)

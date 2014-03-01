@@ -89,6 +89,7 @@ namespace RolePlayingGame.Core
 
 			if (gameLevel.HasValue && e.Modifiers.HasFlag(Keys.Shift))
 			{
+				Sounds.PlayBackgroundSound(gameLevel.Value);
 				return gameLevel.ToString().ToLower();
 			}
 			return null;

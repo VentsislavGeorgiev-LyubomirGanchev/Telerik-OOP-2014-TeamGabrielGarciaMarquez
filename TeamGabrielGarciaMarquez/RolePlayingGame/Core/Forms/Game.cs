@@ -7,9 +7,15 @@ namespace RolePlayingGame.Core.Forms
 {
 	internal partial class Game : Form
 	{
+		#region Constants
+
+		private const string _GameTitle = "Ninja.Net";
+
+		#endregion Constants
+
 		#region Fields
 
-		private readonly Stopwatch _gameTimeTracker = new Stopwatch();
+		private readonly Stopwatch _gameTimeTracker;
 		private double _gameLastTimeUpdate;
 		private GDIRenderer _gameRenderer;
 		private bool _hasSavedState;
@@ -18,6 +24,8 @@ namespace RolePlayingGame.Core.Forms
 
 		public Game(GameState state = null)
 		{
+			this._gameTimeTracker = new Stopwatch();
+
 			//Setup the form
 			this.InitializeComponent();
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -35,63 +43,73 @@ namespace RolePlayingGame.Core.Forms
 
 		#endregion Properties
 
+		public void SaveGame()
+		{
+			if (this.GameState != null)
+			{
+				this.GameState.SaveGame();
+			}
+		}
+
+		public void LoadGame()
+		{
+			var savedGameState = GameState.LoadGame();
+			if (savedGameState != null)
+			{
+				this.GameState = savedGameState;
+			}
+			else
+			{
+				//MessageBox.Show(MainMenu.MessageForm, "Savegame not found!", _GameTitle);
+			}
+		}
+
 		private void Initialize()
 		{
-			try
+			if (!this._hasSavedState)
 			{
-				if (!this._hasSavedState)
-				{
-					this.GameState.Initialize();
-				}
+				this.GameState.Initialize();
+			}
 
-				//Initialise and start the timer
-				_gameLastTimeUpdate = 0.0;
-				_gameTimeTracker.Reset();
-				_gameTimeTracker.Start();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString(), ex.Message);
-				this.Close();
-			}
+			//Initialise and start the timer
+			_gameLastTimeUpdate = 0.0;
+			_gameTimeTracker.Reset();
+			_gameTimeTracker.Start();
 		}
 
 		private void Game_Paint(object sender, PaintEventArgs e)
 		{
-			try
-			{
-				//Work out how long since we were last here in seconds
-				double gameTime = _gameTimeTracker.ElapsedMilliseconds / 1000.0;
-				double elapsedTime = gameTime - _gameLastTimeUpdate;
-				_gameLastTimeUpdate = gameTime;
+			//Work out how long since we were last here in seconds
+			double gameTime = _gameTimeTracker.ElapsedMilliseconds / 1000.0;
+			double elapsedTime = gameTime - _gameLastTimeUpdate;
+			_gameLastTimeUpdate = gameTime;
 
-				//Perform any animation and updates
-				this.GameState.Update(gameTime, elapsedTime);
+			//Perform any animation and updates
+			this.GameState.Update(gameTime, elapsedTime);
 
-				//Draw everything
-				this._gameRenderer.SetGraphics(e.Graphics);
-				this.GameState.Draw(this._gameRenderer);
+			//Draw everything
+			this._gameRenderer.SetGraphics(e.Graphics);
+			this.GameState.Draw(this._gameRenderer);
 
-				//Force the next Paint()
-				this.Invalidate();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString(), ex.Message);
-				this.Close();
-			}
+			//Force the next Paint()
+			this.Invalidate();
 		}
 
 		private void Game_KeyDown(object sender, KeyEventArgs e)
 		{
-			try
+			switch (e.KeyCode)
 			{
-				GameState.KeyDown(e);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString(), ex.Message);
-				this.Close();
+				case Keys.F5:
+					this.SaveGame();
+					break;
+
+				case Keys.F6:
+					this.LoadGame();
+					break;
+
+				default:
+					GameState.KeyDown(e);
+					break;
 			}
 		}
 

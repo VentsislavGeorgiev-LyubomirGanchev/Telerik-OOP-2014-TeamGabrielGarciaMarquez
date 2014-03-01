@@ -147,7 +147,6 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainMenu";
 			this.Text = "Ninja.Net";
-			this.Load += new System.EventHandler(this.MainMenu_Load);
 			this.ResumeLayout(false);
 
 		}

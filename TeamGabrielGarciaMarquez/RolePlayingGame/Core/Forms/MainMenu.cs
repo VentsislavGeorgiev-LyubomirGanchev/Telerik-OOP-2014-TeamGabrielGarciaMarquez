@@ -1,22 +1,13 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace RolePlayingGame.Core.Forms
 {
 	public partial class MainMenu : Form
 	{
-		#region Constants
-
-		private const string _SaveGameFileName = "save.bin";
-
-		#endregion Constants
-
 		#region Fields
 
 		private GameState _gameState;
-		private bool _loadedSaveGame;
 
 		#endregion Fields
 
@@ -25,33 +16,22 @@ namespace RolePlayingGame.Core.Forms
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 			this.InitializeComponent();
 
-			this._loadedSaveGame = false;
 			this._gameState = null;
+			MessageForm = new Form() { WindowState = FormWindowState.Maximized, TopMost = true };
 		}
 
-		private void MainMenu_Load(object sender, EventArgs e)
-		{
-		}
+		public static Form MessageForm { get; private set; }
 
 		private void NewGame(object sender, EventArgs e)
 		{
-			try
-			{
-				var game = new Game(this._gameState);
-				game.FormClosed += game_FormClosed;
-				this._gameState = game.GameState;
+			var game = new Game(this._gameState);
+			game.FormClosed += game_FormClosed;
+			this._gameState = game.GameState;
 
-				btn_NewGame.Text = "Continue";
-				btn_Restart.Show();
-				this.Hide();
-				game.Show();
-				this._loadedSaveGame = false;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString(), ex.Message);
-				this.Close();
-			}
+			btn_NewGame.Text = "Continue";
+			btn_Restart.Show();
+			this.Hide();
+			game.Show();
 		}
 
 		private void BtnSettingsClick(object sender, EventArgs e)
@@ -64,27 +44,22 @@ namespace RolePlayingGame.Core.Forms
 		{
 			if (this._gameState != null)
 			{
-				using (var stream = File.OpenWrite(_SaveGameFileName))
-				{
-					BinaryFormatter binaryFormatter = new BinaryFormatter();
-					binaryFormatter.Serialize(stream, this._gameState.SaveGame());
-				}
+				this._gameState.SaveGame();
+				//MessageBox.Show(MessageForm, "Game saved!");
 			}
 		}
 
 		private void BtnLoadGameClick(object sender, EventArgs e)
 		{
-			if (!File.Exists(_SaveGameFileName))
+			var savedGameState = GameState.LoadGame();
+			if (savedGameState != null)
 			{
-				return;
-			}
-
-			using (var stream = File.OpenRead(_SaveGameFileName))
-			{
-				BinaryFormatter binaryFormatter = new BinaryFormatter();
-				this._gameState = new GameState((SaveGameData)binaryFormatter.Deserialize(stream));
-				this._loadedSaveGame = true;
+				this._gameState = savedGameState;
 				this.NewGame(sender, e);
+			}
+			else
+			{
+				//MessageBox.Show(MessageForm, "Savegame not found!");
 			}
 		}
 
@@ -96,7 +71,7 @@ namespace RolePlayingGame.Core.Forms
 		private void btn_Restart_Click(object sender, EventArgs e)
 		{
 			this._gameState = null;
-			Sounds.StopBackgroundSound();
+			Sounds.StopSound();
 			btn_NewGame.Text = "New Game";
 			btn_Restart.Hide();
 		}

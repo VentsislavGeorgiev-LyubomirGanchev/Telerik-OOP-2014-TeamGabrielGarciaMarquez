@@ -7,6 +7,7 @@
 		private const int HealthMultiplicator = 60;
 		private const int StrengthPercentage = 40;
 		private const int DefenseDivisor = 5;
+
 		#endregion Constants
 
 		#region Fields
@@ -36,6 +37,7 @@
 		{
 			this.Health = 0;
 			this.OnUpdateTile(EntityType.Key);
+			Sounds.Win();
 		}
 
 		/// <summary>

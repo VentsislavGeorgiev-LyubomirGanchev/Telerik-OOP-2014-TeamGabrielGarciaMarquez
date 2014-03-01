@@ -1,3 +1,5 @@
+using RolePlayingGame.Core.Map;
+using System;
 using System.Media;
 using System.Windows.Forms;
 using WMPLib;
@@ -7,9 +9,9 @@ namespace RolePlayingGame.Core
 	/// <summary>
 	/// Sounds is a static class for any other part of the program to use to play the sounds.
 	/// </summary>
-	public static class Sounds
+	internal static class Sounds
 	{
-        private static readonly string AppDirectory = Application.StartupPath;
+		private static readonly string AppDirectory = Application.StartupPath;
 		private static readonly WindowsMediaPlayer _player = new WindowsMediaPlayer();
 		private static readonly SoundPlayer _healthUp = new SoundPlayer(@"Content\Sounds\eatHealth.wav");
 		private static readonly SoundPlayer _manaUp = new SoundPlayer(@"Content\Sounds\manaDrink.wav");
@@ -21,7 +23,7 @@ namespace RolePlayingGame.Core
 		private static readonly SoundPlayer _doorOpen = new SoundPlayer(@"Content\Sounds\doorOpen.wav");
 		private static readonly SoundPlayer _magic = new SoundPlayer(@"Content\Sounds\magicSound.wav");
 		private static readonly SoundPlayer _pickUp = new SoundPlayer(@"Content\Sounds\pickup.wav");
-		private static readonly SoundPlayer _Start = new SoundPlayer(@"Content\Sounds\start.wav");
+		private static readonly SoundPlayer _start = new SoundPlayer(@"Content\Sounds\start.wav");
 
 		static Sounds()
 		{
@@ -36,18 +38,75 @@ namespace RolePlayingGame.Core
 			_doorOpen.Load();
 			_magic.Load();
 			_pickUp.Load();
-			_Start.Load();
+			_start.Load();
 		}
 
-		public static void PlayBackgroundSound()
+		public static void Play(string path)
 		{
-			var path = AppDirectory + @"\Content\Sounds\MeadowOfThePast.mp3";
-			_player.URL = path;
-			_player.settings.setMode("loop", true);
-			_player.controls.play();
+			var filePath = AppDirectory + path;
+			if (filePath != _player.URL)
+			{
+				StopSound();
+				_player.URL = filePath;
+				_player.settings.setMode("loop", true);
+				_player.controls.play();
+			}
 		}
 
-		public static void StopBackgroundSound()
+		public static void PlayBackgroundSound(LevelType levelType)
+		{
+			switch (levelType)
+			{
+				case LevelType.Start:
+				case LevelType.Level1:
+				case LevelType.Level2:
+				case LevelType.Level3:
+					Play(@"\Content\Sounds\level1.mp3");
+					break;
+
+				case LevelType.Level4:
+					Play(@"\Content\Sounds\boss.mp3");
+					break;
+
+				case LevelType.Level5:
+				case LevelType.Level6:
+				case LevelType.Level7:
+					Play(@"\Content\Sounds\level2.mp3");
+					break;
+
+				case LevelType.Level8:
+					Play(@"\Content\Sounds\boss.mp3");
+					break;
+
+				case LevelType.Level9:
+				case LevelType.Level10:
+				case LevelType.Level11:
+					Play(@"\Content\Sounds\level3.mp3");
+					break;
+
+				case LevelType.Level12:
+					Play(@"\Content\Sounds\boss.mp3");
+					break;
+
+				case LevelType.Level13:
+				case LevelType.Level14:
+					Play(@"\Content\Sounds\level4.mp3");
+					break;
+
+				case LevelType.Level15:
+					Play(@"\Content\Sounds\boss.mp3");
+					break;
+
+				case LevelType.Level16:
+					Play(@"\Content\Sounds\boss5.mp3");
+					break;
+
+				default:
+					throw new InvalidOperationException();
+			}
+		}
+
+		public static void StopSound()
 		{
 			_player.controls.stop();
 		}
@@ -110,6 +169,16 @@ namespace RolePlayingGame.Core
 		public static void Start()
 		{
 			//_start.Play();
+		}
+
+		public static void Win()
+		{
+			Play(@"\Content\Sounds\winner.mp3");
+		}
+
+		public static void End()
+		{
+			Play(@"\Content\Sounds\end.mp3");
 		}
 	}
 }
