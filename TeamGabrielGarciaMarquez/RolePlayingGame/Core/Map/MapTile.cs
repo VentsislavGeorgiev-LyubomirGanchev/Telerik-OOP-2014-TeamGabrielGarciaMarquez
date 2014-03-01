@@ -144,7 +144,6 @@ namespace RolePlayingGame.Core.Map
 
                 case EntityCategoryType.Certificate:
                     player.HasCertificate = true;
-                    Sounds.LevelUp();
                     break;
 
 				case EntityCategoryType.Key:

@@ -31,6 +31,7 @@ namespace RolePlayingGame.Core
 		private static readonly Point HUDTextPosition = new Point(HUDTextPositionX, HUDTextPositionY);
 		private static readonly Font _Font = new Font(FontFamily, FontSize);
 		private static readonly Brush _Brush = new SolidBrush(Color.Black);
+		private static readonly Brush _YellowGreenBrush = new SolidBrush(Color.YellowGreen);
 
 		private static HUD _Instance = new HUD();
 
@@ -127,10 +128,10 @@ namespace RolePlayingGame.Core
 
 		public void DrawMessage(IRenderer renderer, string[] text)
 		{
-			renderer.DrawString(text[0], _Font, _Brush, 200, 250);
+			renderer.DrawStringWithOutline(text[0], _Font, _Brush, _YellowGreenBrush, 200, 250);
 			if (text.Length > 1)
 			{
-				renderer.DrawString(text[1], _Font, _Brush, 100, 300);
+				renderer.DrawStringWithOutline(text[1], _Font, _Brush, _YellowGreenBrush, 100, 300);
 			}
 		}
 

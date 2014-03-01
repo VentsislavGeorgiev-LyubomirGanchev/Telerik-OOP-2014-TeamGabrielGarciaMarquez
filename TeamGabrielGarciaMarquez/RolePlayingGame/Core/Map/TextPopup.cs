@@ -15,7 +15,7 @@ namespace RolePlayingGame.Core.Map
 		#endregion Static
 
 		public TextPopup(float x, float y, string text)
-            :this()
+			: this()
 		{
 			this.X = x;
 			this.Y = y;
@@ -36,14 +36,8 @@ namespace RolePlayingGame.Core.Map
 				textBrush = _RedBrush;
 			}
 
-			//Draw 4 text offsets to get an outline
-			renderer.DrawString(this.Text, _Font, _BlackBrush, this.X + 2, this.Y);
-			renderer.DrawString(this.Text, _Font, _BlackBrush, this.X - 1, this.Y);
-			renderer.DrawString(this.Text, _Font, _BlackBrush, this.X, this.Y + 2);
-			renderer.DrawString(this.Text, _Font, _BlackBrush, this.X, this.Y - 2);
-
 			//Draw the actual text
-			renderer.DrawString(this.Text, _Font, textBrush, this.X, this.Y);
+			renderer.DrawStringWithOutline(this.Text, _Font, textBrush, _BlackBrush, this.X, this.Y);
 		}
 	}
 }
