@@ -73,6 +73,7 @@ namespace RolePlayingGame.Core
 
 		public void Initialize()
 		{
+			this.HUD.Initialize();
 			//Create all the main gameobjects
 			this._gameMovement = new GameMovement(this, this._savegame);
 		}
@@ -184,7 +185,6 @@ namespace RolePlayingGame.Core
 						//If game is over then allow S to restart
 						if (e.KeyCode == Keys.S)
 						{
-							this.HUD.GameIsWon = false;
 							this.Initialize();
 						}
 					}

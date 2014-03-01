@@ -1,5 +1,7 @@
 ﻿using RolePlayingGame.Core.Human;
 using RolePlayingGame.UI;
+using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace RolePlayingGame.Core
@@ -22,6 +24,8 @@ namespace RolePlayingGame.Core
 
 		private const string FontFamily = "Arial";
 		private const int FontSize = 24;
+
+		private const int MaxMessageTime = 1000;
 
 		#endregion Constants
 
@@ -57,6 +61,9 @@ namespace RolePlayingGame.Core
 
 		private bool _gameFinishSoundPlayed;
 
+		private Stopwatch _timer;
+		private Action _onUpdate;
+
 		#endregion Fields
 
 		private HUD()
@@ -68,6 +75,8 @@ namespace RolePlayingGame.Core
 			this.SetSprite(out this._knowledgeSprite, HUDSpritePosition, HUDSpritesSpacing, new Entity(EntityType.IntroCSharp));
 			this.SetSprite(out this._defenseSprite, HUDSpritePosition, HUDSpritesSpacing, new Entity(EntityType.Keyboard));
 			this.SetSprite(out this._keySprite, HUDSpritePosition, HUDSpritesSpacing, new Entity(EntityType.Key));
+
+			this._timer = new Stopwatch();
 		}
 
 		#region Properties
@@ -91,6 +100,12 @@ namespace RolePlayingGame.Core
 		#endregion Properties
 
 		#region Methods
+
+		public void Initialize()
+		{
+			this._gameFinishSoundPlayed = false;
+			this.GameIsWon = false;
+		}
 
 		public void Draw(IRenderer renderer)
 		{
@@ -116,22 +131,44 @@ namespace RolePlayingGame.Core
 			//If the game is over then display the end game message
 			if (this.Health == 0)
 			{
-				this.DrawMessage(renderer, new[] { "You died!", "Press 's' to play again" });
+				this.DrawMessage(renderer, new[] { "You died!", "Press 's' to play again" }, false);
 			}
 
 			//If the game is won then show congratulations
 			if (this.GameIsWon)
 			{
-				this.DrawMessage(renderer, new[] { "You won!", "Press 's' to play again" });
+				this.DrawMessage(renderer, new[] { "You won!", "Press 's' to play again" }, false);
+			}
+
+			if (_onUpdate != null && this._timer.ElapsedMilliseconds < MaxMessageTime)
+			{
+				_onUpdate();
+			}
+			else
+			{
+				this._timer.Stop();
+				_onUpdate = null;
 			}
 		}
 
-		public void DrawMessage(IRenderer renderer, string[] text)
+		public void DrawMessage(IRenderer renderer, string[] text, bool isTemporary = true)
 		{
-			renderer.DrawStringWithOutline(text[0], _Font, _Brush, _YellowGreenBrush, 200, 250);
-			if (text.Length > 1)
+			Action action = () =>
 			{
-				renderer.DrawStringWithOutline(text[1], _Font, _Brush, _YellowGreenBrush, 100, 300);
+				renderer.DrawStringWithOutline(text[0], _Font, _Brush, _YellowGreenBrush, 200, 250);
+				if (text.Length > 1)
+				{
+					renderer.DrawStringWithOutline(text[1], _Font, _Brush, _YellowGreenBrush, 100, 300);
+				}
+			};
+			if (isTemporary)
+			{
+				this._timer.Restart();
+				this._onUpdate = action;
+			}
+			else
+			{
+				action();
 			}
 		}
 

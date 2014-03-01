@@ -45,7 +45,6 @@ namespace RolePlayingGame.Core.Forms
 			if (this._gameState != null)
 			{
 				this._gameState.SaveGame();
-				//MessageBox.Show(MessageForm, "Game saved!");
 			}
 		}
 
@@ -56,10 +55,6 @@ namespace RolePlayingGame.Core.Forms
 			{
 				this._gameState = savedGameState;
 				this.NewGame(sender, e);
-			}
-			else
-			{
-				//MessageBox.Show(MessageForm, "Savegame not found!");
 			}
 		}
 

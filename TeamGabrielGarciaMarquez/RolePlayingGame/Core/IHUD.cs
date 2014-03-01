@@ -6,6 +6,7 @@ namespace RolePlayingGame.Core
 	internal interface IHUD
 	{
 		bool GameIsWon { get; set; }
+
 		int Health { get; set; }
 
 		int Mana { get; set; }
@@ -20,7 +21,11 @@ namespace RolePlayingGame.Core
 
 		int Level { get; set; }
 
+		void Initialize();
+
 		void Draw(IRenderer renderer);
+
+		void DrawMessage(IRenderer renderer, string[] text, bool isTemporary = true);
 
 		void Update(IPlayer player);
 	}

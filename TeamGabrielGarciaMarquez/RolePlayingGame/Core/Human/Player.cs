@@ -129,6 +129,7 @@ namespace RolePlayingGame.Core.Human
 			this.Location = new PointF(savegame.Location);
 			this.Position = new Point(savegame.Position);
 			this.NextUpgrade = savegame.NextUpgradeExperience;
+			this.IsAnimationEnabled = false;
 		}
 
 		public override void Die()

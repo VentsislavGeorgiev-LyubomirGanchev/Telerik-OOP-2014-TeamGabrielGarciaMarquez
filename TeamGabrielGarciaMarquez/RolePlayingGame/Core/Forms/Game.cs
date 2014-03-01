@@ -48,6 +48,7 @@ namespace RolePlayingGame.Core.Forms
 			if (this.GameState != null)
 			{
 				this.GameState.SaveGame();
+				this.GameState.HUD.DrawMessage(this._gameRenderer, new[] { "Game saved!" });
 			}
 		}
 
@@ -57,10 +58,7 @@ namespace RolePlayingGame.Core.Forms
 			if (savedGameState != null)
 			{
 				this.GameState = savedGameState;
-			}
-			else
-			{
-				//MessageBox.Show(MainMenu.MessageForm, "Savegame not found!", _GameTitle);
+				this.GameState.HUD.DrawMessage(this._gameRenderer, new[] { "Game loaded!" });
 			}
 		}
 
